@@ -1,0 +1,20 @@
+package com.example.dozcaldroid;
+
+import java.util.*;
+
+public class Test {
+
+    public static void main(String args[]) {
+
+        int[][] twoDim = { {1, 2}, {3, 7}, {8, 9}, {4, 2}, {5, 3} };
+
+        Arrays.sort(twoDim, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return ((Integer) o2[0]).compareTo(o1[0]);
+            }
+        });
+
+        System.out.println(Arrays.deepToString(twoDim));
+    }
+}

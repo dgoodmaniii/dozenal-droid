@@ -1,0 +1,412 @@
+<!-- +AMDG  This document was begun on 9 May 11E9, the feast
+of St. Gregory Nazianzen, Doctor of the Church; and it is
+humbly dedicated to him and to the Immaculate Heart of Mary,
+for their prayers, and to the Sacred Heart of Jesus for His
+mercy. -->
+
+<html>
+<head>
+<title>dozbc:  An Infix Dozenal Calculator</title>
+<meta name="viewport" content="
+	width=device-width,
+	height=device-height,
+	initial-scale=1.0,
+	maximum-scale=1.0,
+	minimum-scale=1.0,
+	user-scalable=no
+" />
+<style>
+body {
+	width:  2em;
+	width:  100%;
+	padding:  0pt;
+	margin:  0pt;
+	border:  0pt;
+}
+.calcbut {
+	display:  block;
+	float:  left;
+	width:  20%;
+	vertical-align:  middle;
+	font-size:  280%;
+	margin:  0pt;
+	padding:  0pt;
+	border-radius:  6px;
+	background-image:  -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.09, rgb(186,204,204)),
+		color-stop(0.55, rgb(140,156,156)),
+		color-stop(0.78, rgb(124,138,138))
+	);
+	-webkit-tap-highlight-color:  rgba(0,0,0,0);
+}
+.calcbut:active, .calcbut.fake-active {
+	background-image:  -webkit-gradient(
+		linear,
+		right top,
+		right bottom,
+		color-stop(0.09, rgb(186,204,204)),
+		color-stop(0.55, rgb(140,156,156)),
+		color-stop(0.78, rgb(124,138,138))
+	);
+	-webkit-tap-highlight-color:  rgba(0,0,0,0);
+}
+.calcform {
+	width:  "100%";
+	padding:  0pt;
+	margin:  0pt;
+	border:  0pt;
+}
+.helpfield {
+	width:  8%;
+	font-size:  250%;
+	padding:  0px;
+	margin:  0px;
+	float:  left;
+	vertical-align:  middle;
+	border-radius:  6px;
+	text-align:  center;
+	background-image:  -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.09, rgb(186,204,204)),
+		color-stop(0.55, rgb(140,156,156)),
+		color-stop(0.78, rgb(124,138,138))
+	);
+	-webkit-tap-highlight-color:  rgba(0,0,0,0);
+}
+.helpfield a {
+	color:  black;
+	text-decoration:  none;
+}
+#textfield {
+	width:  92%;
+	font-size:  250%;
+	height:  auto;
+	min-height:  1.2em;
+	float:  right;
+}
+.shortinput {
+	display:  block;
+	float:  left;
+	width:  20%;
+	vertical-align:  middle;
+	font-size:  280%;
+	margin:  0pt;
+	padding:  0pt;
+	border-radius:  6px;
+	-webkit-tap-highlight-color:  rgba(0,0,0,0);
+}
+</style>
+</head>
+<script type="text/javascript" src='./fastclick.js'></script>
+<script type="text/javascript">
+window.addEventListener('load',function() {
+	FastClick.attach(document.body);
+}, false);
+// from a solution at StackOverflow by nagoya0; through the
+// "onload" function
+function hasClass(ele,cls) {
+	return ele.className.match(new RegExp("(\\s|^)"+cls+"(\\s|$)"));
+}
+function addClass(ele,cls) {
+	if (!this.hasClass(ele,cls)) ele.className += " "+cls;
+}
+function removeClass(ele,cls) {
+	if (hasClass(ele,cls)) {
+		var reg = new RegExp("(\\s|^)"+cls+"(\\s|$)");
+		ele.className = ele.className.replace(reg," ");
+	}
+}
+window.onload = function() {
+	var elements = document.getElementsByClassName("calcbut");
+	for (var i = 0; i < elements.length; i++) {
+		var elm = elements[i];
+		elm.addEventListener("touchstart", function() {
+			addClass(this,"fake-active");},false);
+		elm.addEventListener("touchend", function() {
+			removeClass(this,"fake-active");},false);
+	}
+}
+function simpdoz(number)
+{
+	if (number == 10) 
+		number = "X";
+	else if (number == 11) 
+		number = "E";
+	else if (number == 12) 
+		number = 10;
+	else 
+		number = number;
+return number;
+}
+function reverse(string)
+{
+	var revstring='';
+	for (i = string.length-1; i>=0; i--)
+		revstring+=string.charAt(i);
+	return revstring;
+}
+function dozenalize(number)
+{
+	var isneg = 0;
+	doznum = "";
+	var decnum = number.toString();
+	if (decnum.charAt(0) == '-') {
+		isneg = 1;
+		number *= -1;
+	}
+	while (number >= 12) {
+		nextdig = number % 12;
+		number /= 12;
+		nextdig = simpdoz(Math.floor(nextdig));
+		doznum = doznum + nextdig;
+	}
+	nextdig = number % 12;
+	number /= 12;
+	nextdig = simpdoz(Math.floor(nextdig));
+	doznum += nextdig;
+	if (isneg == 1) {
+		doznum = doznum + '-';
+	}
+	doznum = reverse(doznum);
+	return doznum;
+}
+var inputfield = new String("");
+var precision = 4;
+var memory = "";
+function addtostring(figure)
+{
+	if (figure == 'C') {
+		inputfield = "";
+	} else if (figure == 'v') {
+		inputfield += " sqrt(";
+	} else if (figure == 'p') {
+		inputfield += "pi";
+	} else if (figure == 'm') {
+		memory = inputfield;
+	} else if (figure == 'M') {
+		inputfield += memory;
+	} else if (figure == '<') {
+		while ((inputfield.charAt(inputfield.length-1) == ' ') &&
+		(inputfield.length > 0)) {
+			inputfield = inputfield.substring(0,inputfield.length - 1);
+		}
+		while ((inputfield.charAt(inputfield.length-1) != ' ') &&
+		(inputfield.length > 0)) {
+			if (/[a-z\(\)\+\-\*\/\^]/.test(inputfield.charAt(inputfield.length-1))) {
+				inputfield = inputfield.substring(0,inputfield.length - 1);
+			} else {
+				inputfield = inputfield.substring(0,inputfield.length - 1);
+				break;
+			}
+		}
+	} else {
+		inputfield = inputfield+figure;
+	}
+	document.getElementById('textfield').innerHTML = inputfield;
+}
+function setprecision()
+{
+	var e = document.getElementById("precfield");
+	precision = e.options[e.selectedIndex].value;
+	document.getElementById('precfield').value = precision;
+}
+/* from a function found on StackOverflow by Mark Elrich, 
+http://www.stackoverflow.com/question/5055723/converting-hexadecimal-to-float-in-javascript
+*/
+function doztodec(doznum)
+{
+	var pattern = /;/;
+	var isneg = 0;
+
+	doznum = doznum.replace('X','A');
+	doznum = doznum.replace('E','B');
+	if (doznum.charAt(0) == '-') {
+		isneg = 1;
+		doznum = doznum.replace('-','');
+	}
+	if (pattern.test(doznum)) {
+		doz = doznum.split(/;/);
+		var len = doz[1].length;
+		doz[1] = parseInt(doz[1],12);
+		doz[1] *= Math.pow(12, -len);
+		if (isneg == 1) {
+			return (parseInt(doz[0],12) + doz[1]) * -1;
+		} else {
+			return parseInt(doz[0],12) + doz[1];
+		}
+	} else {
+		if (isneg == 1) {
+			return parseInt(doznum,12) * -1;
+		} else {
+			return parseInt(doznum,12);
+		}
+	}
+}
+function dectodoz(decnumber)
+{
+	var decnum = decnumber.toString();
+	var parts = decnum.split(".");
+	if (parts.length > 1) {
+		var wholenum = dozenalize(parts[0]);
+		var len = precision;
+		parts[1] = parseFloat("0."+parts[1]);
+		var fracnum = "";
+		for (var i = 0; i < precision; ++i) {
+			parts[1] *= 12;
+			holder = Math.floor(parts[1]);
+			parts[1] -= holder;
+			fracnum += simpdoz(holder);
+		}
+		return wholenum+";"+fracnum;
+	}
+	return dozenalize(parts[0]);
+}
+function fixstring()
+{
+	var ifpow = /([\-0-9XE;]+)[\s]*\^[\s]*([\-0-9XE;]+)/;
+	var ifsqrt = / sqrt\s*\(\s*([0-9XE;]+)\s*\)/;
+	var ifpi = /pi/g;
+	var ife = /e/g;
+	var matched;
+	var amatched = new Array();
+
+	inputfield = inputfield.replace(ifpi,"3;18480949");
+	inputfield = inputfield.replace(ife,"2;87523606");
+	inputfield = inputfield.replace(/\(/," \( ");
+	inputfield = inputfield.replace(/\)/," \) ");
+	while (inputfield.indexOf(" sqrt") > -1) {
+		matched = doztodec(ifsqrt.exec(inputfield)[1]);
+		inputfield = inputfield.replace(ifsqrt,"Math.sqrt("+matched+")");
+	}
+	while (inputfield.indexOf("^") > -1) {
+		amatched = ifpow.exec(inputfield);
+		amatched[1] = doztodec(amatched[1]);
+		amatched[2] = doztodec(amatched[2]);
+		inputfield = inputfield.replace(amatched[0],"Math.pow("+amatched[1]+","+amatched[2]+")");
+	}
+}
+function solveprob()
+{
+	var addto = "";
+	var answer = "";
+	var isnumber = /[\-0-9XE;]+/;
+	var islet = /[a-z]/;
+
+	fixstring();
+	var figures = inputfield.split(" ");
+	for (var i = 0; i < figures.length; i++) {
+		if (isnumber.test(figures[i]) && !islet.test(figures[i]) && 
+		!/^\-$/.test(figures[i])) {
+			figures[i] = figures[i].replace("X","A");
+			figures[i] = figures[i].replace("E","B");
+			addto += doztodec(figures[i]);
+		} else {
+			addto += figures[i];
+		}
+		answer = answer+" "+addto;
+		addto = "";
+	}
+	answer = eval(answer);
+	answer = dectodoz(answer);
+	inputfield = answer;
+	document.getElementById('textfield').innerHTML = answer;
+}
+</script>
+
+<body ontouchstart="">
+
+<div class="helpfield"><a href="./help.html">?</a></div>
+<div class="inputfield" id="textfield" /></div>
+<form class="calcform" name="textform">
+	<input onclick="addtostring('9');"  class="calcbut" type="button" 
+		value="9" /><!--
+	--><input onclick="addtostring('X');"  class="calcbut" type="button" 
+		value="X" />
+	<input onclick="addtostring('E');"  class="calcbut" type="button" 
+		value="E" />
+	<input onclick="addtostring('C');"  class="calcbut" type="button" 
+		value="C" />
+	<input onclick="addtostring('<');"  class="calcbut" type="button" 
+		value="&larr;" />
+	<br />
+	<input onclick="addtostring('6');"  class="calcbut" type="button" 
+		value="6" />
+	<input onclick="addtostring('7');"  class="calcbut" type="button" 
+		value="7" />
+	<input onclick="addtostring('8');"  class="calcbut" type="button" 
+		value="8" />
+	<input onclick="addtostring(' / ');"  class="calcbut" type="button" 
+		value="/" />
+	<input onclick="addtostring('m');"  class="calcbut" type="button" 
+		value="m" />
+	<br />
+	<input onclick="addtostring('3');"  class="calcbut" type="button" 
+		value="3" />
+	<input onclick="addtostring('4');"  class="calcbut" type="button" 
+		value="4" />
+	<input onclick="addtostring('5');"  class="calcbut" type="button" 
+		value="5" />
+	<input onclick="addtostring(' * ');"  class="calcbut" type="button" 
+		value="*" />
+	<input onclick="addtostring('M');"  class="calcbut" type="button" 
+		value="M" />
+	<br />
+	<input onclick="addtostring('0');"  class="calcbut" type="button" 
+		value="0" />
+	<input onclick="addtostring('1');"  class="calcbut" type="button" 
+		value="1" />
+	<input onclick="addtostring('2');"  class="calcbut" type="button" 
+		value="2" />
+	<input onclick="addtostring(' - ');"  class="calcbut" type="button" 
+		value="-" />
+	<input onclick="addtostring('v');"  class="calcbut" type="button" 
+		value="&radic;" />
+	<br />
+	<input onclick="addtostring(';');"  class="calcbut" type="button" 
+		value=";" />
+	<input onclick="addtostring('-');"  class="calcbut" type="button" 
+		value="&plusmn;" />
+	<input onclick="solveprob();"  class="calcbut" type="button" 
+		value="=" />
+	<input onclick="addtostring(' + ');"  class="calcbut" type="button" 
+		value="+" />
+	<select onchange="setprecision();" class="shortinput"
+		id="precfield" />
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4" selected="selected">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+	</select>
+	<br />
+	<input onclick="addtostring('(');"  class="calcbut" type="button" 
+		value="(" />
+	<input onclick="addtostring(')');"  class="calcbut" type="button" 
+		value=")" />
+	<input onclick="addtostring('^');"  class="calcbut" type="button" 
+		value="^" />
+	<input onclick="addtostring('p');"  class="calcbut" type="button" 
+		value="&pi;" />
+	<input onclick="addtostring('e');"  class="calcbut" type="button" 
+		value="e" />
+	<br />
+</form>
+
+<script>
+document.getElementById("precfield").value = precision;
+var defheight = 
+	document.getElementById('textfield').clientHeight;
+</script>
+
+</body>
+</html>

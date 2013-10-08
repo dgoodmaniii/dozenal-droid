@@ -1,0 +1,44 @@
+#!/bin/bash
+#+AMDG
+
+./dozdate "%j" -d"1 Apr 11E9";
+date +%j -d"1 Apr 2013" | doz;
+echo "---";
+./dozdate "%j" -d"1 Apr 11E8";
+date +%j -d"1 Apr 2012" | doz;
+echo "---";
+./dozdate "%j" -d"1 Apr 11EE";
+date +%j -d"1 Apr 2015" | doz;
+echo "---";
+./dozdate "%j" -d"1 Apr 1200";
+date +%j -d"1 Apr 2016" | doz;
+echo "---";
+./dozdate "%j" -d"27 Jan 11EX";
+date +%j -d"31 Jan 2014" | doz;
+echo "---";
+./dozdate "%j" -d"1 Feb 11EX";
+date +%j -d"1 Feb 2014" | doz;
+echo "---";
+./dozdate "%j" -d"27 Jan 11EE";
+date +%j -d"31 Jan 2015" | doz;
+echo "---";
+./dozdate "%j" -d"1 Feb 11EE";
+date +%j -d"1 Feb 2015" | doz;
+echo "---";
+./dozdate "%j" -d"24 Feb 11EE";
+date +%j -d"28 Feb 2015" | doz;
+echo "---";
+./dozdate "%j" -d"24 October 11EE";
+date +%j -d"28 October 2015" | doz;
+echo "---";
+./dozdate "%j" -d"24 October 11E8";
+date +%j -d"28 October 2012" | doz;
+echo "---";
+./dozdate "%j" -d"1 March 11E8";
+date +%j -d"1 March 2012" | doz;
+echo "---";
+./dozdate "%j" -d"25 February 11E8";
+date +%j -d"29 February 2012" | doz;
+echo "---";
+./dozdate "%j" -d"5 February 11E8";
+date +%j -d"5 February 2012" | doz;

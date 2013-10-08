@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#./dozcal -f"sampdata,saints_1962" -d"Apr 11E7"
+#./dozcal -f"sampdata,saints_1962" -wd"1E Apr 11E8"
+#./dozcal -f"sampdata,saints_1962" -ws"Thu" -d"1E Apr 11E8"
+#./dozcal -f"sampdata,saints_1962" -d"11E8" -obasic
+#./dozcal -f"sampdata,saints_1962" -d"Feb 11E8" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Mon" -d"Feb 11E7" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Wed" -d"Feb 11E8" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Wed" -d"11E7" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Wed" -d"11E7" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Wed" -d"11E9" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -ws"Mon" -d"1E Apr 11E8" -ohtml > test.html
+./dozcal -f"sampdata,saints_1962" -ws"Tue" -d"1E Apr 11E9" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Mon" -r"chrwest" -d"11E8" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Mon" -a"moon" -r"chrwest" -d"Dec 11E8" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Mon" -g"Washington, DC" -a"season,moon,sunrise" -r"chrwest" -d"Dec 11E8" -ohtml > test.html
+#./dozcal -f"sampdata,saints_1962" -s"Mon" -g"-65;04:32;X8" -a"moon,sunrise" -r"chrwest" -d"Apr 11E8" -ohtml > test.html
+#./dozcal -n"nz" -f"sampdata,saints_1962" -s"Mon" -g"Washington, DC" -a"season,moon,sunrise" -r"chrwest" -d"dec 11E8" -ohtml > test.html
+#./dozcal -r"rc,isl"  -f"sampdata,saints_1962" -d"feb 11E8" -ohtml > test.html
+#./dozcal -r"rc,isl"  -f"sampdata,saints_1962" -d"11E8" -ohtml > test.html

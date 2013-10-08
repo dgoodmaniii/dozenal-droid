@@ -1,0 +1,62 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Date_Pcalc {
+	label="Date::Pcalc";
+	"Date::Pcalc::DateCalc_add_delta_days";
+	"Date::Pcalc::leap_year";
+	"Date::Pcalc::DateCalc_Year_to_Days";
+	"Date::Pcalc::DateCalc_leap_year";
+	"Date::Pcalc::BEGIN@14";
+	"Date::Pcalc::DateCalc_Date_to_Days";
+	"Date::Pcalc::BEGIN@18";
+	"Date::Pcalc::BEGIN@15";
+	"Date::Pcalc::Add_Delta_Days";
+	"Date::Pcalc::BEGIN@16";
+	"Date::Pcalc::Date_to_Days";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@15";
+	"main::julday";
+	"main::jultogreg";
+	"main::parse_daynames";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Carp_Clan {
+	label="Carp::Clan";
+	"Carp::Clan::BEGIN@224";
+	"Carp::Clan::BEGIN@17";
+	"Carp::Clan::BEGIN@16";
+	"Carp::Clan::import";
+	"Carp::Clan::BEGIN@18";
+}
+"Date::Pcalc::DateCalc_add_delta_days" -> "Date::Pcalc::DateCalc_leap_year";
+"Date::Pcalc::leap_year" -> "Date::Pcalc::DateCalc_leap_year";
+"Date::Pcalc::DateCalc_Date_to_Days" -> "Date::Pcalc::DateCalc_leap_year";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@18";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@16";
+"Date::Pcalc::BEGIN@16" -> "vars::import";
+"Date::Pcalc::DateCalc_add_delta_days" -> "Date::Pcalc::DateCalc_Date_to_Days";
+"Date::Pcalc::Date_to_Days" -> "Date::Pcalc::DateCalc_Date_to_Days";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::import";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@16";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@224";
+"Date::Pcalc::DateCalc_add_delta_days" -> "Date::Pcalc::DateCalc_Year_to_Days";
+"Date::Pcalc::DateCalc_Date_to_Days" -> "Date::Pcalc::DateCalc_Year_to_Days";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@14";
+"main::jultogreg" -> "Date::Pcalc::Add_Delta_Days";
+"main::julday" -> "Date::Pcalc::Date_to_Days";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@18";
+"Date::Pcalc::Add_Delta_Days" -> "Date::Pcalc::DateCalc_add_delta_days";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@17";
+"main::parse_daynames" -> "Date::Pcalc::leap_year";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@15";
+"Date::Pcalc::BEGIN@15" -> "strict::import";
+}

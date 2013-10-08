@@ -1,0 +1,31 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@14";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Date_Easter {
+	label="Date::Easter";
+	"Date::Easter::BEGIN@28";
+	"Date::Easter::BEGIN@26";
+	"Date::Easter::BEGIN@27";
+}
+"Date::Easter::BEGIN@28" -> "Exporter::import";
+"Date::Easter::BEGIN@27" -> "vars::import";
+"main::BEGIN@14" -> "Date::Easter::BEGIN@26";
+"main::BEGIN@14" -> "Date::Easter::BEGIN@27";
+"main::BEGIN@14" -> "Date::Easter::BEGIN@28";
+"Date::Easter::BEGIN@26" -> "strict::import";
+}

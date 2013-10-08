@@ -1,0 +1,53 @@
+Staff Meeting|Wednesday|12;00||event
+Intermittent Test|Third Monday in February|8;00||event
+Other Intermittent Test|Second Thursday in February|8;00||event
+Leapyear Intermittent Test|Last Wednesday in February|8;00||event
+Final Intermittent Test|Last Monday in February|8;00||event
+Yet Another Intermittent Test|Wednesdays in February|X;00||event
+Yearly Intermittent Test|First Fridays|9;00||event
+Second Yearly Intermittent Test|Last Monday|9;00||event
+Last Monday in Sept|last Monday in September|9;00||event
+Work Meeting|Thursdays in March|12;00, 12;60||event
+Leap Year Meeting|Wednesdays in February|12;00, 12;60||event
+Other Vacation|14 May 11E8 --19 July 11E8|||1special
+Work Meeting|Thursdays of March|12;00-- 12;60||event
+Other Work Meeting|Fridays of March|12;00-- 12;60||event
+Tues Work Meeting|Tuesdays in March|13;00||event
+Wed Work Meeting|Wednesdays in March|12;00||event
+Special Work Meeting| Saturdays in March|10;00||event
+Early Work Meeting| Saturdays in March|7;00||event
+Extra Special Work Meeting| Saturdays in March|9;00||event
+Late Work Meeting| Saturdays in March|13;00||event
+Special Sunday Work Meeting| Sundays in March|10;00||event
+Early Sunday Work Meeting| Sundays in March|7;00||event
+Extra Special Sunday Work Meeting| Sundays in March|9;00||event
+Late Sunday Work Meeting| Sundays in March|13;00||event
+Vacation|14 Mar 11E8--19 March 11E8|||1special
+Still Other Vacation|1X Nov 11E8 --19 Feb 11E9|||1special
+Testing for Jan|Tuesdays of January|3;00||event
+Leapyear Test|Wednesdays in February|||event
+Leapyear Test 2|Wednesdays|||event
+Leapyear Test 3|Wednesdays in February 11E7|14;00||event
+Fill a Day|Mondays in April|8;00||event
+Times Tests|Fridays in Sept 11E7|1X;00|14 Sept 11E7|1event
+More for the Day|1E Apr 11E8|10;00--11;00||event
+Exceptions Tests|Fridays in Sept 11E7|E;00|14 Sept 11E7|event
+Exception List Test|Fridays in Sept 11E7|E;00|14 Sept 11E7, 1E Sept 11E7|event
+Exception Wdays Test|Fridays in Sept 11E7|E;00|Third Friday in Sept|event
+Eventtype Tests|Fridays in Sept 11E7|1X;00|14 Sept 11E7|event
+Louise's Birthday|1E April|||2special
+%DATEFORM:	%d %B %Y
+#%GEOGRAPHY:  Washington, DC
+#%GEOGRAPHY:  d-65;04:32.X8
+%GEOGRAPHY:  -5;175:2;713
+%NATIONAL:  nz,eng,usa
+%ASTRONOMY:  sunrise,moon
+%STARTDAY:  Mon
+#%TIMEZONE:  -0500
+%RELIGIOUS:  chrwest
+##%DDDATEFORM:  %d %b %Y
+###%FORM_TEXT 1special "%n \n *** %d ***\n"
+###%FORM_TEXT event "%#20d\n%@-20t%_20n\n"
+###%FORM_LATEX event "\\textbf{%d} %20t & %-20n"
+###%FORM_LATEX 1special "\\textbf{%d} \\centering\\textit{%n}"
+###%FORM_LATEX blank "\\textbf{%d}"

@@ -1,0 +1,318 @@
+
+package com.fdsapi.arrays;  // FormattedDataSet API
+
+import java.util.*;
+import com.jamonapi.*;
+import com.jamonapi.utils.AppMap;
+import com.fdsapi.*;
+
+/** 
+ * <p>This class allows you to sort Object[][] arrays by multiple columns.  Each column can be either
+ * sorted in ascending or descending order.   It does for Object[][] what the "order by " clause
+ * does for SQL select statements (i.e. select * from employees order by dept asc, lname asc, salary desc</p>
+ *
+ * <p>The returned sort depends on the underlying Objects in the array.  nulls are allowed and are returned 
+ * last for both ascending and descending sorts.</p>
+ * 
+ * <br><br><a href="http://www.fdsapi.com/javadocs/com/fdsapi/arrays/ArrayComparator.htm">View Code</a>
+ */
+
+public class ArrayComparator extends java.lang.Object implements Comparator
+{
+    private List sortCols=new ArrayList();
+    // Contains logic to column names to idices.  Arrays are typically index based not name based.
+    // true means to throw exceptions if the column name doesn't exit
+    private ArrayHeaderLocator headerLocator=new ArrayHeaderLocator(true);
+    private String sortStr="";  // used to display this object as a string
+    private boolean isFirstOrderBy=true;
+
+    public ArrayComparator() {
+
+    }
+
+    /** <p>Constructor to use when you know what column and direction you would like to sort on.
+     * Note other columns can be added to the sort column list after the object has been 
+     * constructed.</p>
+     *
+     *
+     * <b>Sample:</b><br><br>
+     * <blockquote><code><pre>
+     *     // Sort the array (Object[][]) in ascending order based on column 0 
+     *     //    (i.e. the first column of the array
+     *     Arrays.sort(array, new ArrayComparator(0, "asc"));
+     * </pre></code></blockquote>
+     **/
+    public ArrayComparator(int sortCol, String direction) {
+        addSortCol(sortCol, direction);
+    }
+    
+        /** <p>Creates a new instance filter and allows the columns to be referenced by the label in both
+     * display columns and where clauses.  Arrays don't have the concept of named columns and this
+     * array gives them this capability.  For example in the following example after calling this 
+     * constructor col0 can be referred to as fname, and col1 can be referred to as lname.  
+     * The names are not case sensitive</p>
+     *
+     *  <b>Sample Call:</b><br><br><blockquote><code><pre>
+     *  String[] header={"fname","lname"};
+     *  ArrayFilter f=new ArrayFilter(header); 
+     *  f.addDisplayCol("fname");
+     *  f.addDisplayCol("lname");
+     *  f.addConditional("LNAme","=","souza");
+     *  Object[][] data=f.filter(names);
+     * </blockquote></code></pre>
+     */
+    public ArrayComparator(String[] header) {
+        // Note Integer object is used to map a logical name back to the index.
+        headerLocator = new ArrayHeaderLocator(header, true);
+    }
+
+  /**
+   * Sorts the passed 2 dimensional array based on the data in column sortIndex.  sortDir can  be either
+   * "asc" or "desc" (ascending, descending respectively).  column 1 within the array is represented by a
+   * sortIndex of 0.
+   */
+ public static void sort(Object[][] array, int sortIndex, String sortDir) {
+     new ArrayComparator(sortIndex, sortDir).sort(array);
+ }
+
+   /**
+    * <p>Sorts the passed 2 dimensional array based on the data the already added sort columns.  </p>
+    * 
+    * <b>Sample Code:</b><br><br>
+    *
+    * <blockquote><code><pre>
+    *   ArrayComparator ac=new ArrayComparator();
+    *   ac.addSortCol(0,"asc"); // sort by column 0 in ascending order first
+    *   ac.addSortCol(1,"desc"); // then by column 1 in descending order
+    *   ac.addSortCol(2,"asc");  // then by column 2 in ascending order
+    *   ac.sort(array);  // note ac can be used to sort as many arrays as needed after it has been created.
+    * </pre></code></blockquote>
+    *
+    * Monitor String: ArrayComparator.sort(Object[][])
+    */
+
+ public void sort(Object[][] array) {
+    Monitor mon=AppConstants.start("arrays.ArrayComparator.sort(Object[][])");
+    try {
+       Arrays.sort(array, this);  
+    } finally {
+       mon.stop();
+    }
+
+ }
+
+   /**
+    * <p>Used to specify what columns are to be sorted in what order (asc or desc). The order that
+    * addSortCol(...) is called determines what order the array will be sorted.  See the example.
+    *  value of sortCol equal to 0 means the first column.   For "direction" valid values are 
+    * "asc", "ascending", "desc", and "descending" in any case.</p>
+    * 
+    * 
+    * <b>Sample Code:</b><br><br>
+    * 
+    * <blockquote><code><pre>
+    *   ArrayComparator ac=new ArrayComparator();
+    *   ac.addSortCol(0,"asc"); // sort by column 0 in ascending order first
+    *   ac.addSortCol(1,"desc"); // then by column 1 in descending order
+    *   ac.addSortCol(2,"asc");  // then by column 2 in ascending order
+    *   ac.sort(array);  // note ac can be used to sort as many arrays as needed after it has been created.
+    * </pre></code></blockquote>
+    *
+    * <br><br>Monitor String: ArrayComparator.sort(Object[][])
+    */
+
+ public void addSortCol(int sortCol, String direction) {
+   addToString("col"+sortCol, direction);
+   sortCols.add(new ElementComparator(sortCol, direction));
+ }
+ 
+   /**
+    * <p>Used to specify what columns are to be sorted in what order (asc or desc). The order that
+    * addSortCol(...) is called determines what order the array will be sorted.  The value passed must
+    * match the header values past into the constructor and are translated to the index of the column header.
+    * For "direction" valid values are "asc", "ascending", "desc", and "descending" in any case.</p>
+    * 
+    * 
+    * <b>Sample Code:</b><br><br>
+    * 
+    * <blockquote><code><pre>
+    *   String[] header={"fname", "lname", "salary"};
+    *   ArrayComparator ac=new ArrayComparator(header);
+    *   ac.addSortCol("lname","asc"); // sort by column 0 in ascending order first
+    *   ac.addSortCol("fname","desc"); // then by column 1 in descending order
+    *   ac.addSortCol(2,"asc");  // then by column 2 in ascending order
+    *   ac.sort(array);  // note ac can be used to sort as many arrays as needed after it has been created.
+    * </pre></code></blockquote>
+    *
+    * <br><br>Monitor String: ArrayComparator.sort(Object[][])
+    */
+
+ public void addSortCol(String sortColName, String direction) {
+   addToString(sortColName, direction);
+   sortCols.add(new ElementComparator(getColNumFromName(sortColName), direction));     
+ }
+ 
+ /** Returns the column number when passed a column name that matches the header array passed into the Constructor */
+ private int getColNumFromName(String columnName) {
+    return headerLocator.getColNum(columnName);
+ }
+ 
+ /** Helps build the string returned by the toString() method*/
+ private void addToString(String sortColName, String direction) {
+   String comma=isFirstOrderBy ? "order by " : ", ";
+   sortStr+=comma+sortColName+" "+direction;   
+   isFirstOrderBy=false;
+ }
+ 
+ /** Return a string representation of the ordering that was selected.  Examples are:  
+  <br>1) order by col1 desc, col2 asc
+  <br>2) order by lname desc, fname asc, col3 asc
+  */
+ public String toString() {
+     return sortStr;
+ }
+ 
+/**
+ * Method used by the comparator interface. <br><br>
+ *   o1 &lt; o2 - returns a negative integer<br>
+ *   o1==o2 - returns zero<br>
+ *   o1>o2 - returns a postitive integer<br><br>
+ *  Iterate through all columns that should be compared (in the proper order) 
+ *  and call the Comparator for each of the column elements.
+ */
+ public int compare(Object o1, Object o2) {
+      int compareVal=0;
+      Iterator iter=sortCols.iterator();
+      while (iter.hasNext()) {
+           ElementComparator elementComp=(ElementComparator) iter.next();
+           Object element1=((Object[]) o1)[elementComp.getSortCol()];
+           Object element2=((Object[]) o2)[elementComp.getSortCol()];
+
+           compareVal=elementComp.compare(element1,element2);
+           if (compareVal!=0) // if one of the elments is not equal we know all we need to know and can return
+             break;
+       }
+
+      return compareVal;
+}
+ 
+ // java.util.Arrays.equals(data,copy(data));  The row pointers and data in them are the same.
+ public static Object[][] copy(Object[][] data) {
+       if (data==null)
+         return null;
+       else {
+         Object[][] copyData=new Object[data.length][];
+         System.arraycopy(data,0, copyData,0,data.length);
+         return copyData;
+       }
+    }
+    
+
+/*** Start ElementComparator inner class ***/
+ // Used to compare elements of an array that reside within the same column.  The Object[][] array itself
+ // will be sorted according to this algorithm.
+ private static class ElementComparator implements Comparator {
+    private int sortCol;
+    private static final int ASC=0;
+    private static final int DESC=1;
+    private int dir;
+
+    public ElementComparator(int sortCol, String direction) {
+        this.sortCol=sortCol;
+        if ("asc".equalsIgnoreCase(direction) || "ascending".equalsIgnoreCase(direction))
+         dir=ASC;
+        else if ("desc".equalsIgnoreCase(direction) || "descending".equalsIgnoreCase(direction))
+         dir=DESC;
+        else
+         throw new IllegalArgumentException("'asc' or 'desc' must be passed to the constructor.  The argument passed was: "+direction);
+    }
+
+    private boolean isAscending()  {
+      return dir==ASC;   
+    }
+
+    public int getSortCol() {
+        return sortCol;
+    }
+
+
+    public int compare(Object o1, Object o2) {
+     Comparable comparable=null;
+     Object element1=o1;
+     Object element2=o2;
+
+     // Note the following if condition ensures that nulls may be in the array.  Nulls will always
+     // be placed after all other data with the following logic.
+     if (element1==null && element2==null) 
+       return 0;
+     else if (element1==null) 
+       return 1;
+     else if (element2==null)
+       return -1;
+     else 
+       comparable = (Comparable) element1;
+
+
+     if (isAscending())
+        return comparable.compareTo(element2);
+     else
+        return -comparable.compareTo(element2);
+  }
+
+ }
+ /*** End ElementComparator inner class ***/
+
+
+ /** Method that has sample usage and test code **/
+ public static void main(String[] args) throws Exception {
+    Object[][] array={
+        {"steve",null, "souza"},
+        {"steve",null, "adams"},
+        {"steve",null, "parker"},
+        {"zeus", new Long(1), "johnson"},
+        {"al", new Long(100), "adams"},
+        {null, new Long(10), "johnson"},
+        {null, new Long(2), "johnson"},
+        {null, new Long(1), "johnson"},
+        {"al", new Long(20), "smith"},
+        {"peter", new Long(20), "smith"},
+        {"peter", new Long(20), "parker"},
+        {"peter", new Long(20), "adams"},
+    };
+    
+    String[] header={"fname", "age", "lname"};
+    FormattedDataSet fds=FormattedDataSet.createInstance();
+
+    // sorts on 2nd column
+    ArrayComparator.sort(array, 1, "desc");
+    System.out.println("1) col 1 descending"+fds.getFormattedDataSet(null, array, "csv"));
+
+    // Can also pass the comparator to the Arrays.sort(..) method
+    Arrays.sort(array, new ArrayComparator(0, "asc"));
+    System.out.println(fds.getFormattedDataSet(null, array, "csv"));
+
+    // Note ArrayComparator's can be passed to the Arrays.sort() method or the ArrayComparator's 
+    // own sort method may be called.  The following will sort the array on multiple columns.  
+    // The below is similar to a sql select's order by clause i.e. similar to 
+    // "order by col1 asc, col2 desc, col3 asc"  
+    ArrayComparator ac=new ArrayComparator();
+    ac.addSortCol(0,"asc");
+    ac.addSortCol(1,"desc");
+    ac.addSortCol(2,"asc");
+    ac.sort(array);  // note ac can be used to sort as many arrays as needed after it has been created.
+    System.out.println("\n\n3) "+ac+"\n"+fds.getFormattedDataSet(null, array, "csv"));
+
+    // Note ArrayComparator's can be passed to the Arrays.sort() method or the ArrayComparator's 
+    // own sort method may be called.  The following will sort the array on multiple columns.  
+    // The below is similar to a sql select's order by clause i.e. similar to 
+    // "order by col1 asc, col2 desc, col3 asc"  
+    ac=new ArrayComparator(header);
+    ac.addSortCol("fname","asc");
+    ac.addSortCol("lname","desc");
+    ac.addSortCol("age","asc");
+    ac.sort(array);  // note ac can be used to sort as many arrays as needed after it has been created.
+    System.out.println("\n\n3) "+ac+"\n"+fds.getFormattedDataSet(null, array, "csv"));
+       
+ }
+}
+

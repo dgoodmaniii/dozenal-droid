@@ -1,0 +1,90 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@12";
+	"Time::Piece::BEGIN@9";
+	"Time::Piece::BEGIN@11";
+	"Time::Piece::BEGIN@10";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@13";
+	"POSIX::import";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@4";
+}
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::BEGIN@4";
+	"Exporter::Heavy::BEGIN@186";
+	"Exporter::Heavy::heavy_export";
+	"Exporter::Heavy::BEGIN@3";
+}
+subgraph cluster_Getopt_Std {
+	label="Getopt::Std";
+	"Getopt::Std::getopts";
+}
+subgraph cluster_Time_Seconds {
+	label="Time::Seconds";
+	"Time::Seconds::BEGIN@6";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+	"Exporter::as_heavy";
+	"Exporter::CORE:subst";
+	"Exporter::export";
+	"Exporter::CORE:match";
+}
+subgraph cluster_Tie_Hash {
+	label="Tie::Hash";
+	"Tie::Hash::BEGIN@5";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@10";
+	"main::BEGIN@14";
+	"main::BEGIN@17";
+	"main::BEGIN@13";
+	"main::BEGIN@15";
+}
+subgraph cluster_String_Escape {
+	label="String::Escape";
+	"String::Escape::BEGIN@11";
+	"String::Escape::BEGIN@55";
+}
+subgraph cluster_Date_Easter {
+	label="Date::Easter";
+	"Date::Easter::BEGIN@28";
+}
+"Exporter::export" -> "Exporter::as_heavy";
+"Exporter::import" -> "Exporter::CORE:match";
+"main::BEGIN@10" -> "Exporter::import";
+"String::Escape::BEGIN@11" -> "Exporter::import";
+"Time::Piece::BEGIN@10" -> "Exporter::import";
+"String::Escape::BEGIN@55" -> "Exporter::import";
+"Time::Seconds::BEGIN@6" -> "Exporter::import";
+"Getopt::Std::getopts" -> "Exporter::import";
+"Time::Piece::BEGIN@9" -> "Exporter::import";
+"Tie::Hash::BEGIN@5" -> "Exporter::import";
+"Time::Piece::BEGIN@11" -> "Exporter::import";
+"main::BEGIN@15" -> "Exporter::import";
+"main::BEGIN@17" -> "Exporter::import";
+"main::BEGIN@13" -> "Exporter::import";
+"POSIX::import" -> "Exporter::import";
+"Time::Local::BEGIN@4" -> "Exporter::import";
+"Time::Piece::BEGIN@12" -> "Exporter::import";
+"main::BEGIN@14" -> "Exporter::import";
+"Date::Easter::BEGIN@28" -> "Exporter::import";
+"POSIX::BEGIN@13" -> "Exporter::import";
+"Exporter::import" -> "Exporter::export";
+"Exporter::import" -> "Exporter::CORE:subst";
+"Exporter::as_heavy" -> "Exporter::CORE:subst";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@4";
+"Exporter::import" -> "Exporter::Heavy::heavy_export";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@186";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@3";
+}

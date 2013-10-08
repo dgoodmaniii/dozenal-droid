@@ -1,0 +1,120 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Date_Pcalc {
+	label="Date::Pcalc";
+	"Date::Pcalc::BEGIN@15";
+}
+subgraph cluster_Fcntl {
+	label="Fcntl";
+	"Fcntl::BEGIN@184";
+	"Fcntl::BEGIN@3";
+}
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@5";
+	"Time::Piece::BEGIN@124";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::BEGIN@35";
+	"Config::BEGIN@5";
+	"Config::BEGIN@9";
+}
+subgraph cluster_Date_Day {
+	label="Date::Day";
+	"Date::Day::BEGIN@3";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@39";
+	"POSIX::BEGIN@2";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@6";
+}
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::BEGIN@4";
+	"Exporter::Heavy::BEGIN@3";
+}
+subgraph cluster_Time_Seconds {
+	label="Time::Seconds";
+	"Time::Seconds::BEGIN@4";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::BEGIN@8";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::BEGIN@3";
+	"constant::BEGIN@38";
+	"constant::BEGIN@101";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@8";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::CORE:regcomp";
+	"strict::unimport";
+	"strict::bits";
+	"strict::CORE:match";
+}
+subgraph cluster_Carp_Clan {
+	label="Carp::Clan";
+	"Carp::Clan::BEGIN@224";
+	"Carp::Clan::BEGIN@16";
+}
+subgraph cluster_String_Escape {
+	label="String::Escape";
+	"String::Escape::BEGIN@9";
+}
+subgraph cluster_AutoLoader {
+	label="AutoLoader";
+	"AutoLoader::BEGIN@138";
+	"AutoLoader::BEGIN@30";
+	"AutoLoader::BEGIN@3";
+	"AutoLoader::BEGIN@186";
+}
+subgraph cluster_Date_Easter {
+	label="Date::Easter";
+	"Date::Easter::BEGIN@26";
+}
+"main::BEGIN@8" -> "strict::CORE:match";
+"strict::unimport" -> "strict::bits";
+"strict::import" -> "strict::bits";
+"main::BEGIN@8" -> "strict::bits";
+"Carp::Clan::BEGIN@224" -> "strict::unimport";
+"Config::BEGIN@35" -> "strict::unimport";
+"Fcntl::BEGIN@184" -> "strict::unimport";
+"AutoLoader::BEGIN@138" -> "strict::unimport";
+"constant::BEGIN@38" -> "strict::unimport";
+"AutoLoader::BEGIN@186" -> "strict::unimport";
+"POSIX::BEGIN@39" -> "strict::unimport";
+"Exporter::Heavy::BEGIN@4" -> "strict::unimport";
+"AutoLoader::BEGIN@30" -> "strict::unimport";
+"constant::BEGIN@101" -> "strict::unimport";
+"Time::Piece::BEGIN@124" -> "strict::unimport";
+"main::BEGIN@8" -> "strict::CORE:regcomp";
+"Config::BEGIN@5" -> "strict::import";
+"Date::Easter::BEGIN@26" -> "strict::import";
+"constant::BEGIN@3" -> "strict::import";
+"main::BEGIN@8" -> "strict::import";
+"vars::BEGIN@8" -> "strict::import";
+"POSIX::BEGIN@2" -> "strict::import";
+"Config::BEGIN@9" -> "strict::import";
+"AutoLoader::BEGIN@3" -> "strict::import";
+"String::Escape::BEGIN@9" -> "strict::import";
+"Fcntl::BEGIN@3" -> "strict::import";
+"Time::Piece::BEGIN@5" -> "strict::import";
+"Time::Seconds::BEGIN@4" -> "strict::import";
+"Date::Pcalc::BEGIN@15" -> "strict::import";
+"Carp::Clan::BEGIN@16" -> "strict::import";
+"Date::Day::BEGIN@3" -> "strict::import";
+"Time::Local::BEGIN@6" -> "strict::import";
+"Exporter::Heavy::BEGIN@3" -> "strict::import";
+}

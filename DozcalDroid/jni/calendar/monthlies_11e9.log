@@ -1,0 +1,5599 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.12.24)  14 JAN 2013 00:28
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**monthlies_11e9.tex
+(./monthlies_11e9.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
+c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
+h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
+h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
+ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
+rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
+kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
+ polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
+lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
+welsh, loaded.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/dozenal/dozenal.sty
+Package: dozenal 2012/05/13 v3.3 support for dozenal fonts
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/fixltx2e.sty
+Package: fixltx2e 2006/09/13 v1.1m fixes to LaTeX
+LaTeX Info: Redefining \em on input line 420.
+) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+){/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/lo
+cal/texlive/2012/texmf-dist/fonts/map/dvips/dozenal/fdz.map}
+\symdozens=\mathgroup4
+
+! LaTeX Error: \thesection undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.282 }
+       %end if chapter's defined
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \thesubsection undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.282 }
+       %end if chapter's defined
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: \thesubsubsection undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.282 }
+       %end if chapter's defined
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/lettrine/lettrine.sty
+File: lettrine.sty 2012/07/20 v1.63 (Daniel Flipo)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\c@DefaultLines=\count79
+\DefaultFindent=\dimen102
+\DefaultNindent=\dimen103
+\DefaultSlope=\dimen104
+\L@lbox=\box26
+\L@tbox=\box27
+\c@L@lines=\count80
+\L@Pindent=\dimen105
+\L@Findent=\dimen106
+\L@Nindent=\dimen107
+\L@lraise=\dimen108
+\L@first=\dimen109
+\L@next=\dimen110
+\L@slope=\dimen111
+\L@height=\dimen112
+\LettrineWidth=\dimen113
+Loading lettrine.cfg
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lettrine/lettrine.cfg)) (/usr/loc
+al/texlive/2012/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty (/usr/local/tex
+live/2012/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks15
+\ex@=\dimen114
+)) (/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count81
+))
+\Gin@req@height=\dimen115
+\Gin@req@width=\dimen116
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.st
+y (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/expl3.sty (/usr/local/
+texlive/2012/texmf-dist/tex/latex/l3kernel/l3names.sty (/usr/local/texlive/2012
+/texmf-dist/tex/latex/l3kernel/l3bootstrap.sty
+Package: l3bootstrap 2012/07/16 v3991 L3 Experimental bootstrap code
+)
+Package: l3names 2012/12/07 v4346 L3 Namespace for primitives
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count82
+)
+Package: expl3 2012/12/21 v4390 L3 Experimental code bundle wrapper
+(/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3basics.sty
+Package: l3basics 2012/11/24 v4339 L3 Basic definitions
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3expan.sty
+Package: l3expan 2012/08/28 v4149 L3 Argument expansion
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3tl.sty
+Package: l3tl 2012/11/24 v4339 L3 Token lists
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3seq.sty
+Package: l3seq 2012/11/24 v4339 L3 Sequences and stacks
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3int.sty
+Package: l3int 2012/09/26 v4237 L3 Integers
+\c_max_int=\count83
+\l_tmpa_int=\count84
+\l_tmpb_int=\count85
+\g_tmpa_int=\count86
+\g_tmpb_int=\count87
+\l_tmpc_int=\count88
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3quark.sty
+Package: l3quark 2012/11/04 v4268 L3 Quarks
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3prg.sty
+Package: l3prg 2012/11/24 v4339 L3 Control structures
+\g__prg_map_int=\count89
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3clist.sty
+Package: l3clist 2012/11/24 v4339 L3 Comma separated lists
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3token.sty
+Package: l3token 2012/12/20 v4384 L3 Experimental token manipulation
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3prop.sty
+Package: l3prop 2012/09/09 v4212 L3 Property lists
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3msg.sty
+Package: l3msg 2012/09/09 v4212 L3 Messages
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3file.sty
+Package: l3file 2012/12/20 v4377 L3 File and I/O operations
+\l__ior_stream_int=\count90
+\l_iow_line_count_int=\count91
+\l__iow_target_count_int=\count92
+\l__iow_current_line_int=\count93
+\l__iow_current_word_int=\count94
+\l__iow_current_indentation_int=\count95
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3skip.sty
+Package: l3skip 2012/11/04 v4260 L3 Dimensions and skips
+\c_zero_dim=\dimen117
+\c_max_dim=\dimen118
+\l_tmpa_dim=\dimen119
+\l_tmpb_dim=\dimen120
+\g_tmpa_dim=\dimen121
+\g_tmpb_dim=\dimen122
+\c_zero_skip=\skip41
+\c_max_skip=\skip42
+\l_tmpa_skip=\skip43
+\l_tmpb_skip=\skip44
+\g_tmpa_skip=\skip45
+\g_tmpb_skip=\skip46
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3keys.sty
+Package: l3keys 2012/11/02 v4256 L3 Experimental key-value interfaces
+\g__keyval_level_int=\count96
+\l_keys_choice_int=\count97
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3fp.sty
+Package: l3fp 2012/11/10 v4305 L3 Floating points
+\c__fp_leading_shift_int=\count98
+\c__fp_middle_shift_int=\count99
+\c__fp_trailing_shift_int=\count100
+\c__fp_big_leading_shift_int=\count101
+\c__fp_big_middle_shift_int=\count102
+\c__fp_big_trailing_shift_int=\count103
+\c__fp_Bigg_leading_shift_int=\count104
+\c__fp_Bigg_middle_shift_int=\count105
+\c__fp_Bigg_trailing_shift_int=\count106
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3box.sty
+Package: l3box 2012/12/08 v4347 L3 Experimental boxes
+\c_empty_box=\box28
+\l_tmpa_box=\box29
+\l_tmpb_box=\box30
+\g_tmpa_box=\box31
+\g_tmpb_box=\box32
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3coffins.sty
+Package: l3coffins 2012/09/09 v4212 L3 Coffin code layer
+\l__coffin_internal_box=\box33
+\l__coffin_internal_dim=\dimen123
+\l__coffin_offset_x_dim=\dimen124
+\l__coffin_offset_y_dim=\dimen125
+\l__coffin_x_dim=\dimen126
+\l__coffin_y_dim=\dimen127
+\l__coffin_x_prime_dim=\dimen128
+\l__coffin_y_prime_dim=\dimen129
+\c_empty_coffin=\box34
+\l__coffin_aligned_coffin=\box35
+\l__coffin_aligned_internal_coffin=\box36
+\l_tmpa_coffin=\box37
+\l_tmpb_coffin=\box38
+\l__coffin_display_coffin=\box39
+\l__coffin_display_coord_coffin=\box40
+\l__coffin_display_pole_coffin=\box41
+\l__coffin_display_offset_dim=\dimen130
+\l__coffin_display_x_dim=\dimen131
+\l__coffin_display_y_dim=\dimen132
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3color.sty
+Package: l3color 2012/08/29 v4156 L3 Experimental color support
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3luatex.sty
+Package: l3luatex 2012/08/03 v4049 L3 Experimental LuaTeX-specific functions
+\g__cctab_allocate_int=\count107
+\g__cctab_stack_int=\count108
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3kernel/l3candidates.sty
+Package: l3candidates 2012/12/20 v4383 L3 Experimental additions to l3kernel
+\l__box_top_dim=\dimen133
+\l__box_bottom_dim=\dimen134
+\l__box_left_dim=\dimen135
+\l__box_right_dim=\dimen136
+\l__box_top_new_dim=\dimen137
+\l__box_bottom_new_dim=\dimen138
+\l__box_left_new_dim=\dimen139
+\l__box_right_new_dim=\dimen140
+\l__box_internal_box=\box42
+\l__coffin_bounding_shift_dim=\dimen141
+\l__coffin_left_corner_dim=\dimen142
+\l__coffin_right_corner_dim=\dimen143
+\l__coffin_bottom_corner_dim=\dimen144
+\l__coffin_top_corner_dim=\dimen145
+\l__coffin_scaled_total_height_dim=\dimen146
+\l__coffin_scaled_width_dim=\dimen147
+))
+Package: l3keys2e 2012/12/21 v4390 LaTeX2e option processing using LaTeX3 keys
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2012/12/21 v4390 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count109
+\l__xparse_m_args_int=\count110
+\l__xparse_mandatory_args_int=\count111
+\l__xparse_processor_int=\count112
+\l__xparse_v_nesting_int=\count113
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.st
+y
+Package: xtemplate 2012/12/21 v4390 L3 Experimental prototype document function
+s
+\l__xtemplate_tmp_dim=\dimen148
+\l__xtemplate_tmp_int=\count114
+\l__xtemplate_tmp_muskip=\muskip16
+\l__xtemplate_tmp_skip=\skip47
+Variant \prop_get:NoNTF already defined; not changing it on line 106
+Variant \prop_get:NoNT already defined; not changing it on line 107
+Variant \prop_get:NoNF already defined; not changing it on line 108
+)
+Package: xfrac 2012/11/09 v4299 L3 Experimental split-level fractions
+\l__xfrac_slash_box=\box43
+\l__xfrac_tmp_box=\box44
+\l__xfrac_denominator_bot_sep_dim=\dimen149
+\l__xfrac_numerator_bot_sep_dim=\dimen150
+\l__xfrac_numerator_top_sep_dim=\dimen151
+\l__xfrac_slash_left_sep_dim=\dimen152
+\l__xfrac_slash_right_sep_dim=\dimen153
+\l__xfrac_slash_left_muskip=\muskip17
+\l__xfrac_slash_right_muskip=\muskip18
+.................................................
+. xtemplate info: "declare-object-type"
+. 
+. Declaring object type 'xfrac' taking 3 argument(s) on line 96.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \sfrac with arg. spec. 'omom' on line 436.
+.................................................
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/textpos/textpos.sty
+Package: textpos 2012/11/13 v1.7i
+Package: textpos 2012/11/13 1.7i, absolute positioning of text on the page
+(/usr/local/texlive/2012/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+)
+\TP@textbox=\box45
+\TP@holdbox=\box46
+\TPHorizModule=\dimen154
+\TPVertModule=\dimen155
+\TP@margin=\dimen156
+\TP@absmargin=\dimen157
+Grid set 16 x 16 = 0.0pt x 0.0pt
+\TPboxrulesize=\dimen158
+\TP@ox=\dimen159
+\TP@oy=\dimen160
+\TP@tbargs=\toks16
+\TP@prevdepth=\dimen161
+TextBlockOrigin set to 0pt x 0pt
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)) (/usr/local/texlive/2012/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+)
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 7.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen162
+\extrarowheight=\dimen163
+\NC@list=\toks17
+\extratabsurround=\skip48
+\backup@length=\skip49
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count115
+\calc@Bcount=\count116
+\calc@Adimen=\dimen164
+\calc@Bdimen=\dimen165
+\calc@Askip=\skip50
+\calc@Bskip=\skip51
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count117
+\calc@Cskip=\skip52
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2012/04/20 version 1.30 text color boxes
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/loca
+l/texlive/2012/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+\pgfutil@everybye=\toks18
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box47
+) (/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
+))
+Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/
+local/texlive/2012/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks19
+\pgfkeys@temptoks=\toks20
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
+\pgfkeys@tmptoks=\toks21
+))
+\pgf@x=\dimen166
+\pgf@y=\dimen167
+\pgf@xa=\dimen168
+\pgf@ya=\dimen169
+\pgf@xb=\dimen170
+\pgf@yb=\dimen171
+\pgf@xc=\dimen172
+\pgf@yc=\dimen173
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count118
+\c@pgf@countb=\count119
+\c@pgf@countc=\count120
+\c@pgf@countd=\count121
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
+File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+)))
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
+File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
+\pgfsyssoftpath@smallbuffer@items=\count122
+\pgfsyssoftpath@bigbuffer@items=\count123
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+)) (/usr/local/texlive/2012/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr
+/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (/usr/
+local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen174
+\pgfmath@count=\count124
+\pgfmath@box=\box48
+\pgfmath@toks=\toks22
+\pgfmath@stack@operand=\toks23
+\pgfmath@stack@operation=\toks24
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex))) (/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathflo
+at.code.tex
+\c@pgfmathroundto@lastzeros=\count125
+))
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
+File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
+\pgf@picminx=\dimen175
+\pgf@picmaxx=\dimen176
+\pgf@picminy=\dimen177
+\pgf@picmaxy=\dimen178
+\pgf@pathminx=\dimen179
+\pgf@pathmaxx=\dimen180
+\pgf@pathminy=\dimen181
+\pgf@pathmaxy=\dimen182
+\pgf@xx=\dimen183
+\pgf@xy=\dimen184
+\pgf@yx=\dimen185
+\pgf@yy=\dimen186
+\pgf@zx=\dimen187
+\pgf@zy=\dimen188
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
+File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
+\pgf@path@lastx=\dimen189
+\pgf@path@lasty=\dimen190
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
+File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
+\pgf@shorten@end@additional=\dimen191
+\pgf@shorten@start@additional=\dimen192
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
+File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
+\pgfpic=\box49
+\pgf@hbox=\box50
+\pgf@layerbox@main=\box51
+\pgf@picture@serial@count=\count126
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
+File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
+\pgflinewidth=\dimen193
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
+File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
+\pgf@pt@x=\dimen194
+\pgf@pt@y=\dimen195
+\pgf@pt@temp=\dimen196
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
+File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
+File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
+File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
+\pgf@max=\dimen197
+\pgf@sys@shading@range@num=\count127
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
+
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
+File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
+\pgfexternal@startupbox=\box52
+))
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
+File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
+File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
+File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
+)))
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
+File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
+\pgfnodeparttextbox=\box53
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
+File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen198
+\pgf@nodesepend=\dimen199
+)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
+)) (/usr/local/texlive/2012/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks25
+\verbatim@line=\toks26
+\verbatim@in@stream=\read2
+)
+\tcb@titlebox=\box54
+\tcb@upperbox=\box55
+\tcb@lowerbox=\box56
+\tcb@textdim=\skip53
+\tcb@out=\write4
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen200
+\lightrulewidth=\dimen201
+Normal \dimen register pool exhausted, switching to extended pool.
+\cmidrulewidth=\dimen256
+\belowrulesep=\dimen257
+\belowbottomsep=\dimen258
+\aboverulesep=\dimen259
+\abovetopsep=\dimen260
+\cmidrulesep=\dimen261
+\cmidrulekern=\dimen262
+\defaultaddspace=\dimen263
+\@cmidla=\count128
+\@cmidlb=\count129
+\@aboverulesep=\dimen264
+\@belowrulesep=\dimen265
+\@thisruleclass=\count130
+\@lastruleclass=\count131
+\@thisrulewidth=\dimen266
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count132
+\mult@box=\box57
+\multicol@leftmargin=\dimen267
+\c@unbalance=\count133
+\c@collectmore=\count134
+\doublecol@number=\count135
+\multicoltolerance=\count136
+\multicolpretolerance=\count137
+\full@width=\dimen268
+\page@free=\dimen269
+\premulticols=\dimen270
+\postmulticols=\dimen271
+\multicolsep=\skip54
+\multicolbaselineskip=\skip55
+\partial@page=\box58
+\last@line=\box59
+\mult@rightbox=\box60
+\mult@grightbox=\box61
+\mult@gfirstbox=\box62
+\mult@firstbox=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\c@columnbadness=\count138
+\c@finalcolumnbadness=\count139
+\last@try=\dimen272
+\multicolovershoot=\dimen273
+\multicolundershoot=\dimen274
+\mult@nat@firstbox=\box81
+\colbreak@box=\box82
+\multicol@sort@counter=\count140
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2012/08/31 v0.4t Insert pages of external PDF documents (AM)
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2010/10/06 v2.0c eso-pic (RN)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+)) (/usr/local/texlive/2012/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2012/08/31 v0.4t Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box83
+\AM@toc@title=\toks27
+\c@AM@survey=\count141
+\AM@templatesizebox=\box84
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip19
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+\shortline=\skip56
+\thirdskip=\skip57
+\weeklydayboxwid=\skip58
+(/usr/local/texlive/2012/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+) (/usr/local/texlive/2012/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count142
+\Gm@cntv=\count143
+\c@Gm@tempcnt=\count144
+\Gm@bindingoffset=\dimen275
+\Gm@wd@mp=\dimen276
+\Gm@odd@mp=\dimen277
+\Gm@even@mp=\dimen278
+\Gm@layoutwidth=\dimen279
+\Gm@layoutheight=\dimen280
+\Gm@layouthoffset=\dimen281
+\Gm@layoutvoffset=\dimen282
+\Gm@dimlist=\toks28
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/transparent.sty
+Package: transparent 2007/01/08 v1.0 Transparency via pdfTeX's color stack (HO)
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)) (./monthlies_11e9.aux)
+\openout1 = `monthlies_11e9.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 57.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 57.
+(/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count145
+\scratchdimen=\dimen283
+\scratchbox=\box85
+\nofMPsegments=\count146
+\nofMParguments=\count147
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count148
+\MPscratchDim=\dimen284
+\MPnumerator=\count149
+\makeMPintoPDFobject=\count150
+\everyMPtoPDFconversion=\toks30
+) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+) (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+)) (/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)) ABD: EveryShipout initializing macros
+\AtBeginShipoutBox=\box86
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(36.135pt, 542.025pt, 36.13501pt)
+* v-part:(T,H,B)=(18.0675pt, 758.83499pt, 18.06749pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=542.025pt
+* \textheight=758.83499pt
+* \oddsidemargin=-36.135pt
+* \evensidemargin=-36.135pt
+* \topmargin=-54.20248pt
+* \headheight=0.0pt
+* \headsep=0.0pt
+* \topskip=10.0pt
+* \footskip=0.0pt
+* \marginparwidth=0.0pt
+* \marginparsep=0.0pt
+* \columnsep=0.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 4.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\daywidth=\skip59
+\smallday=\skip60
+\boxwidth=\skip61
+\dayheight=\skip62
+\smallheight=\skip63
+
+Overfull \hbox (51.64923pt too wide) detected at line 80
+ \T1/lmr/m/n/84 F O R 1 1 \T1/dozch/m/n/84 E \T1/lmr/m/n/84 9  
+ []
+
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 87.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Calculating math sizes for size <18> on input line 87.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 87.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 87.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 87.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 87.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <18> on input line 87.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12.59995> on input line 87.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 87.
+
+Overfull \vbox (30.39975pt too high) detected at line 88
+ []
+
+\logowidth=\skip64
+<new_logo.png, id=4, 96.36pt x 96.36pt>
+File: new_logo.png Graphic file (type png)
+<use new_logo.png>
+Package pdftex.def Info: new_logo.png used on input line 90.
+(pdftex.def)             Requested size: 67.45152pt x 67.45152pt.
+File: new_logo.png Graphic file (type png)
+<use new_logo.png>
+Package pdftex.def Info: new_logo.png used on input line 102.
+(pdftex.def)             Requested size: 96.35974pt x 96.35974pt.
+[1
+
+ <./new_logo.png>]
+\monthnegtwo=\box87
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 150.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 150.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 150.
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 150
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 150
+ []
+
+\monthnegone=\box88
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.202 }
+        % end savebox monthnegone
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing { inserted.
+<inserted text> 
+                {
+l.202 }
+        % end savebox monthnegone
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.202 }
+        % end savebox monthnegone
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing { inserted.
+<inserted text> 
+                {
+l.202 }
+        % end savebox monthnegone
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 202
+ []
+
+
+Overfull \vbox (30.83987pt too high) detected at line 202
+ []
+
+\monthone=\box89
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 251
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 251
+ []
+
+\monthtwo=\box90
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 297
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 297
+ []
+
+\monththree=\box91
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.347 }
+        % end savebox monththree
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing { inserted.
+<inserted text> 
+                {
+l.347 }
+        % end savebox monththree
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 347
+ []
+
+
+Overfull \vbox (30.83987pt too high) detected at line 347
+ []
+
+\monthfour=\box92
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 395
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 395
+ []
+
+\monthfive=\box93
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 444
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 444
+ []
+
+\monthsix=\box94
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.493 }
+        % end savebox monthsix
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing { inserted.
+<inserted text> 
+                {
+l.493 }
+        % end savebox monthsix
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 493
+ []
+
+
+Overfull \vbox (30.83987pt too high) detected at line 493
+ []
+
+\monthseven=\box95
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 542
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 542
+ []
+
+\montheight=\box96
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 590
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 590
+ []
+
+\monthnine=\box97
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 637
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 637
+ []
+
+\monthten=\box98
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 686
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 686
+ []
+
+\monthelv=\box99
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 733
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 733
+ []
+
+\monthunqua=\box100
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 781
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 781
+ []
+
+\monthunqone=\box101
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 830
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 830
+ []
+
+\monthunqtwo=\box102
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.49998pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.56pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (18.60725pt too high) detected at line 876
+ []
+
+
+Overfull \vbox (29.29987pt too high) detected at line 876
+ []
+
+<andrews_f_emerson.png, id=16, 113.67468pt x 164.11313pt>
+File: andrews_f_emerson.png Graphic file (type png)
+<use andrews_f_emerson.png>
+Package pdftex.def Info: andrews_f_emerson.png used on input line 880.
+(pdftex.def)             Requested size: 375.55254pt x 542.025pt.
+
+Overfull \hbox (18.89917pt too wide) in paragraph at lines 880--880
+[]| []| 
+ []
+
+
+Underfull \hbox (badness 7379) in paragraph at lines 887--887
+[]|\T1/lmr/m/it/24 I can promise the ones who
+ []
+
+
+Underfull \hbox (badness 4084) in paragraph at lines 887--887
+\T1/lmr/m/it/24 wish to stretch their minds a
+ []
+
+
+Underfull \hbox (badness 2689) in paragraph at lines 887--887
+\T1/lmr/m/it/24 cians gen-er-ally ad-mit that `the
+ []
+
+
+Underfull \hbox (badness 1939) in paragraph at lines 887--887
+\T1/lmr/m/it/24 tem....[Dozenal] promises to be
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 879--890
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 879 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.890 \end{tabular}
+                   %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[2
+
+
+ <./andrews_f_emerson.png (PNG copy)>]
+
+LaTeX Font Warning: Font shape `T1/dozch/m/sc' undefined
+(Font)              using `T1/dozch/m/n' instead on input line 894.
+
+LaTeX Font Info:    Calculating math sizes for size <36> on input line 896.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <36> on input line 896.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <25.19989> on input line 896.
+LaTeX Font Info:    Font shape `T1/lmr/bx/sc' in size <11> not available
+(Font)              Font shape `T1/cmr/bx/sc' tried instead on input line 952.
+
+Overfull \vbox (7.7371pt too high) detected at line 952
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 952
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 954
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 956
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 957
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 958
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 959
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 960
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 961
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 962
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 964
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 965
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 966
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 967
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 968
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 969
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 970
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 972
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 973
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 974
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 975
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 976
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 977
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 978
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 980
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 982
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 984
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 986
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 988
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 989
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 990
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 991
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 992
+ []
+
+[3
+
+
+] <beard_ralph.jpg, id=28, 44.0847pt x 99.7326pt>
+File: beard_ralph.jpg Graphic file (type jpg)
+<use beard_ralph.jpg>
+Package pdftex.def Info: beard_ralph.jpg used on input line 998.
+(pdftex.def)             Requested size: 239.69846pt x 542.025pt.
+
+Underfull \hbox (badness 2772) in paragraph at lines 1009--1009
+\T1/lmr/m/it/24 should be forced, and we urge
+ []
+
+
+Underfull \hbox (badness 2111) in paragraph at lines 1009--1009
+\T1/lmr/m/it/24 to use duodec-i-mals to fa-cil-i-tate
+ []
+
+
+Underfull \hbox (badness 3229) in paragraph at lines 1009--1009
+\T1/lmr/m/it/24 and their mea-sur-ings....In any
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 997--1011
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 997 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1011 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[4
+
+
+ <./beard_ralph.jpg>]
+Overfull \vbox (7.7371pt too high) detected at line 1057
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1059
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1060
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1061
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1062
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1063
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1065
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1066
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1067
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1068
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1069
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1070
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1071
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1073
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1074
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1075
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1076
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1077
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1078
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1079
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1081
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1082
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1083
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1084
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1085
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1086
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1087
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1089
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1090
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1091
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1092
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1093
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1114
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.1114 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[5
+
+
+]
+File: logo_shapes_dozenal.mps Graphic file (type mps)
+[MP to PDF] (./logo_shapes_dozenal.mps)
+Overfull \hbox (211.28174pt too wide) in alignment at lines 1121--1130
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 1121 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1130 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[6
+
+
+]
+Overfull \vbox (7.7371pt too high) detected at line 1193
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1193
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1195
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1196
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1198
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1199
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1200
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1201
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1202
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1203
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1204
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1206
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1207
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1208
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1209
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1210
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1211
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1212
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1214
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1215
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1216
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1217
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1218
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1219
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1220
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1222
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1223
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1224
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1225
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1226
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1247
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.1247 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[7
+
+
+] <dozenal_fractions.png, id=43, 407.6028pt x 463.9734pt>
+File: dozenal_fractions.png Graphic file (type png)
+<use dozenal_fractions.png>
+Package pdftex.def Info: dozenal_fractions.png used on input line 1255.
+(pdftex.def)             Requested size: 357.13046pt x 406.51874pt.
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 1254--1261
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 1254 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1261 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[8
+
+
+ <./dozenal_fractions.png>]
+Overfull \vbox (7.7371pt too high) detected at line 1324
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1324
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1326
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1327
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1329
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1330
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1331
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1332
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1333
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1334
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1335
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1337
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1338
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1339
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1340
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1341
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1342
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1343
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1345
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1346
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1347
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1348
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1349
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1350
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1351
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1353
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1355
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1357
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1358
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1359
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1360
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1361
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1362
+ []
+
+[9
+
+
+] <schiffman_jay.jpg, id=50, 96.8418pt x 128.6406pt>
+File: schiffman_jay.jpg Graphic file (type jpg)
+<use schiffman_jay.jpg>
+Package pdftex.def Info: schiffman_jay.jpg used on input line 1369.
+(pdftex.def)             Requested size: 326.47224pt x 433.62164pt.
+
+Underfull \hbox (badness 3118) in paragraph at lines 1377--1377
+[]|\T1/lmr/m/it/24 One dozen is the \T1/lmr/m/n/24 ini-tial abun-
+ []
+
+
+Underfull \hbox (badness 1189) in paragraph at lines 1377--1377
+\T1/lmr/m/n/24 per-com-pos-ite\T1/lmr/m/it/24 ....The dozen rep-re-
+ []
+
+
+Underfull \hbox (badness 1348) in paragraph at lines 1377--1377
+\T1/lmr/m/it/24 sents the first num-ber which is
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 1368--1379
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 1368 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1379 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[10
+
+
+ <./schiffman_jay.jpg>]
+Overfull \vbox (7.7371pt too high) detected at line 1426
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1428
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1429
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1430
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1431
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1432
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1433
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1435
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1436
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1437
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1438
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1439
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1440
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1441
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1443
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1444
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1445
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1446
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1447
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1448
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1449
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1451
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1452
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1453
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1454
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1455
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1456
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1457
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1459
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1460
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1461
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1498
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1498
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.1498 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[11
+
+
+] <dozenal_times_tables.png, id=57, 121.4136pt x 159.7167pt>
+File: dozenal_times_tables.png Graphic file (type png)
+<use dozenal_times_tables.png>
+Package pdftex.def Info: dozenal_times_tables.png used on input line 1506.
+(pdftex.def)             Requested size: 329.69038pt x 433.62164pt.
+
+Underfull \hbox (badness 1292) in paragraph at lines 1512--1512
+[]|\T1/lmr/m/it/24 Because twelve has six di-vi-sors,
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 1512--1512
+\T1/lmr/m/it/24 with the small-est four con-sec-u-
+ []
+
+
+Underfull \hbox (badness 1715) in paragraph at lines 1512--1512
+\T1/lmr/m/it/24 ta-ble fea-tur-ing brief pat-terns in
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 1505--1515
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 1505 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1515 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[12
+
+
+ <./dozenal_times_tables.png>]
+Overfull \vbox (7.7371pt too high) detected at line 1578
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1578
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1580
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1581
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1582
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1583
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1585
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1586
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1587
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1588
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1589
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1590
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1591
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1593
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1594
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1595
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1596
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1597
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1598
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1599
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1601
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1602
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1603
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1604
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1605
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1606
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1607
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1609
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1610
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1611
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1612
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1613
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1614
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1635
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.1635 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[13
+
+
+]
+File: keyb_doz.mps Graphic file (type mps)
+[MP to PDF] (./keyb_doz.mps)
+Overfull \hbox (211.28174pt too wide) in alignment at lines 1642--1653
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 1642 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1653 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[14
+
+
+]
+Overfull \vbox (7.7371pt too high) detected at line 1716
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1716
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1718
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1720
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1721
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1722
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1723
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1724
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1725
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1726
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1728
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1729
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1730
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1731
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1732
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1733
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1734
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1736
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1737
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1738
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1739
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1740
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1741
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1742
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1744
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 1746
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1748
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1749
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1750
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1751
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1752
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1753
+ []
+
+[15
+
+
+] <pendlebury_only.jpg, id=75, 185.69376pt x 333.245pt>
+File: pendlebury_only.jpg Graphic file (type jpg)
+<use pendlebury_only.jpg>
+Package pdftex.def Info: pendlebury_only.jpg used on input line 1759.
+(pdftex.def)             Requested size: 302.08311pt x 542.025pt.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 1772
+.
+(/usr/local/texlive/2012/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Overfull \hbox (211.28174pt too wide) in alignment at lines 1758--1774
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 1758 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1774 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[16
+
+
+ <./pendlebury_only.jpg>]
+Overfull \vbox (7.7371pt too high) detected at line 1820
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1822
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1823
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1824
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1825
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1826
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1827
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1829
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1830
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1831
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1832
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1833
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1834
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1835
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1837
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1838
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1839
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1840
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1841
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1842
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1843
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1845
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1846
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1847
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1848
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1849
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1850
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1851
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1853
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1854
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1855
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1856
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1893
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1893
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.1893 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[17
+
+
+]
+File: weights_dozenal.mps Graphic file (type mps)
+[MP to PDF] (./weights_dozenal.mps)
+Underfull \hbox (badness 1057) in paragraph at lines 1914--1914
+\T1/lmr/m/it/24 1[] can be made from com-bi-na-
+ []
+
+
+Underfull \hbox (badness 1264) in paragraph at lines 1914--1914
+\T1/lmr/m/it/24 a dozen[], the 1[] weight would
+ []
+
+
+Underfull \hbox (badness 3058) in paragraph at lines 1914--1914
+\T1/lmr/m/it/24 to 4[] \T1/lmr/m/n/24 in-clu-sive\T1/lmr/m/it/24 ....while the 
+bi-
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 1899--1916
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 1899 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1916 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[18
+
+
+]
+Overfull \vbox (7.7371pt too high) detected at line 1978
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 1978
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1980
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1981
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1982
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1984
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1985
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1986
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1987
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1988
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1989
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 1990
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 1992
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1993
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1994
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1995
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1996
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1997
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 1998
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2000
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2001
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2002
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2003
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2004
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2005
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2006
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2008
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2009
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2010
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2011
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2012
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2013
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2014
+ []
+
+[19
+
+
+]
+File: prime_circle.mps Graphic file (type mps)
+[MP to PDF] (./prime_circle.mps)
+LaTeX Font Info:    Calculating math sizes for size <24> on input line 2032.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <24> on input line 2032.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <16.79993> on input line 2032.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 2032.
+
+LaTeX Font Warning: Font shape `OT1/dozch/m/n' in size <16.79993> not available
+
+(Font)              size <9> substituted on input line 2032.
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 2020--2035
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 2020 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2035 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[20
+
+
+]
+Overfull \vbox (9.81621pt too high) detected at line 2062
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2063
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2064
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2065
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2066
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2067
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2068
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2070
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2071
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2072
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2073
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2074
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2075
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2076
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2078
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2079
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2080
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2081
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2082
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2083
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2084
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2086
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2087
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2088
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2089
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2090
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2091
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2092
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2094
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2095
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2132
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2132
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.2132 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[21
+
+
+]
+File: newcansort.mps Graphic file (type mps)
+[MP to PDF] (./newcansort.mps)
+Overfull \hbox (1.2308pt too wide) in paragraph at lines 2139--2139
+[]| []| 
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 2138--2154
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 2138 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2154 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[22
+
+
+]
+Overfull \vbox (7.7371pt too high) detected at line 2200
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2202
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2203
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2204
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2205
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2206
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2208
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2209
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2210
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2211
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2212
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2213
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2214
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2216
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2217
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2218
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2219
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2220
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2221
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2222
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2224
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2225
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2226
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2227
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2228
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2229
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2230
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2232
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2233
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2234
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2235
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2236
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2257
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.2257 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[23
+
+
+] <newpalm1.png, id=108, 255.27629pt x 310.06161pt>
+File: newpalm1.png Graphic file (type png)
+<use newpalm1.png>
+Package pdftex.def Info: newpalm1.png used on input line 2265.
+(pdftex.def)             Requested size: 357.03769pt x 433.62164pt.
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 2264--2271
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 2264 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2271 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[24
+
+
+ <./newpalm1.png>]
+Overfull \vbox (7.7371pt too high) detected at line 2334
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2334
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2336
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2337
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2339
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2340
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2341
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2342
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2343
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2344
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2345
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2347
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2348
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2349
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2350
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2351
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2352
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2353
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2355
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2356
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2357
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2358
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2359
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2360
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2361
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2363
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2364
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2365
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2366
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2367
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2368
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2369
+ []
+
+[25
+
+
+] <regular_polyhedra-crop.pdf, id=117, 377.41pt x 490.83376pt>
+File: regular_polyhedra-crop.pdf Graphic file (type pdf)
+<use regular_polyhedra-crop.pdf>
+Package pdftex.def Info: regular_polyhedra-crop.pdf used on input line 2376.
+(pdftex.def)             Requested size: 354.27019pt x 460.72455pt.
+
+Underfull \hbox (badness 1199) in paragraph at lines 2386--2386
+\T1/lmr/m/it/24 the great do-dec-a-he-dron, and the
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 2375--2388
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 2375 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2388 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[26
+
+
+ <./regular_polyhedra-crop.pdf>]
+Overfull \vbox (9.81621pt too high) detected at line 2415
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2416
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2417
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2418
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2419
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2420
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2421
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2423
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2424
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2425
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2426
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2427
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2428
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2429
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2431
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2432
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2433
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2434
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2435
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2436
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2437
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2439
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2440
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2441
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2442
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2443
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2444
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2445
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2447
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2448
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2449
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2486
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2486
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.2486 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[27
+
+
+] <digits-crop.pdf, id=136, 73.27374pt x 133.49875pt>
+File: digits-crop.pdf Graphic file (type pdf)
+<use digits-crop.pdf>
+Package pdftex.def Info: digits-crop.pdf used on input line 2493.
+(pdftex.def)             Requested size: 297.63799pt x 542.025pt.
+
+Underfull \hbox (badness 1354) in paragraph at lines 2502--2502
+[]|\T1/lmr/m/it/24 Let $\OML/lmm/m/it/24 ^^[[]\OT1/lmr/m/n/24 (\OML/lmm/m/it/24
+ n\OT1/lmr/m/n/24 )$ \T1/lmr/m/it/24 and $\OML/lmm/m/it/24 ^^[[]\OT1/lmr/m/n/24
+ (\OML/lmm/m/it/24 n\OT1/lmr/m/n/24 )$ \T1/lmr/m/it/24 de-note the
+ []
+
+
+Underfull \hbox (badness 1527) in paragraph at lines 2505--2505
+\T1/lmr/m/sc/18 ber." From \T1/lmr/m/it/18 MathWorld---A Wol-fram
+ []
+
+
+Underfull \hbox (badness 2452) in paragraph at lines 2505--2505
+\T1/lmr/m/it/18 Web Re-source\T1/lmr/m/sc/18 . $\T1/lmtt/m/sc/18 http : / / mat
+hworld .
+ []
+
+
+Overfull \hbox (211.28174pt too wide) in alignment at lines 2492--2506
+[][] 
+ []
+
+
+! LaTeX Error: \begin{tabular*} on input line 2492 ended by \end{tabular}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2506 \end{tabular}
+                    %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[28
+
+
+ <./digits-crop.pdf>]
+Overfull \vbox (7.7371pt too high) detected at line 2568
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2568
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2570
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2571
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2572
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2573
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2575
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2576
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2577
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2578
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2579
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2580
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2581
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2583
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2584
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2585
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2586
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2587
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2588
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2589
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2591
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2592
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2593
+ []
+
+
+Overfull \vbox (10.49199pt too high) detected at line 2594
+ []
+
+
+Overfull \vbox (10.646pt too high) detected at line 2595
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2596
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2597
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2599
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2600
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2601
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2602
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2603
+ []
+
+
+Overfull \vbox (9.81621pt too high) detected at line 2604
+ []
+
+
+Overfull \vbox (7.7371pt too high) detected at line 2625
+ []
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate 
+                        
+l.2625 } &
+          
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+[29
+
+
+] <closing.pdf, id=160, page=1, 614.295pt x 794.97pt>
+File: closing.pdf Graphic file (type pdf)
+<use closing.pdf, page 1>
+Package pdftex.def Info: closing.pdf, page1 used on input line 2630.
+(pdftex.def)             Requested size: 430.00356pt x 556.4752pt.
+File: closing.pdf Graphic file (type pdf)
+<use closing.pdf, page 1>
+Package pdftex.def Info: closing.pdf, page1 used on input line 2630.
+(pdftex.def)             Requested size: 430.00356pt x 556.4752pt.
+File: closing.pdf Graphic file (type pdf)
+<use closing.pdf, page 1>
+Package pdftex.def Info: closing.pdf, page1 used on input line 2630.
+(pdftex.def)             Requested size: 430.00356pt x 556.4752pt.
+<closing.pdf, id=161, page=2, 614.295pt x 794.97pt>
+File: closing.pdf Graphic file (type pdf)
+<use closing.pdf, page 2>
+Package pdftex.def Info: closing.pdf, page2 used on input line 2630.
+(pdftex.def)             Requested size: 430.00356pt x 556.4752pt.
+File: closing.pdf Graphic file (type pdf)
+<use closing.pdf, page 2>
+Package pdftex.def Info: closing.pdf, page2 used on input line 2630.
+(pdftex.def)             Requested size: 430.00356pt x 556.4752pt.
+File: closing.pdf Graphic file (type pdf)
+<use closing.pdf, page 1>
+Package pdftex.def Info: closing.pdf, page1 used on input line 2630.
+(pdftex.def)             Requested size: 430.00356pt x 556.4752pt.
+File: closing.pdf Graphic file (type pdf)
+<use closing.pdf, page 2>
+Package pdftex.def Info: closing.pdf, page2 used on input line 2630.
+(pdftex.def)             Requested size: 430.00356pt x 556.4752pt.
+[30
+
+
+ <./closing.pdf> <./closing.pdf>] (./monthlies_11e9.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 7.79993pt have occurred.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 16733 strings out of 493488
+ 310145 string characters out of 3141325
+ 558555 words of memory out of 3000000
+ 19615 multiletter control sequences out of 15000+200000
+ 108515 words of font info for 96 fonts, out of 3000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 55i,19n,55p,459b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
+texlive/2012/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/20
+12/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2012/texmf-d
+ist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/
+dvips/base/8r.enc} </home/dpg/.texlive2012/texmf-var/fonts/pk/ljfour/public/doz
+enal/dozchars17.900pk>{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/lm/lm
+-ts1.enc} </home/dpg/.texlive2012/texmf-var/fonts/pk/ljfour/public/dozenal/dozc
+hars12.900pk>{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-su
+per-t1.enc}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
+pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/dozenal/fdzb8a.pfb><
+/usr/local/texlive/2012/texmf-dist/fonts/type1/public/dozenal/fdzi8a.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/dozenal/fdzr8a.pfb></usr/local
+/texlive/2012/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></usr/local/texlive/2012/texmf-d
+ist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2012/texmf-dist/fonts
+/type1/public/lm/lmmi12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/pub
+lic/lm/lmr12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmr1
+7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2012/texmf-dist/fo
+nts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/p
+ublic/lm/lmtcsc10.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/lm
+/lmtt12.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfx
+c1095.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfxc1
+200.pfb>
+Output written on monthlies_11e9.pdf (30 pages, 2016225 bytes).
+PDF statistics:
+ 302 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 83 words of extra memory for PDF output out of 10000 (max. 10000000)
+

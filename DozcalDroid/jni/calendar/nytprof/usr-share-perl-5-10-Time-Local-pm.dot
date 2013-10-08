@@ -1,0 +1,75 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@11";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::BEGIN@35";
+	"Config::TIEHASH";
+	"Config::BEGIN@9";
+	"Config::import";
+}
+subgraph cluster_integer {
+	label="integer";
+	"integer::import";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::CORE:pack";
+	"Time::Local::BEGIN@28";
+	"Time::Local::BEGIN@30";
+	"Time::Local::_daygm";
+	"Time::Local::BEGIN@7";
+	"Time::Local::BEGIN@4";
+	"Time::Local::BEGIN@5";
+	"Time::Local::BEGIN@29";
+	"Time::Local::BEGIN@6";
+	"Time::Local::BEGIN@9";
+}
+subgraph cluster_version {
+	label="version";
+	"version::(bool";
+	"version::(cmp";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+"Time::Piece::BEGIN@11" -> "Time::Local::_daygm";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@7";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@30";
+"Time::Local::BEGIN@4" -> "Exporter::import";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@6";
+"Time::Local::BEGIN@29" -> "constant::import";
+"Time::Local::BEGIN@28" -> "constant::import";
+"Time::Local::BEGIN@30" -> "constant::import";
+"Time::Local::BEGIN@5" -> "Config::BEGIN@35";
+"Time::Local::BEGIN@5" -> "version::(bool";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@4";
+"Time::Local::BEGIN@5" -> "Config::TIEHASH";
+"Time::Local::BEGIN@5" -> "Config::import";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@5";
+"Time::Local::BEGIN@5" -> "Config::BEGIN@9";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@28";
+"Time::Local::BEGIN@9" -> "vars::import";
+"Time::Local::BEGIN@5" -> "version::(cmp";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@9";
+"Time::Local::BEGIN@7" -> "integer::import";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@29";
+"Time::Local::_daygm" -> "Time::Local::CORE:pack";
+"Time::Local::BEGIN@6" -> "strict::import";
+}

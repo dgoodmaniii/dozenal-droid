@@ -1,0 +1,790 @@
+<!-- +AMDG  This document was begun on 15 May 11E9, the
+feast of St. Pascal Baylon, Confessor, and it is humbly
+dedicated to him and to the Immaculate Heart of Mary for
+their prayers, and to the Sacred Heart of Jesus, for His
+mercy. -->
+
+<html>
+<head>
+<title>tgmdroid</title>
+</head>
+<style>
+.ansfield {
+	width:  100%;
+	font-size:  250%;
+	min-height:  1.2em;
+	max-height:  1.2em;
+	border-top:  2px;
+	border-bottom:  2px;
+	border-left:  0px;
+	border-right:  0px;
+	border-color:  black;
+	border-style:  solid;
+	margin-bottom:  6px;
+}
+.unittype {
+	width:  100%;
+	font-size:  250%;
+}
+.fromfield select {
+	width:  50%;
+	font-size:  200%;
+	color:  red;
+	float:  left;
+}
+.tofield select {
+	width:  50%;
+	color:  red;
+	font-size:  200%;
+	float:  right;
+}
+.preclabel {
+	width:  50%;
+	font-size:  180%;
+	float:  left;
+}
+.precinput {
+	width:  50%;
+	font-size:  200%;
+	float:  right;
+	position:  relative;
+	overflow: visible;
+}
+.inputnum {
+	width:  100%;
+	font-size:  200%;
+}
+.frommultiple {
+	width:  50%;
+	font-size:  200%;
+	float:  left;
+}
+.tomultiple {
+	width:  50%;
+	font-size:  200%;
+	float:  right;
+}
+.frommultiple input {
+	font-size:  100%;
+	width:  auto;
+	max-width:  2em;
+}
+.tomultiple input {
+	font-size:  100%;
+	width:  auto;
+	max-width:  2em;
+}
+.convertbut {
+	padding:  0pt;
+	width:  100%;
+	font-size:  200%;
+}
+</style>
+<script type="text/javascript" src='./fastclick.js'></script>
+<script type="text/javascript">
+window.addEventListener('load',function() {
+	FastClick.attach(document.body);
+}, false);
+var inputquant = 1;
+var unittype = "";
+var fromunit = "";
+var tounit = "";
+var precision = 4;
+var fromhead = "<select onchange=\"set_fromunit();\" id=\"fromthis\">";
+var tohead = "<select onchange=\"set_fromunit();\" id=\"tothis\">";
+var frommult = 0;
+var tomult = 0;
+var convertfacts = {
+	"Tim":1,
+	"second":5.76,
+	"hour":20736.0,
+	"minute":345.6,
+	"day":497664.0,
+	"week":3483648.0,
+	"year":181647360.0,
+	"leapyear":182145024.0,
+	"Freq":1,
+	"hertz":0.173611111111,
+	"rpm":0.002893518519,
+	"Grafut":1,
+	"Astru":505940195836.245727539062,
+	"foot":1.030834001642,
+	"meter":3.382001317725,
+	"inch":0.085902833470,
+	"yard":3.092502004928,
+	"mil":0.000085902833,
+	"fathom":6.185004009855,
+	"rod":17.008761027102,
+	"furlong":680.350441084092,
+	"mile":5442.803528672733,
+	"nautmile":6263.466440426596,
+	"pica":0.0142636502,
+	"point":0.001188637518,
+	"bigpoint":0.001193094909,
+	"lightyear":31995519515174256.000000000000,
+	"parsec":104357656466781216.000000000000,
+	"au":505940195836.245727539062,
+	"Surf":1,
+	"meter2":11.437932913093,
+	"hectare":114379.329130932572,
+	"ft2":1.0626187389,
+	"acre":46287.6722683318,
+	"Volm":1,
+	"Tumblol":0.020833333333,
+	"Quartol":0.041666666667,
+	"Galvol":0.1666666667,
+	"Avolz":22369.789439999997,
+	"meter3":38.683104184131,
+	"liter":0.038684187311,
+	"foot3":1.095383526884,
+	"impgal":0.1758567681,
+	"custgal":0.146432569903,
+	"impqt":0.043964192029,
+	"custqt":0.036608142476,
+	"imppt":0.021982096015,
+	"custpt":0.018304071238,
+	"impcp":0.010991048007,
+	"custcp":0.009114583333,
+	"imptbs":0.000686940500,
+	"custtbs":0.000572002226,
+	"imptsp":0.000228980167,
+	"custtsp":0.000190667409,
+	"impfloz":0.001099104801,
+	"custfloz":0.001144004452,
+	"Maz":1,
+	"Oumz":0.001157407407,
+	"gram":0.000038684187,
+	"pound":0.017546850966,
+	"slug":0.564553234925,
+	"ounce":0.001096678185,
+	"troypound":0.014438551649,
+	"troyounce":0.0012032126,
+	"hundredweight":1.965247308198,
+	"stone":0.245655913525,
+	"impton":39.291326119647,
+	"custton":35.081541178256,
+	"Vlos":1,
+	"lightspeed":176024043.055555522442,
+	"meterspersec":0.587153006549,
+	"feetpersec":0.178964236396,
+	"mph":0.262480880048,
+	"kph":0.163098057375,
+	"Gee":1,
+	"meterspersec2":0.101936285859,
+	"feetpersec2":0.031070179930,
+	"Mag":1,
+	"newton":0.003943322376,
+	"dyne":0.000000039433,
+	"poundsforce":0.017540770589,
+	"Denz":1,
+	"kgm3":0.001000028000,
+	"lbft3":0.016018910761,
+	"Mav":1,
+	"kgms":0.022713536886,
+	"lbfts":0.003140258784,
+	"Calg":1,
+	"kelvin":1440.000000000000,
+	"Tregree":0.000578703703,
+	"degreecels":0.000482253086,
+	"Prem":1,
+	"Atmoz":35.0,
+	"pascals":0.000344758306,
+	"atm":34.932635361768,
+	"bar":34.475830606236,
+	"torr":0.045963993897,
+	"mmHg":0.045964000445,
+	"inHg":1.167283381386,
+	"Tenz":1,
+	"Nm":0.001165973045,
+	"Werg":1,
+	"Pov":1,
+	"joule":0.013336321472,
+	"watt":0.002315333589,
+	"cal":0.055819173520,
+	"kilowatthours":48010.757298316697,
+	"ftlbf":0.018081622738,
+	"horsepower":1.727238857249,
+	"btu":14.063684450097,
+	"Viscod":1,
+	"Viskin":1,
+	"Nsm2":0.001985807843,
+	"m2s":1.985752241856,
+	"Kur":1,
+	"ampere":2.017259394185,
+	"Pel":1,
+	"volt":0.001147761956,
+	"Kurn":1,
+	"ampturn":2.017259394185,
+	"Og":1,
+	"ohm":0.000530478395,
+	"Quel":1,
+	"coulomb":11.619414110508,
+	"Emelectron":28980913347.6365127563,
+	"faraday":1121103.080385223730,
+	"Go":1,
+	"mho":1757.559032975938,
+	"Kap":1,
+	"farad":10123.540029941405,
+	"Mit":1,
+	"uFm":0.002993357802,
+	"Flum":1,
+	"weber":0.006611108869,
+	"Flenz":1,
+	"tesla":0.000577998570,
+	"Gen":1,
+	"henry":0.003277272565,
+	"Lukt":1,
+	"AtWb":305.131776558323,
+	"Meab":1,
+	"Hm":0.000969033497,
+	"Lypov":1,
+	"lumen":0.847747333107,
+	"Lyde":1,
+	"lmm2":0.074117180049,
+	"Senz":1,
+	"m2lms":2.342386893248,
+	"quaraLyde":1,
+	"candela":0.847747333107,
+	"Molz":1,
+	"mole":0.000038684187,
+	"Surfolz":1,
+	"m2mol":295674.633697862388,
+	"Volmolz":1,
+	"m3mol":999972.000784010743,
+	"Molv":1,
+	"molm3":0.000001000028,
+	"Molm":1,
+	"molkg":0.001000000000,
+	"Wergolz":1,
+	"Jmol":344.748653100081,
+	"Eldulz":1,
+	"Sm2mol":519665623.277529776096,
+	"Calgolz":1,
+	"JKmol":0.239408786875,
+	"Orolz":1,
+	"radm2mol":295674.633697862388,
+};
+var tgmunits = ["Tim","Grafut","Astru","Surf","Volm","Tumblol",
+	"Quartol","Galvol","Avolz","Maz","emiMaz","Oumz","Vlos","Gee",
+	"Mag","Denz","Mav","Calg","Tregree","Prem","Atmoz","Tenz","Werg",
+	"Pov","ePl","Viscod","Viskin","Kur","Pel","Kurn","Og","Quel",
+	"Go","Kap","Emelectron","Mit","Meab","Flum","Flenz","Gen",
+	"Lukt","Penz","Lypov","Senz","Lyde","quaraLyde","Calkap",
+	"Calsp","Caldu","Wesp","Temgra","Freq","Flo","Vosp","DubZond",
+	"Ag","radaQuel","Rezy","Eldu","Imo","Depoz","radaFlum","Magra",
+	"Lyqua","Lytef","Perfut","Orosp","Molz","Volmolz","Molm","Eldulz",
+	"Orolz","Surfolz","Molv","Wergolz","Calgolz"];
+var lenlist = "\
+		<option value=\"Grafut\" selected=\"selected\">Grafut (Gf)</option>\
+		<option value=\"Astru\">Astru (Au)</option>\
+		<option value=\"meter\">meter (m)</option>\
+		<option value=\"inch\">inch (in)</option>\
+		<option value=\"foot\">foot (ft)</option>\
+		<option value=\"yard\">yard (yd)</option>\
+		<option value=\"mil\">mil (mil)</option>\
+		<option value=\"fathom\">fathom (fath)</option>\
+		<option value=\"rod\">rod (rod)</option>\
+		<option value=\"furlong\">furlong (furl)</option>\
+		<option value=\"mile\">mile (mi)</option>\
+		<option value=\"nautmile\">nautical mile (nmi)</option>\
+		<option value=\"pica\">pica (pica)</option>\
+		<option value=\"point\">point (pt)</option>\
+		<option value=\"bigpoint\">big point (bp)</option>\
+		<option value=\"lightyear\">light year (ly)</option>\
+		<option value=\"parsec\">parsec (pc)</option>\
+		<option value=\"astunit\">astronomical unit (au)</option>\
+	</select>\
+";
+var timelist = "\
+		<option value=\"Tim\" selected=\"selected\">Tim (Tm)</option>\
+		<option value=\"second\">second (s)</option>\
+		<option value=\"hour\">hour (hr)</option>\
+		<option value=\"minute\">minute (min)</option>\
+		<option value=\"day\">day (day)</option>\
+		<option value=\"week\">week (wk)</option>\
+		<option value=\"year\">year (yr)</option>\
+		<option value=\"leapyear\">leap year (yrlp)</option>\
+		<option value=\"Freq\">Freq (Fq)</option>\
+		<option value=\"hertz\">hertz (Hz)</option>\
+		<option value=\"rpm\">revolutions per minute (rpm)</option>\
+	</select>\
+";
+var arealist = "\
+		<option value=\"Surf\" selected=\"selected\">Surf (Sf)</option>\
+		<option value=\"meter2\">meter<sup>2</sup> (m<sup>2</sup>)</option>\
+		<option value=\"hectare\">hectare (ha)</option>\
+		<option value=\"foot2\">foot<sup>2</sup> (ft<sup>2</sup>)</option>\
+		<option value=\"acre\">acre (acre)</option>\
+	</select>\
+";
+var masslist = "\
+		<option value=\"Maz\" selected=\"selected\">Maz (Mz)</option>\
+		<option value=\"Oumz\">Oumz (Oum)</option>\
+		<option value=\"gram\">gram (g)</option>\
+		<option value=\"pound\">pound (lb)</option>\
+		<option value=\"slug\">slug (slug)</option>\
+		<option value=\"ounce\">ounce (oz)</option>\
+		<option value=\"troypound\">troy pound (lbt)</option>\
+		<option value=\"troyounce\">troy ounce (ozt)</option>\
+		<option value=\"hundredweight\">hundredweight (cw)</option>\
+		<option value=\"stone\">stone (st)</option>\
+		<option value=\"impton\">imperial ton (toni)</option>\
+		<option value=\"custton\">customary ton (tonc)</option>\
+		<option value=\"Mag\">Mag (Mg)</option>\
+		<option value=\"newton\">newton (N)</option>\
+		<option value=\"dyne\">dyne (dyn)</option>\
+		<option value=\"poundsforce\">pounds-force (lbf)</option>\
+		<option value=\"Denz\">Denz (Dz)</option>\
+		<option value=\"kgm3\">kilgrams per cubic meter (kg/m<sup>3</sup>)</option>\
+		<option value=\"lbft3\">pounds per cubic foot (lb/m<sup>3</sup>)</option>\
+	</select>\
+";
+var vollist = "\
+		<option value=\"Volm\" selected=\"selected\">Volm (Vm)</option>\
+		<option value=\"Tumblol\">Tumblol (Tmb)</option>\
+		<option value=\"Quartol\">Quartol (Qrt)</option>\
+		<option value=\"Galvol\">Galvol (Glv)</option>\
+		<option value=\"Avolz\">Avolz (Avz)</option>\
+		<option value=\"meter3\">meter<sup>3</sup> (m<sup>3</sup>)</option>\
+		<option value=\"liter\">liter (L)</option>\
+		<option value=\"foot3\">foot<sup>3</sup> (ft<sup>3</sup>)</option>\
+		<option value=\"impgal\">gallon (imperial) (gali)</option>\
+		<option value=\"custgal\">gallon (customary) (galc)</option>\
+		<oqtion value=\"impqt\">quart (imperial) (qti)</oqtion>\
+		<oqtion value=\"custqt\">quart (customary) (qtc)</oqtion>\
+		<option value=\"imppt\">pint (imperial) (pti)</option>\
+		<option value=\"custpt\">pint (customary) (ptc)</option>\
+		<option value=\"impcp\">cup (imperial) (cpi)</option>\
+		<option value=\"custcp\">cup (customary) (cpc)</option>\
+		<option value=\"imptbs\">tablespoon (imperial) (tbpi)</option>\
+		<option value=\"custtbs\">tablespoon (customary) (tbpc)</option>\
+		<option value=\"imptsp\">teaspoon (imperial) (tspi)</option>\
+		<option value=\"custtsp\">teaspoon (customary) (tspc)</option>\
+		<option value=\"impfloz\">fluid ounce (imperial) (flozi)</option>\
+		<option value=\"custfloz\">fluid ounce (customary) (flozc)</option>\
+	</select>\
+";
+var motionlist = "\
+		<option value=\"Vlos\" selected=\"selected\">Vlos (Vl)</option>\
+		<option value=\"lightspeed\">light speed (c)</option>\
+		<option value=\"meterspersec\">meters per second (m/s)</option>\
+		<option value=\"feetpersec\">feet per second (ft/s)</option>\
+		<option value=\"kph\">kilometers per hour (km/hr)</option>\
+		<option value=\"mph\">miles per hour (mi/hr)</option>\
+		<option value=\"Gee\">Gee (G)</option>\
+		<option value=\"meterspersec2\">meters per square second (m/s<sup>2</sup>)</option>\
+		<option value=\"feetpersec2\">feet per square second (ft/s<sup>2</sup>)</option>\
+		<option value=\"Mav\">Mav (Mv)</option>\
+		<option value=\"kgms\">kilgrams by meters per second (kg*m/s)</option>\
+		<option value=\"lbms\">pounds by feet per second (lb*m/s)</option>\
+	</select>\
+";
+var templist = "\
+		<option value=\"Calg\" selected=\"selected\">Calg (Cg)</option>\
+		<option value=\"Tregree\">Tregree (To)</option>\
+		<option value=\"kelvin\">kelvin (K)</option>\
+		<option value=\"degreecels\">degree Celsius (degC)</option>\
+	</select>\
+";
+var pressurelist = "\
+		<option value=\"Prem\" selected=\"selected\">Prem (Pm)</option>\
+		<option value=\"Atmoz\">Atmoz (Atz)</option>\
+		<option value=\"pascals\">pascals (Pa)</option>\
+		<option value=\"atm\">standard atmosphere (atm)</option>\
+		<option value=\"bar\">bar (bar)</option>\
+		<option value=\"torr\">torrs (Torr)</option>\
+		<option value=\"mmHg\">mm of mercury (mmHg)</option>\
+		<option value=\"inHg\">in of mercury (inHg)</option>\
+		<option value=\"Tenz\">Tenz (Tz)</option>\
+		<option value=\"Nm\">newtons per meter (N/m)</option>\
+	</select>\
+";
+var workpowlist = "\
+		<option value=\"Werg\" selected=\"selected\">Werg (Wg)</option>\
+		<option value=\"Pov\">Pov (Pv)</option>\
+		<option value=\"joule\">joule (J)</option>\
+		<option value=\"watt\">watt (W)</option>\
+		<option value=\"ftlbf\">foot-pounds (ft*lbf)</option>\
+		<option value=\"horsepower\">horsepower (hp)</option>\
+		<option value=\"calories15\">calories (15 deg) (cal)</option>\
+		<option value=\"kilowatthours\">kilowatt-hours (kW*hr)</option>\
+		<option value=\"btu\">British thermal unit (btu)</option>\
+	</select>\
+";
+var electromaglist = "\
+		<option value=\"Kur\" selected=\"selected\">Kur (Kr)</option>\
+		<option value=\"ampere\">ampere (A)</option>\
+		<option value=\"Pel\">Pel (Pl)</option>\
+		<option value=\"volt\">volt (V)</option>\
+		<option value=\"Kurn\">Kurn (Kn)</option>\
+		<option value=\"ampturn\">ampere-turn (At)</option>\
+		<option value=\"Og\">Og (Og)</option>\
+		<option value=\"ohm\">ohm (ohm)</option>\
+		<option value=\"Quel\">Quel (Ql)</option>\
+		<option value=\"coulomb\">coulomb (C)</option>\
+		<option value=\"Emelectron\">Emelectron (Me)</option>\
+		<option value=\"faraday\">faraday (faraday)</option>\
+		<option value=\"Go\">Go (Go)</option>\
+		<option value=\"mho\">mho/siemens (mho/S)</option>\
+		<option value=\"Kap\">Kap (Kp)</option>\
+		<option value=\"farad\">farad (F)</option>\
+		<option value=\"Mit\">Mit (Mt)</option>\
+		<option value=\"uFm\">microfarads per meter (uF/m)</option>\
+		<option value=\"Flum\">Flum (Fm)</option>\
+		<option value=\"weber\">weber (Wb)</option>\
+		<option value=\"Flenz\">Flenz (Fz)</option>\
+		<option value=\"tesla\">tesla (T)</option>\
+		<option value=\"Gen\">Gen (Gn)</option>\
+		<option value=\"henry\">henry (H)</option>\
+		<option value=\"Lukt\">Lukt (Lk)</option>\
+		<option value=\"AtWb\">ampere-turns per weber (At/Wb)</option>\
+		<option value=\"Meab\">Meab (Mb)</option>\
+		<option value=\"Hm\">henries per meter (H/m)</option>\
+	</select>\
+";
+var lightlist = "\
+		<option value=\"Lypov\" selected=\"selected\">Lypov (Lp)</option>\
+		<option value=\"lumen\">lumen (lm)</option>\
+		<option value=\"Lyde\">Lyde (Ld)</option>\
+		<option value=\"lmm2\">lumens per square meter (lm/m^2)</option>\
+		<option value=\"Senz\">Senz (Sz)</option>\
+		<option value=\"m2lms\">square meters per lumen-second (m^2/lm*s)</option>\
+		<option value=\"quaraLyde\">quaraLyde (QLd)</option>\
+		<option value=\"candela\">candela (cd)</option>\
+	</select>\
+";
+var visclist = "\
+		<option value=\"Viscod\" selected=\"selected\">Viscod (Vsd)</option>\
+		<option value=\"Nsm2\">newton-seconds per square meter (N*s/m^2)</option>\
+		<option value=\"Viskin\">Viskin (Vsn)</option>\
+		<option value=\"m2s\">square meters per second (m^2/s)</option>\
+	</select>\
+";
+var amountsublist = "\
+		<option value=\"Molz\" selected=\"selected\">Molz (Mlz)</option>\
+		<option value=\"mole\">mole (mol)</option>\
+		<option value=\"Surfolz\">Surfolz (Slz)</option>\
+		<option value=\"m2mol\">square meters per mole (m^2/mol)</option>\
+		<option value=\"Volmolz\">Volmolz (Vlz)</option>\
+		<option value=\"m3mol\">cubic meters per mole (m^3/mol)</option>\
+		<option value=\"Molv\">Molv (Mlv)</option>\
+		<option value=\"molm3\">moles per cubic meter (mol/m^3)</option>\
+		<option value=\"Molm\">Molm (Mlm)</option>\
+		<option value=\"molkg\">moles per kilogram (mol/kg)</option>\
+		<option value=\"Wergolz\">Wergolz (Wlz)</option>\
+		<option value=\"Jmol\">joules per mole (J/mol)</option>\
+		<option value=\"Eldulz\">Eldulz (Eul)</option>\
+		<option value=\"Sm2mol\">siemen-square meters per mole (S*m^2/mol)</option>\
+		<option value=\"Calgolz\">Calgolz (Clz)</option>\
+		<option value=\"JKmol\">joules per kelvin mole (J/K*mol)</option>\
+		<option value=\"Orolz\">Orolz (Olz)</option>\
+		<option value=\"radm2mol\">radian-square meters per mole (rad*m^2/mol)</option>\
+	</select>\
+";
+function initialize()
+{
+	inputquant = 1;
+	document.getElementById("unitfield").value = "length";
+	get_unittype();
+	set_fromunit();
+	document.getElementById("precfield").style.display="block";
+}
+function simpdoz(number)
+{
+	if (number == 10) 
+		number = "X";
+	else if (number == 11) 
+		number = "E";
+	else if (number == 12) 
+		number = 10;
+	else 
+		number = number;
+	return number;
+}
+function reverse(string)
+{
+	var revstring='';
+	for (i = string.length-1; i>=0; i--)
+		revstring+=string.charAt(i);
+	return revstring;
+}
+function dozenalize(number)
+{
+	var isneg = 0;
+	doznum = "";
+	var decnum = number.toString();
+	if (decnum.charAt(0) == '-') {
+		isneg = 1;
+		number *= -1;
+	}
+	while (number >= 12) {
+		nextdig = number % 12;
+		number /= 12;
+		nextdig = simpdoz(Math.floor(nextdig));
+		doznum = doznum + nextdig;
+	}
+	nextdig = number % 12;
+	number /= 12;
+	nextdig = simpdoz(Math.floor(nextdig));
+	doznum += nextdig;
+	if (isneg == 1) {
+		doznum = doznum + '-';
+	}
+	doznum = reverse(doznum);
+	return doznum;
+}
+function setprecision()
+{
+	var e = document.getElementById('precfield');
+	precision = e.options[e.selectedIndex].value;
+	document.getElementById('precfield').value = precision;
+//	document.getElementById('debuganswers').innerHTML +=
+//		"Precision = "+precision+" ";
+}
+/* from a function found on StackOverflow by Mark Elrich, 
+http://www.stackoverflow.com/question/5055723/converting-hexadecimal-to-float-in-javascript
+*/
+function doztodec(doznum)
+{
+	var pattern = /;/;
+	var isneg = 0;
+
+	doznum = doznum.replace('X','A');
+	doznum = doznum.replace('E','B');
+	if (doznum.charAt(0) == '-') {
+		isneg = 1;
+		doznum = doznum.replace('-','');
+	}
+	if (pattern.test(doznum)) {
+		doz = doznum.split(/;/);
+		var len = doz[1].length;
+		doz[1] = parseInt(doz[1],12);
+		doz[1] *= Math.pow(12, -len);
+		if (isneg == 1) {
+			return (parseInt(doz[0],12) + doz[1]) * -1;
+		} else {
+			return parseInt(doz[0],12) + doz[1];
+		}
+	} else {
+		if (isneg == 1) {
+			return parseInt(doznum,12) * -1;
+		} else {
+			return parseInt(doznum,12);
+		}
+	}
+}
+function dectodoz(decnumber)
+{
+	var decnum = decnumber.toString();
+	var parts = decnum.split(".");
+	if (parts.length > 1) {
+		var wholenum = dozenalize(parts[0]);
+		var len = precision;
+		parts[1] = parseFloat("0."+parts[1]);
+		var fracnum = "";
+		for (var i = 0; i < precision; ++i) {
+			parts[1] *= 12;
+			holder = Math.floor(parts[1]);
+			parts[1] -= holder;
+			fracnum += simpdoz(holder);
+		}
+		return wholenum+";"+fracnum;
+	}
+	return dozenalize(parts[0]);
+}
+function set_fromunit()
+{
+	var e = document.getElementById("fromthis");
+	var f = document.getElementById("tothis");
+	fromunit = e.options[e.selectedIndex].value;
+	tounit = f.options[f.selectedIndex].value;
+//	document.getElementById("inputfield").innerHTML = "";
+//	document.getElementById('debuganswers').innerHTML = "From \
+//		unit:  "+fromunit+"    To unit:  "+tounit;
+}
+function get_unittype()
+{
+	var e = document.getElementById("unitfield");
+	unittype = e.options[e.selectedIndex].value;
+	document.getElementById('unitfield').value = unittype;
+	if (unittype == "length") {
+		document.getElementById('fromunit').innerHTML = fromhead+lenlist;
+		document.getElementById('tounit').innerHTML = tohead+lenlist;
+	} else if (unittype == "timefreq") {
+		document.getElementById('fromunit').innerHTML = fromhead+timelist;
+		document.getElementById('tounit').innerHTML = tohead+timelist;
+	} else if (unittype == "area") {
+		document.getElementById('fromunit').innerHTML = fromhead+arealist;
+		document.getElementById('tounit').innerHTML = tohead+arealist;
+	} else if (unittype == "volume") {
+		document.getElementById('fromunit').innerHTML = fromhead+vollist;
+		document.getElementById('tounit').innerHTML = tohead+vollist;
+	} else if (unittype == "massdens") {
+		document.getElementById('fromunit').innerHTML = fromhead+masslist;
+		document.getElementById('tounit').innerHTML = tohead+masslist;
+	} else if (unittype == "motion") {
+		document.getElementById('fromunit').innerHTML = fromhead+motionlist;
+		document.getElementById('tounit').innerHTML = tohead+motionlist;
+	} else if (unittype == "heat") {
+		document.getElementById('fromunit').innerHTML = fromhead+templist;
+		document.getElementById('tounit').innerHTML = tohead+templist;
+	} else if (unittype == "pressure") {
+		document.getElementById('fromunit').innerHTML = fromhead+pressurelist;
+		document.getElementById('tounit').innerHTML = tohead+pressurelist;
+	} else if (unittype == "workpow") {
+		document.getElementById('fromunit').innerHTML = fromhead+workpowlist;
+		document.getElementById('tounit').innerHTML = tohead+workpowlist;
+	} else if (unittype == "electromag") {
+		document.getElementById('fromunit').innerHTML = fromhead+electromaglist;
+		document.getElementById('tounit').innerHTML = tohead+electromaglist;
+	} else if (unittype == "viscosity") {
+		document.getElementById('fromunit').innerHTML = fromhead+visclist;
+		document.getElementById('tounit').innerHTML = tohead+visclist;
+	} else if (unittype == "light") {
+		document.getElementById('fromunit').innerHTML = fromhead+lightlist;
+		document.getElementById('tounit').innerHTML = tohead+lightlist;
+	} else if (unittype == "amountsub") {
+		document.getElementById('fromunit').innerHTML = fromhead+amountsublist;
+		document.getElementById('tounit').innerHTML = tohead+amountsublist;
+	} else {
+		document.getElementById('fromunit').innerHTML = unittype;
+		document.getElementById('tounit').innerHTML = unittype;
+	}
+	set_fromunit();
+}
+function set_frommult()
+{
+	if (tgmunits.contains(fromunit)) {
+		frommult = doztodec(document.getElementById('frommultiple').value);
+	} else {
+		frommult = document.getElementById('frommultiple').value;
+	}
+//	document.getElementById('debuganswers').innerHTML += "Frommult = "+frommult+" ";
+}
+function set_tomult()
+{
+	if (tgmunits.contains(tounit)) {
+		tomult = doztodec(document.getElementById('tomultiple').value);
+	} else {
+		tomult = document.getElementById('tomultiple').value;
+	}
+//	document.getElementById('debuganswers').innerHTML += "tomult = "+tomult+" ";
+}
+Array.prototype.contains = function(k) {
+	for (var p in this)
+		if (this[p] === k)
+			return true;
+	return false;
+}
+function set_inputquant()
+{
+	inputquant = doztodec(document.getElementById('inputquant').value);
+}
+function doconvert()
+{
+	var frominterim = 1;
+	var final = 1;
+	var answer = 1;
+
+	for (key in convertfacts) {
+		if (key == fromunit) {
+			if (tgmunits.contains(fromunit)) {
+				frominterim = inputquant * convertfacts[key] * 
+					Math.pow(12,frommult);
+			} else {
+				frominterim = inputquant * convertfacts[key] *
+					Math.pow(10,frommult);
+			}
+			break;
+		}
+	}
+	for (key in convertfacts) {
+		if (key == tounit) {
+			if (tgmunits.contains(tounit)) {
+				final = frominterim / convertfacts[key] / 
+					Math.pow(12,tomult);;
+			} else {
+				final = frominterim / convertfacts[key] /
+					Math.pow(10,tomult);
+			}
+			break;
+		}
+	}
+	document.getElementById('answer').innerHTML = dectodoz(final);
+//	document.getElementById('debuganswers').innerHTML +=
+//		"Precision = "+precision+" ";
+}
+</script>
+
+<body ontouchstart="" onload="initialize();">
+
+<div id="answer" class="ansfield"></div>
+
+<form class="unitform" name="unitfields" id="thisForm"
+	onsubmit="return false;">
+<select onchange="get_unittype();" class="unittype" id="unitfield">
+	<option value="length" selected>Length</option>
+	<option value="timefreq">Time and Frequency</option>
+	<option value="area">Area</option>
+	<option value="volume">Volume</option>
+	<option value="massdens">Mass, Weight, and Density</option>
+	<option value="heat">Temperature</option>
+	<option value="motion">Motion</option>
+	<option value="pressure">Pressure</option>
+	<option value="workpow">Work and Power</option>
+	<option value="viscosity">Viscosity</option>
+	<option value="electromag">Electromagnetism</option>
+	<option value="light">Light</option>
+	<option value="amountsub">Amount of Substance</option>
+</select>
+
+<input onchange="set_inputquant();" class="inputnum" id="inputquant" />
+
+<div class="fromfield" id="fromunit"></div>
+<div class="tofield" id="tounit"></div>
+
+<div class="frommultiple">
+	x10^<input onchange="set_frommult();" id="frommultiple" 
+		type="text" maxlength="2" size="2" />
+</div>
+<div class="tomultiple">
+	x10^<input onchange="set_tomult();" id="tomultiple" 
+		type="text" maxlength="2" size="2" />
+</div>
+
+<div class="preclabel">
+Precision:
+</div>
+
+<select onchange="setprecision();" class="precinput" id="precfield" />
+	<option value="0">0</option>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4" selected="selected">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+</select>
+
+<input type="button" class="convertbut" text="Convert" 
+	value="Convert" onclick="doconvert();" />
+
+</form>
+
+<!-- get rid of this when done; just for debugging -->
+<!--<div id="debuganswers">
+</div>-->
+
+<script>
+document.getElementById("unitfield").value = unittype;
+document.getElementById("precfield").value = precision;
+document.getElementById("frommultiple").value = frommult;
+document.getElementById("tomultiple").value = tomult;
+document.getElementById("inputquant").value = 1;
+</script>
+
+</body>
+</html>

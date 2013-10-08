@@ -1,0 +1,29 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Date_Day {
+	label="Date::Day";
+	"Date::Day::BEGIN@4";
+	"Date::Day::BEGIN@3";
+	"Date::Day::day";
+	"Date::Day::CORE:match";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@13";
+	"main::parse_daynames";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+"main::parse_daynames" -> "Date::Day::day";
+"Date::Day::day" -> "Date::Day::CORE:match";
+"Date::Day::BEGIN@4" -> "vars::import";
+"main::BEGIN@13" -> "Date::Day::BEGIN@4";
+"main::BEGIN@13" -> "Date::Day::BEGIN@3";
+"Date::Day::BEGIN@3" -> "strict::import";
+}

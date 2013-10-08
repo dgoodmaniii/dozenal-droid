@@ -1,0 +1,69 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@10";
+	"main::out_format";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_String_Escape {
+	label="String::Escape";
+	"String::Escape::BEGIN@516";
+	"String::Escape::BEGIN@11";
+	"String::Escape::BEGIN@364";
+	"String::Escape::_define_backslash_escapes";
+	"String::Escape::unbackslash";
+	"String::Escape::BEGIN@55";
+	"String::Escape::BEGIN@182";
+	"String::Escape::add";
+	"String::Escape::CORE:unpack";
+	"String::Escape::CORE:subst";
+	"String::Escape::BEGIN@13";
+	"String::Escape::BEGIN@255";
+	"String::Escape::BEGIN@10";
+	"String::Escape::CORE:substcont";
+	"String::Escape::BEGIN@57";
+	"String::Escape::BEGIN@9";
+}
+"main::BEGIN@10" -> "String::Escape::BEGIN@11";
+"main::BEGIN@10" -> "String::Escape::BEGIN@364";
+"main::BEGIN@10" -> "String::Escape::add";
+"String::Escape::unbackslash" -> "String::Escape::CORE:subst";
+"main::out_format" -> "String::Escape::unbackslash";
+"String::Escape::BEGIN@11" -> "Exporter::import";
+"String::Escape::BEGIN@55" -> "Exporter::import";
+"main::BEGIN@10" -> "String::Escape::BEGIN@255";
+"main::BEGIN@10" -> "String::Escape::BEGIN@57";
+"main::BEGIN@10" -> "String::Escape::BEGIN@9";
+"String::Escape::BEGIN@10" -> "warnings::import";
+"main::BEGIN@10" -> "String::Escape::BEGIN@182";
+"main::BEGIN@10" -> "String::Escape::BEGIN@516";
+"main::BEGIN@10" -> "String::Escape::BEGIN@55";
+"main::BEGIN@10" -> "String::Escape::CORE:unpack";
+"String::Escape::BEGIN@516" -> "vars::import";
+"String::Escape::BEGIN@364" -> "vars::import";
+"String::Escape::BEGIN@182" -> "vars::import";
+"String::Escape::BEGIN@13" -> "vars::import";
+"String::Escape::BEGIN@255" -> "vars::import";
+"String::Escape::BEGIN@57" -> "vars::import";
+"main::BEGIN@10" -> "String::Escape::_define_backslash_escapes";
+"String::Escape::unbackslash" -> "String::Escape::CORE:substcont";
+"main::BEGIN@10" -> "String::Escape::BEGIN@10";
+"main::BEGIN@10" -> "String::Escape::BEGIN@13";
+"String::Escape::BEGIN@9" -> "strict::import";
+}

@@ -1,0 +1,366 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Date_Pcalc {
+	label="Date::Pcalc";
+	"Date::Pcalc::BEGIN@15";
+	"Date::Pcalc::leap_year";
+	"Date::Pcalc::Add_Delta_Days";
+	"Date::Pcalc::BEGIN@14";
+	"Date::Pcalc::BEGIN@16";
+	"Date::Pcalc::Date_to_Days";
+	"Date::Pcalc::BEGIN@18";
+}
+subgraph cluster_POSIX_SigAction {
+	label="POSIX::SigAction";
+	"POSIX::SigAction::BEGIN@58";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+subgraph cluster_Internals {
+	label="Internals";
+	"Internals::SvREADONLY";
+}
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@40";
+	"Time::Piece::BEGIN@576";
+	"Time::Piece::BEGIN@10";
+	"Time::Piece::BEGIN@46";
+	"Time::Piece::__ANON__[Time/Piece.pm:116]";
+	"Time::Piece::BEGIN@41";
+	"Time::Piece::BEGIN@43";
+	"Time::Piece::BEGIN@45";
+	"Time::Piece::BEGIN@42";
+	"Time::Piece::BEGIN@39";
+	"Time::Piece::year";
+	"Time::Piece::BEGIN@9";
+	"Time::Piece::BEGIN@37";
+	"Time::Piece::BEGIN@534";
+	"Time::Piece::BEGIN@11";
+	"Time::Piece::BEGIN@125";
+	"Time::Piece::BEGIN@5";
+	"Time::Piece::BEGIN@38";
+	"Time::Piece::import";
+	"Time::Piece::BEGIN@44";
+	"Time::Piece::BEGIN@12";
+	"Time::Piece::BEGIN@511";
+	"Time::Piece::BEGIN@423";
+	"Time::Piece::BEGIN@124";
+	"Time::Piece::BEGIN@47";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::FETCH";
+}
+subgraph cluster_Date_Day {
+	label="Date::Day";
+	"Date::Day::BEGIN@4";
+	"Date::Day::BEGIN@3";
+	"Date::Day::day";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@39";
+	"POSIX::BEGIN@2";
+	"POSIX::BEGIN@40";
+	"POSIX::BEGIN@13";
+	"POSIX::BEGIN@11";
+	"POSIX::import";
+	"POSIX::BEGIN@9";
+	"POSIX::BEGIN@3";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@5";
+}
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::BEGIN@17";
+	"DynaLoader::BEGIN@24";
+	"DynaLoader::bootstrap";
+}
+subgraph cluster_Getopt_Std {
+	label="Getopt::Std";
+	"Getopt::Std::getopts";
+}
+subgraph cluster_Tie_StdHash {
+	label="Tie::StdHash";
+	"Tie::StdHash::TIEHASH";
+}
+subgraph cluster_version {
+	label="version";
+	"version::(bool";
+	"version::(cmp";
+}
+subgraph cluster_POSIX_SigRt {
+	label="POSIX::SigRt";
+	"POSIX::SigRt::BEGIN@66";
+	"POSIX::SigRt::BEGIN@62";
+	"POSIX::SigRt::BEGIN@64";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::parse_input_file";
+	"main::prod_cal";
+	"main::CORE:match";
+	"main::out_format";
+	"main::CORE:regcomp";
+	"main::popsched";
+	"main::parse_daynames";
+	"main::form_string";
+	"main::fill_up";
+	"main::CORE:close";
+	"main::BEGIN@17";
+	"main::ind_date";
+	"main::parse_dates";
+	"main::CORE:sort";
+	"main::CORE:subst";
+	"main::BEGIN@13";
+	"main::jultogreg";
+	"main::dozenize";
+	"main::thedate";
+	"main::CORE:readline";
+	"main::RUNTIME";
+	"main::CORE:print";
+	"main::decimalize";
+	"main::CORE:open";
+	"main::BEGIN@10";
+	"main::fill_range";
+	"main::BEGIN@8";
+	"main::get_times";
+	"main::main";
+	"main::use_input_file";
+	"main::BEGIN@15";
+	"main::dec_int";
+	"main::output";
+	"main::get_dates";
+	"main::config_opt";
+	"main::CORE:substcont";
+	"main::julday";
+	"main::BEGIN@9";
+	"main::out_text";
+	"main::CORE:backtick";
+	"main::BEGIN@14";
+	"main::get_input_date";
+	"main::doz_int";
+	"main::BEGIN@11";
+	"main::parse_it";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::CORE:regcomp";
+	"strict::bits";
+	"strict::CORE:match";
+}
+subgraph cluster_String_Escape {
+	label="String::Escape";
+	"String::Escape::BEGIN@516";
+	"String::Escape::BEGIN@11";
+	"String::Escape::BEGIN@364";
+	"String::Escape::_define_backslash_escapes";
+	"String::Escape::unbackslash";
+	"String::Escape::BEGIN@55";
+	"String::Escape::BEGIN@182";
+	"String::Escape::add";
+	"String::Escape::CORE:unpack";
+	"String::Escape::BEGIN@13";
+	"String::Escape::BEGIN@255";
+	"String::Escape::BEGIN@10";
+	"String::Escape::BEGIN@57";
+	"String::Escape::BEGIN@9";
+}
+subgraph cluster_AutoLoader {
+	label="AutoLoader";
+	"AutoLoader::__ANON__[AutoLoader.pm:31]";
+	"AutoLoader::AUTOLOAD";
+}
+subgraph cluster_mro {
+	label="mro";
+	"mro::method_changed_in";
+}
+subgraph cluster_Date_Easter {
+	label="Date::Easter";
+	"Date::Easter::BEGIN@28";
+	"Date::Easter::BEGIN@26";
+	"Date::Easter::BEGIN@27";
+}
+"main::BEGIN@11" -> "Time::Piece::BEGIN@576";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@40";
+"main::BEGIN@10" -> "String::Escape::BEGIN@11";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@41";
+"main::BEGIN@9" -> "POSIX::SigRt::BEGIN@66";
+"main::BEGIN@10" -> "String::Escape::BEGIN@364";
+"main::main" -> "main::parse_input_file";
+"main::parse_daynames" -> "Date::Day::day";
+"main::BEGIN@9" -> "Tie::StdHash::TIEHASH";
+"main::parse_it" -> "main::prod_cal";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@39";
+"main::fill_range" -> "main::CORE:match";
+"main::form_string" -> "main::CORE:match";
+"main::ind_date" -> "main::CORE:match";
+"main::get_dates" -> "main::CORE:match";
+"main::parse_dates" -> "main::CORE:match";
+"main::config_opt" -> "main::CORE:match";
+"main::parse_input_file" -> "main::CORE:match";
+"main::get_times" -> "main::CORE:match";
+"main::out_format" -> "main::CORE:match";
+"main::get_input_date" -> "main::CORE:match";
+"main::popsched" -> "main::CORE:match";
+"main::output" -> "main::CORE:match";
+"main::parse_daynames" -> "main::CORE:match";
+"main::BEGIN@10" -> "String::Escape::add";
+"constant::import" -> "mro::method_changed_in";
+"main::fill_range" -> "main::CORE:regcomp";
+"main::form_string" -> "main::CORE:regcomp";
+"main::get_dates" -> "main::CORE:regcomp";
+"main::ind_date" -> "main::CORE:regcomp";
+"main::parse_dates" -> "main::CORE:regcomp";
+"main::parse_input_file" -> "main::CORE:regcomp";
+"main::get_times" -> "main::CORE:regcomp";
+"main::out_format" -> "main::CORE:regcomp";
+"main::get_input_date" -> "main::CORE:regcomp";
+"main::output" -> "main::CORE:regcomp";
+"main::parse_daynames" -> "main::CORE:regcomp";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@125";
+"main::BEGIN@8" -> "strict::CORE:match";
+"main::BEGIN@9" -> "POSIX::SigAction::BEGIN@58";
+"main::main" -> "main::fill_up";
+"main::RUNTIME" -> "main::BEGIN@17";
+"main::get_dates" -> "main::ind_date";
+"main::main" -> "main::CORE:sort";
+"main::form_string" -> "main::CORE:subst";
+"main::get_dates" -> "main::CORE:subst";
+"main::out_format" -> "main::CORE:subst";
+"main::thedate" -> "main::CORE:subst";
+"main::parse_input_file" -> "main::CORE:subst";
+"main::parse_daynames" -> "main::CORE:subst";
+"main::get_times" -> "main::CORE:subst";
+"main::out_format" -> "String::Escape::unbackslash";
+"main::RUNTIME" -> "main::BEGIN@13";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@38";
+"main::prod_cal" -> "main::jultogreg";
+"main::BEGIN@8" -> "strict::bits";
+"main::BEGIN@10" -> "Exporter::import";
+"main::BEGIN@15" -> "Exporter::import";
+"main::BEGIN@17" -> "Exporter::import";
+"main::BEGIN@13" -> "Exporter::import";
+"main::BEGIN@14" -> "Exporter::import";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@511";
+"main::doz_int" -> "main::dozenize";
+"main::prod_cal" -> "main::thedate";
+"main::popsched" -> "main::CORE:readline";
+"main::BEGIN@11" -> "DynaLoader::bootstrap";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@47";
+"main::get_dates" -> "main::fill_range";
+"main::ind_date" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"main::parse_dates" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"main::parse_it" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"main::parse_daynames" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"main::parse_input_file" -> "main::get_times";
+"main::RUNTIME" -> "Getopt::Std::getopts";
+"main::parse_daynames" -> "AutoLoader::__ANON__[AutoLoader.pm:31]";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@11";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@534";
+"main::BEGIN@8" -> "strict::CORE:regcomp";
+"main::BEGIN@10" -> "String::Escape::BEGIN@255";
+"main::RUNTIME" -> "main::BEGIN@15";
+"main::fill_range" -> "main::dec_int";
+"main::ind_date" -> "main::dec_int";
+"main::parse_daynames" -> "main::dec_int";
+"main::parse_it" -> "main::dec_int";
+"main::BEGIN@10" -> "String::Escape::BEGIN@57";
+"main::BEGIN@10" -> "String::Escape::BEGIN@9";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@5";
+"main::parse_input_file" -> "main::get_dates";
+"Time::Local::BEGIN@5" -> "version::(bool";
+"main::form_string" -> "main::CORE:substcont";
+"main::BEGIN@11" -> "Time::Piece::import";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@18";
+"main::BEGIN@10" -> "String::Escape::BEGIN@182";
+"main::parse_daynames" -> "AutoLoader::AUTOLOAD";
+"constant::import" -> "Internals::SvREADONLY";
+"main::main" -> "main::out_text";
+"main::thedate" -> "main::CORE:backtick";
+"main::RUNTIME" -> "main::BEGIN@14";
+"main::parse_dates" -> "main::doz_int";
+"main::thedate" -> "main::doz_int";
+"main::main" -> "main::parse_it";
+"main::BEGIN@10" -> "String::Escape::BEGIN@516";
+"main::BEGIN@11" -> "DynaLoader::BEGIN@24";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@45";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@43";
+"main::BEGIN@10" -> "String::Escape::BEGIN@55";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@42";
+"main::BEGIN@9" -> "POSIX::BEGIN@3";
+"main::BEGIN@10" -> "String::Escape::CORE:unpack";
+"main::BEGIN@9" -> "POSIX::BEGIN@2";
+"main::output" -> "main::out_format";
+"main::BEGIN@9" -> "POSIX::BEGIN@11";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@16";
+"main::use_input_file" -> "main::popsched";
+"main::get_dates" -> "main::parse_daynames";
+"main::out_format" -> "main::form_string";
+"main::popsched" -> "main::CORE:close";
+"main::get_dates" -> "main::parse_dates";
+"main::BEGIN@10" -> "String::Escape::_define_backslash_escapes";
+"main::BEGIN@9" -> "POSIX::import";
+"Time::Local::BEGIN@5" -> "version::(cmp";
+"main::BEGIN@9" -> "POSIX::SigRt::BEGIN@62";
+"main::BEGIN@9" -> "POSIX::BEGIN@9";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@12";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@44";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@423";
+"main::BEGIN@9" -> "POSIX::BEGIN@13";
+"main::out_text" -> "main::CORE:print";
+"main::popsched" -> "main::CORE:open";
+"main::dec_int" -> "main::decimalize";
+"main::RUNTIME" -> "main::BEGIN@10";
+"main::BEGIN@11" -> "DynaLoader::BEGIN@17";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@46";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@10";
+"main::BEGIN@14" -> "Date::Easter::BEGIN@26";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@14";
+"main::RUNTIME" -> "main::BEGIN@8";
+"main::BEGIN@9" -> "POSIX::SigRt::BEGIN@64";
+"main::parse_dates" -> "Time::Piece::year";
+"main::parse_daynames" -> "Time::Piece::year";
+"main::RUNTIME" -> "main::main";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@37";
+"main::BEGIN@9" -> "POSIX::BEGIN@39";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@9";
+"main::jultogreg" -> "Date::Pcalc::Add_Delta_Days";
+"main::main" -> "main::use_input_file";
+"main::BEGIN@9" -> "POSIX::BEGIN@40";
+"main::julday" -> "Date::Pcalc::Date_to_Days";
+"main::BEGIN@9" -> "XSLoader::load";
+"main::BEGIN@10" -> "String::Escape::BEGIN@10";
+"main::main" -> "main::output";
+"main::BEGIN@11" -> "Config::FETCH";
+"main::parse_daynames" -> "Date::Pcalc::leap_year";
+"main::popsched" -> "main::config_opt";
+"main::BEGIN@13" -> "Date::Day::BEGIN@4";
+"main::BEGIN@14" -> "Date::Easter::BEGIN@27";
+"main::fill_range" -> "main::julday";
+"main::ind_date" -> "main::julday";
+"main::parse_daynames" -> "main::julday";
+"main::RUNTIME" -> "main::BEGIN@9";
+"main::BEGIN@15" -> "Date::Pcalc::BEGIN@15";
+"main::BEGIN@10" -> "String::Escape::BEGIN@13";
+"main::BEGIN@14" -> "Date::Easter::BEGIN@28";
+"main::BEGIN@13" -> "Date::Day::BEGIN@3";
+"main::BEGIN@8" -> "strict::import";
+"main::parse_it" -> "main::get_input_date";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@124";
+"main::RUNTIME" -> "main::BEGIN@11";
+}

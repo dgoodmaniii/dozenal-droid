@@ -1,0 +1,198 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Date_Pcalc {
+	label="Date::Pcalc";
+	"Date::Pcalc::BEGIN@15";
+	"Date::Pcalc::Add_Delta_Days";
+	"Date::Pcalc::BEGIN@14";
+	"Date::Pcalc::BEGIN@16";
+	"Date::Pcalc::BEGIN@18";
+	"Date::Pcalc::Date_to_Days";
+}
+subgraph cluster_Getopt_Std {
+	label="Getopt::Std";
+	"Getopt::Std::getopts";
+}
+subgraph cluster_version {
+	label="version";
+	"version::(bool";
+	"version::(cmp";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::FETCH";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::finish";
+	"main::getblanknums";
+	"main::nextweeks";
+	"main::large_monthlies";
+	"main::makedaybox";
+	"main::CORE:match";
+	"main::makecell";
+	"main::small_monthlies";
+	"main::yearlypage";
+	"main::CORE:regcomp";
+	"main::get_event";
+	"main::get_tyear";
+	"main::copypage";
+	"main::CORE:subst";
+	"main::run_month";
+	"main::firstweek";
+	"main::opening";
+	"main::dozenize";
+	"main::weeklies";
+	"main::RUNTIME";
+	"main::CORE:print";
+	"main::buildweek";
+	"main::decimalize";
+	"main::BEGIN@10";
+	"main::run_smallmonth";
+	"main::BEGIN@8";
+	"main::halfweek";
+	"main::main";
+	"main::daylist";
+	"main::preamble";
+	"main::filldaybox";
+	"main::dec_int";
+	"main::dayplone";
+	"main::BEGIN@9";
+	"main::CORE:backtick";
+	"main::getdaynum";
+	"main::doz_int";
+	"main::BEGIN@11";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::CORE:regcomp";
+	"strict::bits";
+	"strict::CORE:match";
+}
+subgraph cluster_Date_Day {
+	label="Date::Day";
+	"Date::Day::BEGIN@4";
+	"Date::Day::BEGIN@3";
+	"Date::Day::day";
+}
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::BEGIN@17";
+	"DynaLoader::BEGIN@24";
+}
+subgraph cluster_AutoLoader {
+	label="AutoLoader";
+	"AutoLoader::BEGIN@138";
+	"AutoLoader::BEGIN@30";
+	"AutoLoader::BEGIN@4";
+	"AutoLoader::BEGIN@3";
+	"AutoLoader::BEGIN@186";
+	"AutoLoader::BEGIN@13";
+}
+"main::main" -> "main::finish";
+"main::opening" -> "main::getblanknums";
+"main::BEGIN@11" -> "DynaLoader::BEGIN@24";
+"main::BEGIN@11" -> "AutoLoader::BEGIN@138";
+"main::run_smallmonth" -> "main::nextweeks";
+"main::run_month" -> "main::nextweeks";
+"main::nextweeks" -> "main::makedaybox";
+"main::firstweek" -> "main::makedaybox";
+"main::getdaynum" -> "Date::Day::day";
+"main::weeklies" -> "Date::Day::day";
+"main::buildweek" -> "Date::Day::day";
+"main::main" -> "main::large_monthlies";
+"main::makedaybox" -> "main::makecell";
+"main::filldaybox" -> "main::CORE:match";
+"main::get_event" -> "main::CORE:match";
+"main::buildweek" -> "main::CORE:match";
+"main::BEGIN@11" -> "AutoLoader::BEGIN@186";
+"main::main" -> "main::yearlypage";
+"main::main" -> "main::small_monthlies";
+"main::buildweek" -> "main::get_event";
+"main::get_event" -> "main::CORE:regcomp";
+"main::BEGIN@11" -> "Date::Pcalc::BEGIN@16";
+"main::buildweek" -> "main::get_tyear";
+"main::BEGIN@8" -> "strict::CORE:match";
+"main::BEGIN@11" -> "AutoLoader::BEGIN@3";
+"main::main" -> "main::copypage";
+"main::main" -> "main::CORE:subst";
+"main::filldaybox" -> "main::CORE:subst";
+"main::makedaybox" -> "main::CORE:subst";
+"main::doz_int" -> "main::CORE:subst";
+"main::buildweek" -> "main::CORE:subst";
+"main::large_monthlies" -> "main::run_month";
+"DynaLoader::BEGIN@24" -> "version::(cmp";
+"main::BEGIN@8" -> "strict::bits";
+"main::run_month" -> "main::firstweek";
+"main::run_smallmonth" -> "main::firstweek";
+"main::BEGIN@10" -> "Exporter::import";
+"main::BEGIN@9" -> "Exporter::import";
+"main::BEGIN@11" -> "Exporter::import";
+"main::doz_int" -> "main::dozenize";
+"main::run_month" -> "main::opening";
+"main::run_smallmonth" -> "main::opening";
+"main::BEGIN@11" -> "AutoLoader::BEGIN@4";
+"main::main" -> "main::weeklies";
+"main::weeklies" -> "main::buildweek";
+"main::finish" -> "main::CORE:print";
+"main::copypage" -> "main::CORE:print";
+"main::run_smallmonth" -> "main::CORE:print";
+"main::run_month" -> "main::CORE:print";
+"main::nextweeks" -> "main::CORE:print";
+"main::large_monthlies" -> "main::CORE:print";
+"main::makedaybox" -> "main::CORE:print";
+"main::firstweek" -> "main::CORE:print";
+"main::yearlypage" -> "main::CORE:print";
+"main::small_monthlies" -> "main::CORE:print";
+"main::daylist" -> "main::CORE:print";
+"main::preamble" -> "main::CORE:print";
+"main::buildweek" -> "main::CORE:print";
+"main::dec_int" -> "main::decimalize";
+"main::RUNTIME" -> "main::BEGIN@10";
+"main::BEGIN@11" -> "DynaLoader::BEGIN@17";
+"main::yearlypage" -> "main::run_smallmonth";
+"main::small_monthlies" -> "main::run_smallmonth";
+"main::BEGIN@11" -> "Date::Pcalc::BEGIN@14";
+"main::RUNTIME" -> "main::BEGIN@8";
+"main::makedaybox" -> "main::halfweek";
+"main::RUNTIME" -> "Getopt::Std::getopts";
+"main::RUNTIME" -> "main::main";
+"main::run_month" -> "main::daylist";
+"main::dayplone" -> "Date::Pcalc::Add_Delta_Days";
+"main::weeklies" -> "Date::Pcalc::Add_Delta_Days";
+"main::buildweek" -> "Date::Pcalc::Add_Delta_Days";
+"main::main" -> "main::preamble";
+"main::makedaybox" -> "main::filldaybox";
+"main::BEGIN@8" -> "strict::CORE:regcomp";
+"main::main" -> "main::dec_int";
+"main::filldaybox" -> "main::dec_int";
+"main::dayplone" -> "Date::Pcalc::Date_to_Days";
+"main::weeklies" -> "Date::Pcalc::Date_to_Days";
+"main::BEGIN@11" -> "AutoLoader::BEGIN@13";
+"main::BEGIN@11" -> "Config::FETCH";
+"main::BEGIN@9" -> "Date::Day::BEGIN@4";
+"DynaLoader::BEGIN@24" -> "version::(bool";
+"main::buildweek" -> "main::dayplone";
+"main::BEGIN@11" -> "Date::Pcalc::BEGIN@18";
+"main::RUNTIME" -> "main::BEGIN@9";
+"main::main" -> "main::CORE:backtick";
+"main::BEGIN@11" -> "Date::Pcalc::BEGIN@15";
+"main::BEGIN@9" -> "Date::Day::BEGIN@3";
+"main::BEGIN@8" -> "strict::import";
+"main::opening" -> "main::getdaynum";
+"main::BEGIN@11" -> "AutoLoader::BEGIN@30";
+"main::yearlypage" -> "main::doz_int";
+"main::main" -> "main::doz_int";
+"main::daylist" -> "main::doz_int";
+"main::copypage" -> "main::doz_int";
+"main::preamble" -> "main::doz_int";
+"main::get_tyear" -> "main::doz_int";
+"main::makecell" -> "main::doz_int";
+"main::buildweek" -> "main::doz_int";
+"main::RUNTIME" -> "main::BEGIN@11";
+}

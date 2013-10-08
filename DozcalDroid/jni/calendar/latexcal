@@ -1,0 +1,1846 @@
+#!/usr/bin/perl
+#+AMDG  This document was begun on 19 Sept 11E8, the feast
+# of St. Matthew the Apostle and Evangelist, and it is
+# humbly dedicated to him and to the Immaculate Heart of
+# Mary for their prayers, and to the Sacred Heart of Jesus
+# for His mercy.
+
+use strict;
+use Date::Day;
+use Getopt::Std;
+use Date::Pcalc qw(Add_Delta_Days
+	Date_to_Days leap_year);
+
+my $daynum;
+my $celltext = "";
+my $numdays;
+my @callist;
+my $calyear;
+getopts('Hbtflwd:o:');
+our($opt_t,$opt_d,$opt_l,$opt_w,$opt_o,$opt_f,$opt_b,$opt_H);
+
+# sets up the calendar's basic routines; takes the current
+# year (for outputting title page)
+
+sub preamble($)
+{
+	my $preamble;
+	$preamble = <<END;
+		\\documentclass{minimal}
+		\\usepackage{dozenal}
+		\\usepackage{lettrine}
+		\\usepackage{xfrac}
+		\\usepackage[absolute,overlay]{textpos}
+		\\usepackage[T1]{fontenc}
+		\\usepackage{lmodern} \\normalfont
+		\\DeclareFontShape{T1}{lmr}{bx}{sc} { <-> ssub * cmr/bx/sc }{}
+		\\usepackage{array}
+		\\usepackage{lscape}
+		\\usepackage{calc}
+		\\usepackage{tcolorbox}
+		\\usepackage{booktabs}
+		\\usepackage{multicol}
+		\\usepackage{pdfpages}
+		\\usepackage{ifthen}
+		\\usepackage{graphicx}
+		\\usepackage{textcomp}
+		\\usepackage{url}
+		\\newlength{\\shortline}
+		\\newlength{\\thirdskip}
+		\\newlength{\\weeklydayboxwid}
+		\\setlength\\arrayrulewidth{.4pt}
+		\\setlength\\extrarowheight{4pt}
+		\\usepackage[paperwidth=8.5in,paperheight=11in,width=7.5in,height=10.5in,bottom=0.25in]{geometry}
+		\\usepackage{lscape}
+		\\usepackage{graphicx}
+		\\usepackage{eso-pic}
+		\\usepackage{calc}
+		\\usepackage{transparent}
+		\\def\\Biggie{\\fontsize{17pt}{19pt}\\selectfont}
+		\\def\\Big{\\fontsize{14pt}{17pt}\\selectfont}
+		\\def\\yearlytitsty{\\fontsize{18pt}{18pt}\\selectfont\\bfseries}
+		\\def\\tabheadsty{\\bfseries\\scshape}
+		\\def\\timesty{\\fontsize{10pt}{12pt}\\selectfont}
+		\\def\\copypagesty{\\fontsize{12pt}{12pt}\\selectfont}
+		\\def\\monthsty#1{\\fontsize{36pt}{40pt}\\textsc{#1}}
+		\\def\\weektitlsty{\\fontsize{24pt}{24pt}\\selectfont\\scshape}
+		\\def\\thumbtitsty{\\fontsize{11pt}{11pt}\\selectfont\\bfseries\\scshape}
+		\\def\\weekletsty{\\fontsize{8pt}{8pt}\\selectfont}
+		\\def\\daysty{\\centering\\Biggie\\scshape}
+		\\def\\weekdaysty{\\centering\\scshape}
+		\\def\\weeknumsty#1{\\fontsize{9pt}{9pt}\\selectfont\\scshape #1}
+		\\def\\ydaysty#1{\\fontsize{7pt}{7pt}\\selectfont\\scshape #1}
+		\\def\\eventsty{\\fontsize{9pt}{9pt}\\itshape}
+		\\def\\numsty{\\fontsize{14pt}{16pt}\\selectfont}
+		\\def\\smallnum{\\fontsize{10pt}{10pt}\\selectfont\\bfseries}
+		\\def\\extsmall{\\fontsize{7pt}{7pt}\\selectfont\\bfseries}
+		\\def\\feaststy#1{\\vbox{\\centering\\scshape\\fontsize{11pt}{12pt}\\selectfont#1}}
+		\\def\\halffeast#1{\\vbox{\\centering\\scshape\\fontsize{10pt}{11pt}\\selectfont#1}}
+		\\def\\classsty#1{\\vspace{-0.5em}\\vbox{\\centering\\scshape\\fontsize{9pt}{10pt}\\selectfont#1}}
+		\\def\\halfclass#1{\\vspace{\\fill}\\scshape\\fontsize{8pt}{10pt}\\selectfont#1}
+		\\def\\commsty#1{\\vskip-.5em\\vbox{\\centering\\upshape\\fontsize{8pt}{9pt}\\selectfont#1}}
+		\\def\\halfcomm#1{\\upshape\\fontsize{9pt}{10pt}\\selectfont#1}
+		\\def\\colorsty#1{\\vbox to\\fill{\\vfill\\hbox to\\linewidth{\\hfill\\itshape\\fontsize{8pt}{10pt}\\selectfont#1\\hfill}}}
+		\\def\\halfcolor#1{\\itshape\\fontsize{8pt}{10pt}\\selectfont#1}
+		\\def\\ls{\\hskip0.2em}
+		\\def\\shorts{\\hskip0.1em}
+		\\begin{document}
+		\\newlength\\daywidth
+		\\setlength{\\daywidth}{10in/7 - 3.19986pt/7}
+		\\newlength{\\smallday}
+		\\setlength{\\smallday}{1.3em}
+		\\newlength\\boxwidth
+		\\setlength{\\boxwidth}{10in/7 - 2pt}
+		\\newlength\\dayheight
+		\\setlength{\\dayheight}{6.7in/7}
+		\\newlength{\\smallheight}
+		\\setlength{\\smallheight}{0em}
+		\\def\\specstyl#1{\\centering\\fontsize{10pt}{12pt}\\selectfont\\itshape #1}
+		\\setlength\\parindent{0em}
+		\\setlength\\shortline{\\linewidth-6ex-9pt}
+		\\setlength\\thirdskip{\\shortline/3}
+		\\setlength\\weeklydayboxwid{\\linewidth+1pt}
+		\\setlength{\\TPVertModule}{\\baselineskip}
+		\\setlength{\\TPHorizModule}{\\thirdskip}
+END
+	print "$preamble\n";
+	if ($opt_w) {
+		print "{\\vspace*{\\stretch{1}}%\n";
+		print "\\fontsize{40pt}{40pt}\\selectfont%\n";
+		print "\\centering%\n";
+		print "\\textsc{Calendar}\\vskip.6em%\n";
+		print "\\fontsize{18pt}{18pt}\\selectfont%\n";
+		print "\\textbf{FOR}\\vskip1em%\n";
+		print "\\fontsize{40pt}{40pt}\\selectfont%\n";
+		$_[0] = doz_int($_[0]);
+		print "\\textsc{$_[0]}%\n";
+		print "\\vfill%\n";
+		print "\\fontsize{10pt}{12pt}\\selectfont%\n";
+		print "\\textbf{WITH}\\vskip1em%\n";
+		print "\\fontsize{30pt}{30pt}\\selectfont%\n";
+		print "\\textsc{Yearly, Monthly,}\\vskip1em%\n";
+		print "\\fontsize{12pt}{12pt}\\selectfont%\n";
+		print "\\textbf{AND}\\vskip1em%\n";
+		print "\\fontsize{30pt}{30pt}\\selectfont%\n";
+		print "\\textsc{Weekly Planning Sections}\\vskip1em%\n";
+		print "\\fontsize{12pt}{12pt}\\selectfont%\n";
+		print "\\textbf{PLUS}\\vskip1em%\n";
+		print "\\fontsize{30pt}{30pt}\\selectfont%\n";
+		print "\\textsc{Other Useful Data}%\n";
+		print "\\vfill%\n";
+		print "\\fontsize{20pt}{20pt}\\selectfont%\n";
+		print "\\textsc{Numeration Throughout is Dozenal (Base Twelve)}%\n";
+		print "\\fontsize{18pt}{18pt}\\selectfont%\n";
+		print "\\vskip1em\\bfseries%\n";
+		print "\\hfil 0\\hfil 1\\hfil 2\\hfil 3\\hfil 4\\hfil 5\\hfil 6\\hfil 7\\hfil 8\\hfil 9\\hfil \\x\\hfil \\e\\hfil 10\\hfil%\n";
+		print "\\normalsize}%\n";
+		print "\\newpage%\n";
+	}
+	if ($opt_l && $opt_t) {
+		print "\\begin{landscape}%\n";
+		print "\\vspace*{\\stretch{1}}%\n";
+		print "\\fontsize{84pt}{84pt}\\selectfont%\n";
+		print "\\hbox to\\linewidth{C A L E N D A R}%\n";
+		$_[0] = doz_int($_[0]);
+		$_[0] =~ s/\\x/X/g;
+		$_[0] =~ s/\\e/E/g;
+		$_[0] =~ s/([0-9XE])/$1\\ /g;
+		$_[0] =~ s/X/\\x/g;
+		$_[0] =~ s/E/\\e/g;
+		$_[0] =~ s/[\\\s*]$//g;
+		print "\\hbox to\\linewidth{\\hskip2em F O R\\hskip1em ";
+		print "\t$_[0] \\hskip2em}%\n";
+		print "\\vspace*{\\stretch{1}}%\n";
+		print "\\vbox to0pt{%\n";
+		print "\\fontsize{18pt}{18pt}\\selectfont%\n";
+		print "\\hbox to\\linewidth{%\n";
+		print "\t\\hfil\\scshape The Dozenal Society of America\\hfil}%\n";
+		print "\\hbox to\\linewidth{%\n";
+		print "\t\\hfil\\url{http://www.dozenal.org}\\hfil}%\n";
+		print "}%\n";
+		print "\\newlength{\\logowidth}%\n";
+		print "\\settowidth{\\logowidth}{\\includegraphics[scale=0.7]{new_logo.png}}%%\n";
+		print "\\makeatletter%\n%\n";
+		print "\\AddToShipoutPicture*{%%\n";
+		print "\\setlength{\\\@tempdimb}{0.24\\paperwidth}%%\n";
+		print "\\setlength{\\\@tempdimc}{0.32\\paperheight}%%\n";
+		print "\\setlength{\\unitlength}{1pt}%%\n";
+		print "\\put(\\strip\@pt\\\@tempdimb,\\strip\@pt\\\@tempdimc){%\n";
+		print "\\hbox{\\transparent{0.2}\\includegraphics[angle=90,scale=3]{new_logo.png}}%\n";
+		print "}%\n";
+		print "}%\n";
+		print "\\makeatother%\n";
+		print "\\end{landscape}%\n";
+	}
+}
+
+sub facingpage($$$$)
+{
+	my $picture = $_[0];
+	my $quote = $_[1];
+	my $author = $_[2];
+	my $height = $_[3];
+
+	print "\\begin{landscape}%\n";
+	print "\\renewcommand{\\tabcolsep}{1em}%\n";
+	print "\\vspace*{\\stretch{1}}%\n" if $height ne "\\textheight";
+	print "\\begin{tabular*}{\\textwidth}{>{\\hfil}m{.47\\linewidth}<{\\hfil}m{.47\\linewidth}}%\n";
+	print "\\includegraphics[height=$height]{$picture} &%\n";
+	print "\\fontsize{24pt}{24pt}\\selectfont ";
+	print "\\textit{$quote}\\par\\vskip.5em ";
+	print "\\fontsize{18pt}{18pt}\\selectfont ";
+	print "\\hbox{\\textsc{\\vbox{\\hangafter=0\\hangindent=2em%\n";
+	print "\t$author}}}\\\\%\n";
+	print "\\end{tabular}%\n";
+	print "\\vspace*{\\stretch{1}}%\n" if $height ne "\\textheight";
+	print "\\end{landscape}%\n";
+}
+
+# convert numbers to decimal
+
+# converts single dozenal digits to decimal values; takes a
+# scalar dozenal digit, returns the scalar decimal digit
+
+sub decimalize($)
+{
+	if ($_[0] eq 'X') {
+		return 10;
+	} elsif ($_[0] eq 'E') {
+		return 11;
+	} else {
+		return $_[0];
+	}
+}
+
+# converts dozenal integers into decimal integers; takes the
+# dozenal integer as a scalar, returns the decimal integer
+# as a scalar
+
+sub dec_int($)
+{
+	my @digits;
+	my $len;
+	my $decnum;
+	my $exp = 0;
+
+	@digits = split(//,$_[0]);
+	$exp = $#digits;
+	foreach my $var (@digits) {
+		$decnum += decimalize($var) * (12**($exp--));
+	}
+	return $decnum;
+}
+
+# convert numbers to dozenal, LaTeX-ready (e.g., with \\x)
+
+# change to dozenal digits; takes the scalar integer,
+# returnst he dozenal digit character
+
+sub dozenize($)
+{
+	if (($_[0] >= 0) && ($_[0] <= 9)) {
+		return $_[0];
+	} else {
+		return 'X' if ($_[0] == 10);
+		return 'E' if ($_[0] == 11);
+	}
+}
+
+# convert integers from decmial to dozenal; takes the scalar
+# integer, returns the scalar string
+
+sub doz_int($)
+{
+	my $decnum = $_[0];
+	my $holder = 1;
+	my $doznum = "";
+
+	while ($decnum >= 12) {
+		$holder = $decnum % 12;
+		$holder = dozenize($holder);
+		$doznum .= $holder;
+		$decnum /= 12;
+	}
+	$holder = $decnum % 12;
+	$holder = dozenize($holder);
+	$doznum .= $holder;
+	$doznum = scalar reverse($doznum);
+	$doznum =~ s/X/\\x/;
+	$doznum =~ s/E/\\e/;
+	return $doznum;
+}
+
+# builds the cell text for the large monthlies; takes the
+# day number, the style for the number, and year, month, day
+
+sub makecell($$)
+{
+	my $numsty = $_[1];
+	my $numprint = doz_int($_[0]);
+
+	$celltext = "";
+	if ($numsty eq "smallnum") {
+		$celltext .= "\\hbox to \\linewidth{\\hfil\\$numsty $numprint\\hfil}\n";
+	} else {
+		$celltext .= "\\hbox to \\linewidth{\\hfil\\$numsty $numprint\\ls}\n";
+	}
+}
+
+# determines if it's a half week or not; useful for the
+# large monthlies and the samll thumbnails; returns whether
+# it's a half week and whether it's a half day; takes the
+# box number
+
+sub halfweek($)
+{
+	my $ishalfday = "no";
+	my $ishalfweek = "no";
+	my $boxnum = $_[0];
+
+	if ($boxnum == 0) {
+		if ($numdays == 30) {
+			if ($daynum == 23) {
+				$ishalfday = "yes";
+ 				$ishalfweek = "yes";
+			}
+		} elsif ($numdays == 31) {
+			if ($daynum == 23) {
+				$ishalfday = "yes";
+				$ishalfweek = "yes";
+			} elsif ($daynum == 24) {
+				$ishalfday = "yes";
+				$ishalfweek = "yes";
+			}
+		}
+	} elsif ($boxnum == 1) {
+		if ($numdays == 31) {
+			if ($daynum == 24) {
+				$ishalfday = "yes";
+				$ishalfweek = "yes";
+			}
+		} elsif ($numdays == 30) {
+				$ishalfday = "no";
+				$ishalfweek = "no";
+		}
+	} else {
+		$ishalfday = "no";
+		$ishalfweek = "no";
+	}
+	return ($ishalfweek, $ishalfday);
+}
+
+# prints out the day list on the large monthly calendars and
+# the month name and year; takes the month and year
+
+sub daylist($$)
+{
+	my $startmonthtable;
+	my @monthnames = qw( January February March April May June July August
+		September October November December );
+	my $monthname = $monthnames[$_[0]-1];
+	my $year = doz_int($_[1]);
+	$startmonthtable = <<END;
+		\\begin{landscape}
+		\\renewcommand*{\\arraystretch}{1.2}
+		\\vspace{-1em}\\centering\\monthsty{$monthname $year}\\vskip1em
+		\\noindent
+		\\begin{tabular}{|%
+			>{\\daysty\\vspace{-.5em}}p{\\daywidth}<{\\vspace{-.8em}}|%
+			>{\\daysty\\vspace{-.5em}}p{\\daywidth}<{\\vspace{-.8em}}|%
+			>{\\daysty\\vspace{-.5em}}p{\\daywidth}<{\\vspace{-.8em}}|%
+			>{\\daysty\\vspace{-.5em}}p{\\daywidth}<{\\vspace{-.8em}}|%
+			>{\\daysty\\vspace{-.5em}}p{\\daywidth}<{\\vspace{-.8em}}|%
+			>{\\daysty\\vspace{-.5em}}p{\\daywidth}<{\\vspace{-.8em}}|%
+			>{\\daysty\\vspace{-.5em}}p{\\daywidth}<{\\vspace{-.8em}}|}
+		\\hline
+		Sunday & Monday & Tuesday & Wednesday & Thursday%
+		& Friday & Saturday \\\\
+		\\end{tabular}\\vskip-1.4pt
+END
+	print "$startmonthtable\n";
+}
+
+# writes the first week of the month; takes the number of
+# blank days at the beginning, the width of a daybox, 
+# the height of a daybox, the style of the number, the
+# month number, and the year number
+
+sub firstweek($$$$$$)
+{
+	my $startblanks = $_[0];
+	my $totalboxes;
+	my $boxnum;
+	my $width = $_[1];
+	my $height = $_[2];
+	my $numsty = $_[3];
+	my $multicont = "";
+	my $month = $_[4];
+	my $year = $_[5];
+
+	if ($numsty eq "smallnum") {
+		print "\\renewcommand*{\\arraystretch}{0.2}\n";
+		print "\\begin{tabular}{p{\\$width}|p{\\$width}|%\n";
+		print "p{\\$width}|p{\\$width}|p{\\$width}|p{\\$width}|%\n";
+		print "p{\\$width}}\n";
+	} else {
+		print "\\renewcommand*{\\arraystretch}{1.2}\n";
+		print "\\noindent\n";
+		print "\\begin{tabular}{|p{\\$width}|p{\\$width}|%\n";
+		print "p{\\$width}|p{\\$width}|p{\\$width}|p{\\$width}|%\n";
+		print "p{\\$width}|}\n";
+		print "\\hline\n";
+	}
+	$totalboxes = 0; $boxnum = 0; $daynum = 1;
+	my @nums = qw( negtwo negone one two three four five six seven eight
+		nine ten elv unqua unqone unqtwo );
+	my @monnames = qw( November December January February March 
+		April May June July August September October November 
+		December January February);
+	if ($startblanks > 0) {
+		if ($numsty eq "smallnum") {
+			print "\\multicolumn{$startblanks}{c|}{} &\n";
+		} else {
+			my $monthmin;
+			my $monthplus;
+			if (($month == 12) && ($year < $calyear)) {
+				$monthmin = 0;
+				$monthplus = 2;
+			} elsif (($month == 12) && ($year == $calyear)) {
+				$monthmin = 12;
+				$monthplus = 14;
+			} elsif (($month == 1) && ($year > $calyear)) {
+				$monthmin = 13;
+				$monthplus = 15;
+			} else {
+				$monthmin = $month;
+				$monthplus = $month + 2;
+			}
+			if ($startblanks >= 3) {
+				$multicont .= qq(
+\\hbox to $startblanks\\daywidth{%\n
+	\\hfil\\hbox to\\daywidth{%\n
+		\\vbox to.2\\dayheight{\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil\\thumbtitsty%\n
+				$monnames[$monthmin]\\hfil}\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil%\n
+				\\usebox{\\month$nums[$monthmin]}\\hfil}%\n
+		}%\n
+	}%\n
+	\\hfil\\hbox to\\daywidth{%\n
+		\\vbox to.2\\dayheight{\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil\\thumbtitsty%\n
+				$monnames[$monthplus]\\hfil}\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil%\n
+				\\usebox{\\month$nums[$monthplus]}\\hfil}%\n
+		}%\n
+	}\\hfil%\n
+}%\n
+);
+			} elsif ($startblanks <= 2) {
+				$multicont .= qq(
+\\hbox to $startblanks\\daywidth{%\n
+	\\hfil\\hbox to\\daywidth{%\n
+		\\vbox to.2\\dayheight{\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil\\thumbtitsty%\n
+				$monnames[$monthmin]\\hfil}\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil%\n
+				\\usebox{\\month$nums[$monthmin]}\\hfil}%\n
+		}%\n
+	}\\hfil%\n
+}%\n
+);
+			}
+			print "\\multicolumn{$startblanks}{|c|}{$multicont} &\n";
+		}
+		$boxnum+=$startblanks;
+		$totalboxes+=$startblanks;
+	}
+	while ($boxnum < 7) {
+		makedaybox($boxnum,$height,$numsty,$year,$month,$daynum);
+		$boxnum+=1;
+		$totalboxes+=1;
+	}
+	return $totalboxes;
+}
+
+# fills the cell with the specials, etc. for the day from
+# the calendar list; takes year, month, day
+
+sub filldaybox($$$)
+{
+	my $year = $_[0];
+	my $month = $_[1];
+	my $day = $_[2];
+	my $tmpy;
+	my $tmpm;
+	my $tmpd;
+	my $tmp;
+
+	foreach my $var (@callist) {
+		if ($var !~ /special%/) {
+			next;
+		} else {
+			($tmpy,$tmpm,$tmpd,$tmp) = ($var =~ 
+				/(.*?)\/(.*?)\/(.*?):\s*(.*)$/);
+			$tmp =~ s/%.*%//;
+			$tmp .= "\\linebreak";
+			if (($year == dec_int($tmpy)) && ($month == dec_int($tmpm)) 
+				&& ($day == dec_int($tmpd))) {
+				$celltext .= "\\specstyl{$tmp}\n";
+			}
+		}
+	}
+}
+
+# makes each individual day box for the large monthlies;
+# takes the box number and the height of a box, and the
+# style for the numbers, the year, the month, and the day
+
+sub makedaybox($$$$$$)
+{
+	my $ishalfweek;
+	my $ishalfday;
+	my $boxnum = $_[0];
+	my $height = $_[1];
+	my $numsty = $_[2];
+	my $year = $_[3];
+	my $month = $_[4];
+	my $day = $_[5];
+
+	# set up for the double cells
+	($ishalfweek,$ishalfday) = halfweek($boxnum);
+	if ($ishalfweek eq "yes") {
+		if ($ishalfday eq "yes") {
+			makecell($daynum,$numsty);
+			filldaybox($year,$month,$day) if $numsty ne "smallnum";
+			$celltext =~ s/\\ls/\\shorts/;
+			$celltext =~ s/\\smallnum/\\extsmall/;
+			print "{\\vtop to.3\\$height {$celltext}\\vfill}" 
+				if ($numsty ne "smallnum");
+			print "\\vspace{1.3em}\\hbox{\\rule{\\linewidth}{.4pt}}\n"
+				if ($numsty ne "smallnum");
+			print "\\vtop{\\vfill$celltext\\vfill}" 
+				if ($numsty eq "smallnum");
+			print "\\vskip0.3em%\n" if ($numsty eq "smallnum");
+			makecell($daynum+7,$numsty);
+			filldaybox($year,$month,$day) if $numsty ne "smallnum";
+			$celltext =~ s/\\smallnum/\\vskip-1.8em\\hbox{\\rule{\\linewidth}{.4pt}}\\vskip-0.2pt\\hskip1.0pt\\extsmall/;
+			$celltext =~ s/\\ls/\\shorts/;
+			print "{\\vtop to.3\\$height {$celltext}}" 
+				if ($numsty ne "smallnum");
+			print "\\vtop{\\vfill$celltext\\vfill}" 
+				if ($numsty eq "smallnum");
+			print "&\n";
+		} elsif ($ishalfday eq "no") {
+			makecell($daynum,$numsty);
+			filldaybox($year,$month,$day) if $numsty ne "smallnum";
+			$celltext .= "\\rule{0pt}{\\$height}";
+			print "\\vtop to\\$height {$celltext}" 
+				if ($numsty ne "smallnum");
+			print "\\vbox to\\$height {$celltext}" 
+				if ($numsty eq "smallnum");
+			print "&" if $boxnum < 6;
+			print "\\\\" if $boxnum == 6;
+		}
+	} else {
+		makecell($daynum,$numsty);
+		filldaybox($year,$month,$day) if $numsty ne "smallnum";
+		$celltext .= "\\rule{0pt}{\\$height}";
+		print "\\vtop to\\$height {$celltext}" if ($numsty ne "smallnum");
+		print "\\vbox to\\$height {$celltext}" if ($numsty eq "smallnum");
+		print "&" if $boxnum < 6;
+		print "\\\\" if $boxnum == 6;
+	}
+	$daynum+=1;
+}
+
+# builds the weeks other than the first week for the large
+# monthlies; takes the number of blank days at the end,
+# the total boxes, the daybox height, the number style, 
+# the current month, and the year
+
+sub nextweeks($$$$$$)
+{
+	my $endblanks = $_[0];
+	my $totalboxes = $_[1];
+	my $height = $_[2];
+	my $numsty = $_[3];
+	my $boxnum;
+	my @nums = qw( negtwo negone one two three four five six seven eight
+		nine ten elv unqua unqone unqtwo);
+	my @monnames = qw( November December January February March 
+		April May June July August September October November 
+		December January February);
+	my $multicont = "";
+	my $month = $_[4];
+	my $year = $_[5];
+
+	print "\\hline\n";
+	$boxnum = 0;
+	while (($boxnum < 7) && ($daynum <= $numdays)) {
+		makedaybox($boxnum,$height,$numsty,$year,$month,$daynum);
+		$boxnum+=1;
+		$totalboxes+=1;
+	}
+	if ($endblanks > 0 && $daynum > $numdays) {
+		if ($numsty eq "smallnum") {
+			print "\\multicolumn{$endblanks}{c}{}\\\\\n";
+		} else {
+			if ($endblanks > 0) {
+				my $monthmin;
+				my $monthplus;
+				if (($month == 12) && ($year < $calyear)) {
+					$monthmin = 0;
+					$monthplus = 2;
+				} elsif (($month == 12) && ($year == $calyear)) {
+					$monthmin = 12;
+					$monthplus = 14;
+				} elsif (($month == 1) && ($year > $calyear)) {
+					$monthmin = 13;
+					$monthplus = 15;
+				} else {
+					$monthmin = $month;
+					$monthplus = $month + 2;
+				}
+				if ($endblanks >= 3) {
+					$multicont .= qq(
+\\hbox to $endblanks\\daywidth{%\n
+	\\hfil\\hbox to\\daywidth{%\n
+		\\vbox to.2\\dayheight{\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil\\thumbtitsty%\n
+				$monnames[$monthmin]\\hfil}\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil%\n
+				\\usebox{\\month$nums[$monthmin]}\\hfil}%\n
+		}%\n
+	}%\n
+	\\hfil\\hbox to\\daywidth{%\n
+		\\vbox to.2\\dayheight{\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil\\thumbtitsty%\n
+				$monnames[$monthplus]\\hfil}\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil%\n
+				\\usebox{\\month$nums[$monthplus]}\\hfil}%\n
+		}%\n
+	}\\hfil%\n
+}%\n
+);
+				} elsif ($endblanks <= 2) {
+					$multicont .= qq(
+\\hbox to $endblanks\\daywidth{%\n
+	\\hfil\\hbox to\\daywidth{%\n
+		\\vbox to.2\\dayheight{\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil\\thumbtitsty%\n
+				$monnames[$monthplus]\\hfil}\\vskip2pt%\n
+			\\hbox to\\daywidth{\\hfil%\n
+				\\usebox{\\month$nums[$monthplus]}\\hfil}%\n
+		}%\n
+	}\\hfil%\n
+}%\n
+);
+				}
+				print "\\multicolumn{$endblanks}{c|}{$multicont} &\n";
+			}
+		}
+	}
+}
+
+# preps for the monthlies; takes year, month; returns the
+# number of blank days at the start and the end
+
+sub opening($$)
+{
+	my $month = $_[1];
+	my $year = $_[0];
+	my $firstday;
+
+	$firstday = getdaynum($year,$month,1);
+	return getblanknums($year,$month,$firstday);
+}
+
+# returns the weekday number; takes year, month, day
+
+sub getdaynum($$$)
+{
+	my $thefirstday;
+	my $dayname;
+
+	$dayname = &day($_[1],$_[2],$_[0]);
+	if ($dayname eq "SUN") {
+		$thefirstday = 0;
+	} elsif ($dayname eq "MON") {
+		$thefirstday = 1;
+	} elsif ($dayname eq "TUE") {
+		$thefirstday = 2;
+	} elsif ($dayname eq "WED") {
+		$thefirstday = 3;
+	} elsif ($dayname eq "THU") {
+		$thefirstday = 4;
+	} elsif ($dayname eq "FRI") {
+		$thefirstday = 5;
+	} elsif ($dayname eq "SAT") {
+		$thefirstday = 6;
+	} else {
+		print STDERR "ERROR:  Not a real weekday\n"; die;
+	}
+	return $thefirstday;
+}
+
+# gets the number of blank days in a month, beginning or
+# end; takes year, month, the first day of the month
+
+sub getblanknums($$$)
+{
+	my $monthname;
+	my $year = $_[0];
+	my $calmonth = $_[1];
+	my $firstday = $_[2];
+	my $startblanks;
+	my $endblanks;
+
+	$startblanks = $firstday;
+	if ($calmonth == 1) {
+		$numdays = 31;
+		$monthname = "january";
+	} elsif ($calmonth == 2) {
+		$monthname = "february";
+		if (($year % 4 == 0) && ($year % 100 != 0)) {
+			$numdays = 29;
+		} else {
+			$numdays = 28;
+		}
+	} elsif ($calmonth == 3) {
+		$numdays = 31;
+		$monthname = "march";
+	} elsif ($calmonth == 4) {
+		$numdays = 30;
+		$monthname = "april";
+	} elsif ($calmonth == 5) {
+		$numdays = 31;
+		$monthname = "may";
+	} elsif ($calmonth == 6) {
+		$numdays = 30;
+		$monthname = "june";
+	} elsif ($calmonth == 7) {
+		$numdays = 31;
+		$monthname = "july";
+	} elsif ($calmonth == 8) {
+		$numdays = 31;
+		$monthname = "august";
+	} elsif ($calmonth == 9) {
+		$numdays = 30;
+		$monthname = "september";
+	} elsif ($calmonth == 10) {
+		$numdays = 31;
+		$monthname = "october";
+	} elsif ($calmonth == 11) {
+		$numdays = 30;
+		$monthname = "november";
+	} elsif ($calmonth == 12) {
+		$numdays = 31;
+		$monthname = "december";
+	} else {
+		print STDERR "ERROR:  Not a real month.\n"; die;
+	}
+	$endblanks = 35 - $numdays - $startblanks;
+	if ($endblanks < 0) {
+		$endblanks = 0;
+	}
+	return ($startblanks, $endblanks);
+}
+
+# prints an individual large monthly; takes year, month
+
+my $mymon = -1;
+
+sub run_month($$)
+{
+	my $i;
+	my $startblanks;
+	my $endblanks;
+	my $totalboxes;
+	my $boxnum;
+	my $month = $_[1];
+
+	if ($opt_H) {
+		facingpage("andrews_f_emerson.png",
+		"I can promise the ones who wish to stretch their
+		minds a bit further that they will not go
+		unrewarded.\\ldots Modern mathematicians generally
+		admit that `the duodecimal system' would be better
+		than our present decimal system.\\ldots [Dozenal]
+		promises to be mathematics' next great step forward
+		--- the adoption of an efficient number system.", "F.\
+		Emerson Andrews","\\textheight") if $mymon == -1;
+		facingpage("beard_ralph.jpg",
+		"Literally, the decimal base is
+		unsatis\\textsc{factor}y because
+		it has \\textsc{not enough factors}.\\ldots [N]o
+		change should be forced, and we urge no mandated
+		change.\\ldots But people of understanding should
+		learn to use duodecimals to facilitate their thinking,
+		their computations and their measurings.\\ldots In any
+		operation, the most advantageous base should be
+		used\\ldots If this were done, duodecimals would
+		progressively earn their way into general
+		popularity.","Ralph Beard","\\textheight") if $mymon == 0;
+		facingpage("logo_shapes_dozenal.mps",
+		"The offspring of the dozen serve us well.  Five of
+		the six possible figures are convex polygons and four
+		of these are essential to engineering and
+		mathematics.\\ldots Need we search any further for a
+		rational, serviceable number-base?  Can there possibly
+		be a better?","Troy, DSGB","0.6\\textheight") if $mymon == 1;
+		facingpage("dozenal_fractions.png","[T]welve is a highly
+		divisible yet compact number; it has more divisors
+		than ten.  This facilitates learning and using
+		arithmetic, and simplifies the natural fractions.",
+		"Michael deVlieger","0.75\\textheight") if $mymon == 2;
+		facingpage("schiffman_jay.jpg","One dozen is the
+		\\emph{initial abundant number}.\\ldots The dozen is
+		\\emph{hypercomposite}.\\ldots The dozen represents
+		the first number which is \\emph{neither a Converse
+		Lagrange Theorem group} (CLT) \\emph{nor
+		supersolvable}.\\ldots One dozen is the first natural
+		number having a \\emph{perfect number of divisors}
+		(six).","Prof.\ Jay Schiffman","0.8\\textheight") if
+		$mymon == 3;
+		facingpage("dozenal_times_tables.png","Because twelve
+		has six divisors, with the smallest four consecutive,
+		it presents a multiplication table featuring brief
+		patterns in the product lines of many numbers.\\ldots
+		[U]sers of duodecimal enjoy two other divisor product
+		lines in the multiplication table.","Michael
+		deVlieger","0.8\\textheight") if $mymon == 4;
+		facingpage("keyb_doz.mps","\\emph{There are twelve
+		equal notes in an octave}.\\ldots [They are]
+		logarithms to base two.  Expressed in dozenal
+		numeration they form a unique system for handling
+		ratios, with simplicities not found in any other
+		system.  The music keyboard was caused to have twelve
+		semitones to the octave by this.","Tom
+		Pendlebury","0.4\\textheight,angle=90") if $mymon == 5;
+		facingpage("pendlebury_only.jpg","[Five] is not a multiple of
+		two or three, so [it] does not normally crop up in
+		calculations unless deliberately or unwittingly put
+		there by us.\\ldots Every third number in counting is
+		a multiple of three, yet this vast category skips
+		every power of ten!  All over the world every day by
+		rounding off to hundreds, thousands, etc[.] people are
+		rejecting multiples of three for multiples of five.
+		Simple divisions then give recurring decimals or a
+		rash of fives, and simple ratios become
+		33\\sfrac{1}{3}\\%[,] 12\\sfrac{1}{2}\\%, etc.
+		Unnecessarily awkward expressions all caused by
+		counting in tens.","Tom Pendlebury","\\textheight") if
+		$mymon == 6;
+		facingpage("weights_dozenal.mps","Just as with pure
+		binary, all intermediate weights can be achieved by
+		combining others, so we need only one of each size.
+		[But] [t]here is more.  It will not have gone
+		unobserved that [0;]3[], [0;]6[] and 1[] can be made
+		from combinations of lower values; in fact, if we
+		needed to go only as far as a dozen[], the 1[] weight
+		would be superfluous.  Including the 1[], therefore,
+		allows further weighing up to and including 2\\ldots
+		\\emph{without the need for a 2[] piece}.  If the 2[]
+		is included, the range extends to 4[]
+		\\emph{inclusive}.\\ldots while the binary misses by
+		\\sfrac{1}{2}.\\ldots The decimal set\\ldots involves
+		nine weights rather than seven\\ldots","Troy, DSGB","\\textheight")
+		if $mymon == 7;
+		facingpage("prime_circle.mps",'Hence, the set of
+		natural numbers terminating with 1, 5, 7 or \\e\\ must
+		contain all prime numbers greater than 3, and excludes
+		all odd numbers divisible by 3.   It follows that this
+		is the \\emph{minimum} set to contain \\emph{all}
+		primes greater than 3.  Rearranging the terminal
+		digits as 5, 7 and \\e, 1 shows the set to be of the
+		form:  $(6n\\pm1)$\\ldots The fact [is] that
+		prime-number positions are \\emph{completely}
+		controlled by 6 (itself the product of 2 and 3, and
+		the companion of our dozenal base).',"Don
+		Hammond",'0.65\\textheight') if $mymon == 8;
+		facingpage("newcansort.mps",'Packing in dozens shows an
+		immediate advantage\\ldots [t]he cost per can (or
+		other object) of cardboard increases by more than
+		\\x\\ per gross (over 7 per cent in decimal terms) by
+		changing from dozens to decimal packing.\\ldots The
+		really decisive example is the two-layer form (allowed
+		by the factorability of the dozen) in which the
+		\\emph{total} enclosure area is less than the
+		requirement for ten.\\ldots [S]uch cans are so much
+		more cheaply packed by the dozen than in tens that a
+		twelve-pack with two empty spaces actually costs less
+		than a ten-pack completely filled!',"Troy,
+		DSGB","\\textheight") if $mymon == 9;
+		facingpage("newpalm1.png",'[We can] count[] on the
+		segments (phalanges) of the fingers.  If one uses the
+		thumb as a pointer, one can easily count to twelve on
+		one hand.','Prof.\ Gene Zirkel',"0.8\\textheight") if
+		$mymon == 10;
+		facingpage("regular_polyhedra-crop.pdf","Of the nine regular
+		polyhedra, fully four of them are built upon the
+		number twelve:  the dodecahedron, the small stellated
+		dodecahedron, the great dodecahedron, and the great
+		stellated dodecahedron.  Two more, the tetrahedron and
+		the cube, are built upon the factors of twelve.  Five
+		only becomes important when it is paired with twelve
+		in the dodecahedron; ten is \\emph{never} important.
+		We must get to the icosahedron, at twenty, before ten
+		plays into the question at all.","","0.85\\textheight") if
+		$mymon == 11;
+		facingpage("digits-crop.pdf",'Let $\\sigma_0(n)$ and
+		$\\sigma_1(n)$ denote the number and sum of the
+		divisors of $n$, respectively (i.e., the zeroth- and
+		first-order divisor functions).  A number $n$ is
+		called sublime if $\\sigma_0(n)$ and $\\sigma_1(n)$ are
+		both perfect numbers.  The only two known sublime
+		numbers are [decimal] 12 and [a decimal number with
+		decimal 76 digits]  It is not known if any odd sublime
+		number exists.','Weisstein, Eric W.  "Sublime Number."
+		From \\textit{MathWorld---A Wolfram Web Resource}.
+		\\url{http://mathworld.wolfram.com/SublimeNumber.html}.',
+		"\\textheight") if $mymon == 12;
+		$mymon++;
+	}
+	($startblanks, $endblanks) = opening($_[0],$_[1]);
+	daylist($_[1],$_[0]);
+	$totalboxes = 
+		firstweek($startblanks,"daywidth","dayheight","numsty",$month,$_[0]);
+	for ($i=0; $i < 4; $i++) {
+		nextweeks($endblanks,$totalboxes,"dayheight","numsty",$month,$_[0]);
+	}
+	print "\\hline\\end{tabular}\n";
+	print "\\end{landscape}\n";
+}
+
+# prints out the full large monthly calendars; takes year
+
+sub large_monthlies($)
+{
+	my $i;
+	my $j;
+	my $k;
+	my $year = $_[0];
+
+	run_month($year-1,12);
+	print "\\newpage\n";
+	for ($i = 1; $i < 13; ++$i) {
+		run_month($year,$i);
+		print "\\newpage\n";
+	}
+	run_month($year+1,1);
+	print "\\newpage\n";
+}
+
+# create the thumbnail months; takes year, month
+
+sub run_smallmonth($$)
+{
+	my $i;
+	my $startblanks;
+	my $endblanks;
+	my $totalboxes;
+	my $boxnum;
+
+
+	($startblanks, $endblanks) = opening($_[0],$_[1]);
+	$totalboxes = 
+		firstweek($startblanks,"smallday","smallheight","smallnum",$_[1],$_[0]);
+	for ($i=0; $i < 4; $i++) {
+		nextweeks($endblanks,$totalboxes,"smallheight","smallnum",$_[1],$_[0]);
+	}
+	print "\\end{tabular}\n";
+}
+
+# produces the small monthlies that rest in the nooks and
+# crannies of the rest of the calendar; takes the current
+# year
+
+sub small_monthlies($)
+{
+	my $i;
+	my $year = $_[0];
+	my @nums = qw( negtwo negone one two three four five six seven eight
+	nine ten elv unqua unqone unqtwo );
+
+	for ($i = 0; $i <= 15; ++$i) {
+		print "\\newsavebox{\\month$nums[$i]}\n";
+		print "\\savebox{\\month$nums[$i]}[\\smallday]{%\n";
+		print "\\vbox to1em{\\hbox{%\n";
+		print "\\setlength\\extrarowheight{0pt}\n";
+		if ($i == 0) {
+			run_smallmonth($year-1,11);
+		} elsif ($i == 1) {
+			run_smallmonth($year-1,12);
+		} elsif ($i == 13) {
+			run_smallmonth($year,12);
+		} elsif ($i == 14) {
+			run_smallmonth($year+1,1);
+		} elsif ($i == 15) {
+			run_smallmonth($year+1,2);
+		} else {
+			run_smallmonth($year,$i-1);
+		}
+		print "\\setlength\\extrarowheight{4pt}\n";
+		print "}} % end the vbox and the hbox\n";
+		print "} % end savebox month$nums[$i]\n";
+	}
+}
+
+# returns month and day of its args (year, month, day) plus
+# one
+
+sub dayplone($$$)
+{
+	my $newday;
+
+	$newday = Date_to_Days($_[0],$_[1],$_[2]);
+	return Add_Delta_Days(1,1,1,$newday);
+}
+
+# calculates the year to be used for the thumbnails; takes
+# tmonth value
+
+sub get_tyear($)
+{
+	if ($_[0] <= 1) {
+		return doz_int($calyear-1);
+	} elsif ($_[0] > 13) {
+		return doz_int($calyear+1);
+	} else {
+		return doz_int($calyear);
+	}
+}
+
+# takes dozyear, dozmonth, zday, ophr, and opmn; returns the
+# event text
+
+sub get_event($$$$$)
+{
+	my $event = "";
+	my $year = $_[0];
+	my $month = $_[1];
+	my $day = $_[2];
+	my $ophr = $_[3];
+	my $opmn = $_[4];
+	my @newarray = grep(/$year\/[0]*$month\/[0]*$day:/,@callist);
+
+	foreach my $var (@newarray) {
+		if ($var =~ /$year\/[0]*$month\/[0]*$day:/) {
+			if ($var =~ /[0]*$ophr;$opmn/) { 
+				$var =~ /[0]*$ophr;$opmn[^a-zA-Z]*(.*)%.*%/;
+				$event = "\\eventsty ".$1 if $event eq "";
+				chomp($event);
+				$event .= ", ".$1 if $event ne "" && $event !~ $1;
+			}
+		}
+	}
+	return $event;
+}
+
+# takes the year, the mini-month,  and the day number
+
+sub buildweek($$$)
+{
+	my $j = 0; my $k = 0;
+	my @satevs;
+	my @sunevs;
+	my $time = 6;
+	my $thisyear = $_[0];
+	my $thumbyear = doz_int($thisyear);
+	my $hour = 6;
+	my $min = 0;
+	my $phr = "06";
+	my $pmn = "00";
+	my $ophr = "";
+	my $opmn = "";
+	my @months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct
+	Nov Dec );
+	my @fmonths = qw ( January February March April May June
+		July August September October November December );
+	my @tmonths = qw ( November December January February
+		March April May June July August September October
+		November December January February );
+	my @nums = qw( negtwo negone one two three four five six seven eight
+		nine ten elv unqua unqone unqtwo );
+	my @dayplone;
+	my @daypltwo;
+	my @dayplthree;
+	my $dozplone; my $dozpltwo; my $dozplthree; my $dozplfour; my $dozday;
+	my $year; my $month; my $day;
+	($year,$month,$day) = Add_Delta_Days(1,1,1,$_[2]);
+	my $tmonth;
+	if ($year < $thisyear) {
+		$tmonth = 0 if $month == 11;
+		$tmonth = 1 if $month == 12;
+	} elsif ($year > $thisyear) {
+		$tmonth = 13 if $month == 1;
+		$tmonth = 14 if $month == 2;
+	} else {
+		$tmonth = $month;
+	}
+
+	print "\\newpage\n";
+	print "\\ifthenelse{\\isodd{\\value{page}}}{%\n";
+	$dozday = doz_int($day);
+	my $mydozyear = doz_int($year);
+	$mydozyear =~ s/\\e/E/g;
+	$mydozyear =~ s/\\x/X/g;
+	my $mydozday = $dozday;
+	$mydozday =~ s/\\e/E/g;
+	$mydozday =~ s/\\x/X/g;
+	my $ydays = qx(dozdate "%j" -d"$mydozday $months[$month-1] $mydozyear");
+	chomp($ydays);
+	$ydays =~ s/E/\\e/g;
+	$ydays =~ s/X/\\x/g;
+	print "\t\\def\\dayone{Mon, $dozday\\ $months[$month-1]\\hfil";
+	print "\t\t\\llap{\\ydaysty{$ydays/";
+	(leap_year($year)) ? print "266" : print "265";
+	print "}}}%\n";
+	print "\t\\def\\dayone{Thu, $dozday\\ $months[$month-1]\\hfil";
+	print "\t\t\\llap{\\ydaysty{$ydays/";
+	(leap_year($year)) ? print "266" : print "265";
+	print "}}}%\n";
+	@dayplone = dayplone($year,$month,$day);
+	$dozplone = doz_int($dayplone[2]);
+	$mydozyear = doz_int($dayplone[0]);
+	$mydozyear =~ s/\\e/E/g;
+	$mydozyear =~ s/\\x/X/g;
+	$mydozday = doz_int($dayplone[2]);
+	$mydozday =~ s/\\e/E/g;
+	$mydozday =~ s/\\x/X/g;
+	$ydays = qx(dozdate "%j" -d"$mydozday $months[$dayplone[1]-1] $mydozyear");
+	chomp($ydays);
+	$ydays =~ s/E/\\e/g;
+	$ydays =~ s/X/\\x/g;
+	print "\t\\def\\daytwo{Fri, $dozplone\\ $months[$dayplone[1]-1]\\hfil";
+	print "\t\t\\llap{\\ydaysty{$ydays/";
+	(leap_year($year)) ? print "266" : print "265";
+	print "}}}%\n";
+	@daypltwo = dayplone($dayplone[0],$dayplone[1],$dayplone[2]);
+	$dozpltwo = doz_int($daypltwo[2]);
+	$mydozyear = doz_int($daypltwo[0]);
+	$mydozyear =~ s/\\e/E/g;
+	$mydozyear =~ s/\\x/X/g;
+	$mydozday = doz_int($daypltwo[2]);
+	$mydozday =~ s/\\e/E/g;
+	$mydozday =~ s/\\x/X/g;
+	$ydays = qx(dozdate "%j" -d"$mydozday $months[$daypltwo[1]-1] $mydozyear");
+	chomp($ydays);
+	$ydays =~ s/E/\\e/g;
+	$ydays =~ s/X/\\x/g;
+	@dayplthree = dayplone($daypltwo[0],$daypltwo[1],$daypltwo[2]);
+	$dozplthree = doz_int($dayplthree[2]);
+	print "\t\\def\\daythree{Sat, $dozpltwo\\ $months[$daypltwo[1]-1]\\hfil";
+	print "\t\t\\llap{\\ydaysty{$ydays/";
+	(leap_year($year)) ? print "266" : print "265";
+	print "}}}%\n";
+	print "}{%end the ifodd part\n";
+	$mydozyear = doz_int($year);
+	$mydozyear =~ s/\\e/E/g;
+	$mydozyear =~ s/\\x/X/g;
+	$mydozday = $dozday;
+	$mydozday =~ s/\\e/E/g;
+	$mydozday =~ s/\\x/X/g;
+	my $weeknum = qx(dozdate "%V" -d"$mydozday $months[$month-1] $mydozyear");
+	chomp($weeknum);
+	$weeknum =~ s/E/\\e/g;
+	$weeknum =~ s/X/\\x/g;
+	$ydays = qx(dozdate "%j" -d"$mydozday $months[$month-1] $mydozyear");
+	chomp($ydays);
+	$ydays =~ s/E/\\e/g;
+	$ydays =~ s/X/\\x/g;
+	print "\t\\def\\dayone{Mon, $dozday\\ $months[$month-1]\\hfil";
+	print "\t\t\\llap{\\ydaysty{$ydays/";
+	(leap_year($year)) ? print "266" : print "265";
+	print "}}}%\n";
+	@dayplone = dayplone($year,$month,$day);
+	$dozplone = doz_int($dayplone[2]);
+	$mydozyear = doz_int($dayplone[0]);
+	$mydozyear =~ s/\\e/E/g;
+	$mydozyear =~ s/\\x/X/g;
+	$mydozday = doz_int($dayplone[2]);
+	$mydozday =~ s/\\e/E/g;
+	$mydozday =~ s/\\x/X/g;
+	$ydays = qx(dozdate "%j" -d"$mydozday $months[$dayplone[1]-1] $mydozyear");
+	chomp($ydays);
+	$ydays =~ s/E/\\e/g;
+	$ydays =~ s/X/\\x/g;
+	print "\t\\def\\daytwo{Tue, $dozplone\\ $months[$dayplone[1]-1]\\hfil";
+	print "\t\t\\llap{\\ydaysty{$ydays/";
+	(leap_year($year)) ? print "266" : print "265";
+	print "}}}%\n";
+	@daypltwo = dayplone($dayplone[0],$dayplone[1],$dayplone[2]);
+	$dozpltwo = doz_int($daypltwo[2]);
+	$mydozyear = doz_int($daypltwo[0]);
+	$mydozyear =~ s/\\e/E/g;
+	$mydozyear =~ s/\\x/X/g;
+	$mydozday = doz_int($daypltwo[2]);
+	$mydozday =~ s/\\e/E/g;
+	$mydozday =~ s/\\x/X/g;
+	$ydays = qx(dozdate "%j" -d"$mydozday $months[$daypltwo[1]-1] $mydozyear");
+	chomp($ydays);
+	$ydays =~ s/E/\\e/g;
+	$ydays =~ s/X/\\x/g;
+	print "\t\\def\\daythree{Wed, $dozpltwo\\ $months[$daypltwo[1]-1]\\hfil";
+	print "\t\t\\llap{\\ydaysty{$ydays/";
+	(leap_year($year)) ? print "266" : print "265";
+	print "}}}%\n";
+	print "}%end the ifeven part\n";
+	print "\\vbox to0.95\\daywidth{\\vfill%\n";
+	print "\\ifthenelse{\\isodd{\\value{page}}}{%\n";
+	print "\\hbox to\\linewidth{%\n";
+	print "\\hbox to\\daywidth{\\hfill% the thumbnail hbox\n";
+	print "\t\\vbox to1.35\\dayheight{%\n";
+	$thumbyear = get_tyear($tmonth+1);
+	print "\t\\hbox to\\daywidth{\\hfil\\thumbtitsty $tmonths[$tmonth+1] $thumbyear\\hfil}%\n";
+	print "\t\\vskip-.3em%\n";
+	print "\t\\hbox to\\daywidth{\\hskip0.3em\\weekletsty\\hfill\\hbox to\\smallday{S}\\hfil\\hbox to\\smallday{M}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{W}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{F}\\hfil\\hbox to\\smallday{S}\\hfill}%\n";
+	print "\t\\hbox to\\daywidth{%\n";
+	print "\t\\hfil\\usebox{\\month$nums[$tmonth+1]}\\hfil}%\n";
+	print "} % end the first thumbnail vbox\n";
+	print "\\hskip-0in\\vbox to1.35\\dayheight{%\n";
+	$thumbyear = get_tyear($tmonth+2);
+	print "\t\\hbox to\\daywidth{\\hfil\\thumbtitsty $tmonths[$tmonth+2] ";
+	print "$thumbyear\\hfil}%\n";
+	print "\t\\vskip-.3em%\n";
+	print "\t\\hbox to\\daywidth{\\hskip0.3em\\weekletsty\\hfill\\hbox to\\smallday{S}\\hfil\\hbox to\\smallday{M}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{W}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{F}\\hfil\\hbox to\\smallday{S}\\hfill}%\n";
+	print "\t\\hbox to\\daywidth{\\hfil\\usebox{\\month$nums[$tmonth+2]}\\hfil}%\n";
+	print "} % end the second thumbnail vbox\n";
+	print "} % end the thumbnail hbox\n";
+	print "\t\\hskip-2\\daywidth\\vbox to1.35\\dayheight{\\vfill%\n";
+	print "\t\t\\hfill\\weektitlsty\\ldots $dozplthree\\ $fmonths[$dayplthree[1]-1]%\n";
+	print "\t}%\n";
+	print "}% end the top bar hbox for odd pages\n";
+	print "}{% if even, week title\n";
+	print "\\hbox to\\linewidth{%\n";
+	print "\t\\vbox to1.35\\dayheight{\\vfill%\n";
+	print "\t\t\\weektitlsty $dozday\\ $fmonths[$month-1] to\\ldots%\n";
+	print "\t}\\hskip-2\\daywidth%\n";
+	print "\\hbox to\\daywidth{\\hfill% the thumbnail hbox\n";
+	print "\t\\vbox to1.35\\dayheight{%\n";
+	$thumbyear = get_tyear($tmonth);
+	print "\t\\hbox to\\daywidth{\\hfil\\thumbtitsty $tmonths[$tmonth] $thumbyear\\hfil}%\n";
+	print "\t\\vskip-.3em%\n";
+	print "\t\\hbox to\\daywidth{\\hskip0.3em\\weekletsty\\hfill\\hbox to\\smallday{S}\\hfil\\hbox to\\smallday{M}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{W}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{F}\\hfil\\hbox to\\smallday{S}\\hfill}%\n";
+	print "\t\\hbox to\\daywidth{\\hfil\\usebox{\\month$nums[$tmonth]}\\hfil}%\n";
+	print "} % end the first thumbnail vbox\n";
+	print "\\hskip-0in\\vbox to1.35\\dayheight{%\n";
+	$thumbyear = get_tyear($tmonth+1);
+	print "\t\\hbox to\\daywidth{\\hfil\\thumbtitsty $tmonths[$tmonth+1] $thumbyear\\hfil}%\n";
+	print "\t\\vskip-.3em%\n";
+	print "\t\\hbox to\\daywidth{\\hskip0.3em\\weekletsty\\hfill\\hbox to\\smallday{S}\\hfil\\hbox to\\smallday{M}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{W}\\hfil\\hbox to\\smallday{T}\\hfil\\hbox to\\smallday{F}\\hfil\\hbox to\\smallday{S}\\hfill}%\n";
+	print "\t\\hbox to\\daywidth{\\hfil\\usebox{\\month$nums[$tmonth+1]}\\hfil}%\n";
+	print "} % end the second thumbnail vbox\n";
+	print "} % end the thumbnail hbox\n";
+	print "}% end the top bar hbox for even pages\n";
+	print "}% end the week title if \n";
+	print "\\vskip0.5em%\n";
+	print "}% end the top weekly vbox\n";
+# begin the weekday name box
+	print "\\begin{tcolorbox}[boxrule=2pt,arc=0pt,%\n";
+	print "\twidth=\\weeklydayboxwid,height=1.5\\baselineskip,%\n";
+	print "\tcolback=gray,coltext=white]%\n";
+	print "\t\\vskip-0.5em%\n";
+	print "\t\\hskip-3ex%\n";
+	print "\t\\hbox to3ex{\\hskip2pt\\weeknumsty{$weeknum/44}\\hfil}%\n";
+	print "\t\\hskip3ex%\n";
+	print "\\hbox to\\thirdskip{%\n";
+	print "\\hfil\\weekdaysty\\dayone}%\n";
+	print "\t\\hbox to\\thirdskip{\\hfil\\weekdaysty\\daytwo}%\n";
+	print "\t\\hbox to\\thirdskip{\\hfil\\weekdaysty\\daythree}%\n";
+	print "\\end{tcolorbox}\\nointerlineskip\\vskip-2pt%\n";
+# end the weekday name box
+	print "\\rule{\\linewidth}{2pt}\n";
+	for (my $i = 1; $i <= (14*4); $i++) {
+		my $event;
+		my $dozyear = doz_int($year);
+		my $dozmonth = doz_int($month);
+		my $zday = $dozday;
+		$zday =~ s/\\x/X/g;
+		$zday =~ s/\\e/E/g;
+		$dozmonth =~ s/\\x/X/g;
+		$dozmonth =~ s/\\e/E/g;
+		$dozyear =~ s/\\x/X/g;
+		$dozyear =~ s/\\e/E/g;
+		my @dozplone = @dayplone;
+		my $dozyearone = doz_int($dozplone[0]);
+		$dozyearone =~ s/\\x/X/g;
+		$dozyearone =~ s/\\e/E/g;
+		my $dozmonthone = doz_int($dozplone[1]);
+		$dozmonthone =~ s/\\x/X/g;
+		$dozmonthone =~ s/\\e/E/g;
+		my $dozdayone = doz_int($dozplone[2]);
+		$dozdayone =~ s/\\x/X/g;
+		$dozdayone =~ s/\\e/E/g;
+		my @dozpltwo = @daypltwo;
+		my $dozyeartwo = doz_int($dozpltwo[0]);
+		$dozyeartwo =~ s/\\x/X/g;
+		$dozyeartwo =~ s/\\e/E/g;
+		my $dozmonthtwo = doz_int($dozpltwo[1]);
+		$dozmonthtwo =~ s/\\x/X/g;
+		$dozmonthtwo =~ s/\\e/E/g;
+		my $dozdaytwo = doz_int($dozpltwo[2]);
+		$dozdaytwo =~ s/\\x/X/g;
+		$dozdaytwo =~ s/\\e/E/g;
+		my @dozplthree = @dayplthree;
+		my $dozyearthree = doz_int($dozplthree[0]);
+		$dozyearthree =~ s/\\x/X/g;
+		$dozyearthree =~ s/\\e/E/g;
+		my $dozmonththree = doz_int($dozplthree[1]);
+		$dozmonththree =~ s/\\x/X/g;
+		$dozmonththree =~ s/\\e/E/g;
+		my $dozdaythree = doz_int($dozplthree[2]);
+		$dozdaythree =~ s/\\x/X/g;
+		$dozdaythree =~ s/\\e/E/g;
+		$phr = doz_int($hour);
+		$pmn = $min."0";
+		$ophr = $phr; $opmn = $pmn;
+		$phr = "0".$phr if (length($phr) < 2);
+		$phr = "0".$phr if $phr =~ /^\\/;
+		print "\\vss\n";
+		print "\\nointerlineskip\\vbox to0pt{%\n";
+		print "\t\\vskip3pt\\hskip3pt\\timesty $phr;$pmn\\vss%\n";
+		print "\t\\rule{2pt}{\\baselineskip}%\n";
+		print "\t\\hskip6ex\\rule{2pt}{\\baselineskip}%\n";
+		$event = get_event($dozyear,$dozmonth,$zday,$ophr,$opmn);
+		print "\t\\vbox to 0pt{\\vskip-.9em\\hbox to0pt{$event}\\vfil}%\n";
+		print "\t\\hskip\\thirdskip\\rule{2pt}{\\baselineskip}%\n";
+		$event = get_event($dozyearone,$dozmonthone,$dozdayone,$ophr,$opmn);
+		print "\t\\vbox to 0pt{\\vskip-.9em\\hbox to0pt{$event}\\vfil}%\n";
+		print "\t\\hskip\\thirdskip%\n";
+		print "\t\\ifthenelse{\\isodd{\\value{page}}}{%\n";
+		if ($phr ne "13" && $phr ne "14") {
+			print "\\rule{2pt}{\\baselineskip}%\n";
+		} else {
+			if ($pmn eq "90" & $phr eq "13") {
+				print "\\begin{tcolorbox}[boxrule=2pt,arc=0pt,%\n";
+				print "\twidth=.319\\weeklydayboxwid,height=2\\baselineskip,%\n";
+				print "\tcolback=gray,coltext=white,%\n";
+				print "\tbefore={\\hskip0em}]%\n";
+				print "\t\\vskip-0.25em\\hbox to.318\\weeklydayboxwid{%\n";
+				$mydozyear = doz_int($dayplthree[0]);
+				$mydozyear =~ s/\\e/E/g;
+				$mydozyear =~ s/\\x/X/g;
+				$mydozday = doz_int($dayplthree[2]);
+				$mydozday =~ s/\\e/E/g;
+				$mydozday =~ s/\\x/X/g;
+				$ydays = qx(dozdate "%j" -d"$mydozday $months[$dayplthree[1]-1] $mydozyear");
+				chomp($ydays);
+				$ydays =~ s/E/\\e/g;
+				$ydays =~ s/X/\\x/g;
+				print "\t\\hfil\\hskip-3em\\weekdaysty Sun, $dozplthree\\ $months[$dayplthree[1]-1]\\hfil\\llap{\\ydaysty{$ydays/";
+				(leap_year($year)) ? print "266" : print "265";
+				print "}\\hskip2.5em}}%\n";
+				print "\\end{tcolorbox}%\n";
+				print "\\hskip-\\thirdskip%\n";
+			} else {
+				print "\\rule{2pt}{\\baselineskip}%\n";
+			}
+		}
+		print "}{\\rule{2pt}{\\baselineskip}}%\n";
+		$event = get_event($dozyeartwo,$dozmonthtwo,$dozdaytwo,$ophr,$opmn);
+		if (&day($daypltwo[1],$daypltwo[2],$daypltwo[0]) eq "SAT") {
+			$satevs[$j++] = "\\eventsty $phr;$pmn:  $event" if $event ne "";
+			$event = "";
+		} else {
+			print "\t\\vbox to 0pt{\\vskip-.9em\\hbox to0pt{$event}\\vfil}%\n";
+		}
+		$event = get_event($dozyearthree,$dozmonththree,$dozdaythree,$ophr,$opmn);
+		if (&day($dayplthree[1],$dayplthree[2],$dayplthree[0]) eq "SUN") {
+			if (($event ne "")) {
+				$sunevs[$k++] = "\\eventsty $phr;$pmn:  $event%\n";
+			}
+			$event = "";
+		}
+		print "\t\\hskip\\thirdskip\\rule{2pt}{\\baselineskip}%\n";
+		print "\\vss}%\n";
+		print "\\rule{\\linewidth}{0.4pt}\n" if ($i % 4) != 0;
+		print "\\rule{\\linewidth}{2pt}\n" if ($i % 4) == 0;
+		$hour++ if ($i % 4) == 0;
+		$min = 0 if ($i % 4) == 0;
+		$min += 3 if ($i % 4) != 0;
+	}
+	if ((&day($daypltwo[1],$daypltwo[2],$daypltwo[0]) eq "SAT") && 
+		($#satevs > 0)) {
+		my $numslots = 38;
+		print "\\begin{textblock}{1}(2.42,11.12)%\n";
+		print "\t\\vbox to38\\baselineskip{%\n";
+		for (my $l = 0; $l <= $#satevs; $l++) {
+			print "\t\t\\vbox to0.9\\baselineskip{\\vss\\hbox{$satevs[$l]\\hfil}\\vss}%\n";
+		}
+		print "}\\end{textblock}%\n";
+	}
+	if (&day($dayplthree[1],$dayplthree[2],$dayplthree[0]) eq "SUN") {
+		print "\\begin{textblock}{1}(2.42,49.33)%\n";
+		print "\t\\vbox to16\\baselineskip{%\n";
+		for (my $l = 0; $l <= $#sunevs; $l++) {
+			print "\t\t\\vbox to\\baselineskip{\\vss\\hbox{$sunevs[$l]\\hfil}\\vss}%\n";
+		}
+		print "}\\end{textblock}%\n";
+	}
+	print "\\newpage\n";
+	@satevs = ();
+	@sunevs = ();
+	$j = 0; $k = 0;
+}
+
+# takes the year
+
+sub weeklies($)
+{
+	my @nums = qw( negtwo negone one two three four five six seven eight
+		nine ten elv unqua unqone unqtwo );
+	my $i;
+	my $j;
+	my $firstday;
+	my $year; my $month; my $day;
+
+	$firstday = Date_to_Days($_[0]-1,12,1) - 1;
+	if (&day(12,1,$_[0]-1) ne "MON") {
+		for ($i = 30; $i > 23; $i--) {
+			last if (&day(11,$i,$_[0]-1) eq "MON");
+		}
+	}
+	$firstday = $firstday - (30 - --$i);
+	$i = 0;
+	$j = 0;
+	for ($j = 0; $j < 434; $j=$j+3) {
+		buildweek($_[0],$i,$firstday+$j);
+		($year,$month,$day) = Add_Delta_Days(1,1,1,$firstday+$j);
+		$j++ if (&day($month,$day,$year) eq "THU");
+	}
+}
+
+# insert the "other useful data"
+
+sub closingdata()
+{
+	print <<ENDTGMTABLE;
+\\hbox to\\linewidth{%
+	\\hfil\\Biggie\\scshape Basic TGM (Tim, Grafut, Maz)\\hfil}
+
+\\vskip1em
+\\noindent\\lettrine{T}{GM is a system of measure} named for
+its three primary units:  the Tim (the unit of time), the
+Grafut (the unit of length), and the Maz (the unit of mass).
+The system is consistently dozenal and covers all fields of
+human endeavor.  Designed to be easy and convenient both for
+the layman and for the scientist, TGM unites in itself the
+unique virtues of traditional systems, like the foot-pound
+system of the English-speaking world, and of SI and other
+French metric derivatives.
+
+\\hskip2em Part of TGM's appeal is its concomitant way of
+writing very large and very small quantities.  While modern
+systems utilize ``scientific notation,'' this is typically
+lengthy and bulky, and cannot be read at a glance (e.g.,
+4.567\$\\times\$10\$^{15}\$).  TGM encourages users instead
+to simply \\emph{prefix} the power of the dozen, either
+superscripted if it is a positive power, or subscripted if a
+negative.  So the above dozenized becomes \$^{12}\$3;683; a
+very tiny quantity might be \$_{12}\$3;683.  This is at once
+more compact and more readable than the current practice.
+
+\\hskip2em Below, the basic units of the TGM system, along
+with many others of practical size, are displayed with their
+traditional and decimal metric counterparts.  The full,
+detailed system can be obtained from the dozenal societies,
+or from many different places on the Internet.
+
+\\vfil
+\\renewcommand\\tabcolsep{.4em}
+\\hbox to\\textwidth{%
+\\vbox{%
+	\\hbox to.49\\textwidth{%
+	\\begin{tabular}{llrr}
+		\\multicolumn{4}{c}{\\tabheadsty Length, Area, Volume} \\\\
+		Grafut & {} & 0;\\e783 ft & 0;366\\e\\ m \\\\
+		Gravinch & \$_1\$Gf & 0;\\e783 in & 2;569\\x\\ cm \\\\
+		Gravyard & 3 Gf & 0;\\e783 yd & 0;\\x789 m \\\\
+		Gravmile & 3 \$^3\$Gf & 0;\\e51\\x\\ mi & 1;6488 km \\\\
+		Gravklick & 2 \$^3\$Gf & 0;7752 mi & 1;0319 km \\\\
+		Surf & {} & 0;\\e362 ft\$^2\$ & 0;1070 m\$^2\$ \\\\
+		{} & \$^4\$Sf & 0;5461 acres & 0;2213 ha \\\\
+		Volm & {} & 6;9\\e47 gal & 21;\\x254 L \\\\
+		Pintvol & 3 \$_2\$Vm & 1;17\\x9 pt & 0;6567 L \\\\
+		Cupvol & 1;6 \$_2\$Vm & 1;17\\x9 cp & 0;3293 L \\\\
+		Supvol & \$_3\$Vm & 1;0182 tbs & 12;\\e624 mL \\\\
+		Sipvol & 4 \$_4\$Vm & 1;0182 tsp & 4;\\e\\x09 mL \\\\
+	\\end{tabular}%
+	\\hfil}%
+\\vfil}%
+\\hfill
+\\vbox{%
+	\\hbox to.49\\textwidth{\\hfil%
+	\\begin{tabular}{llrr}
+	\\multicolumn{4}{c}{\\tabheadsty Time, Motion, and Frequency} \\\\
+	Tim & {} & {} & 0;21 s \\\\
+	Tick & Tm & {} & 0;21 s \\\\
+	Unctic & \$^1\$Tm & {} & 2;1 s \\\\
+	Bictic & \$^2\$Tm & {} & 21 s \\\\
+	Block & \$^3\$Tm & 5 min & 210 s \\\\
+	Hour & \$^4\$Tm & 1 hr & 50 min \\\\
+	{} & \$_3\$Tm & {} & 0;1257 ms \\\\ Vlos & {} & 3;9874 mph & 6;16\\x\\x\\ kph \\\\
+	Sp\. Lim.\ & 15 Vl & 54;9248 mph & 88;2946 kph \\\\
+	St.\ Grav.\ & 1 Gee & 28;2280 ft/s\$^2\$ & 9;9879 m/s\$^2\$ \\\\
+	Freq & \\sfrac{1}{Tm} & {} & 5;9153 Hz \\\\
+	{} & 5 \$_3\$Fq & {} & 1 RPM \\\\
+	\\end{tabular}
+	}%
+\\vfil}%
+}%
+\\vskip2em
+\\hbox to\\textwidth{%
+\\vbox{%
+	\\hbox to.49\\textwidth{%
+	\\begin{tabular}{llrr}
+		\\multicolumn{4}{c}{\\tabheadsty Mass, Force, and Density}\\\\
+		Maz & {} & 48;\\e\\x72 lb & 21;\\x254 kg \\\\
+		{} & \$^2\$Mz & 4;130\\e\\ ton & 3;8804 t \\\\
+		Oumz & 2 \$_3\$Mz & 1;07\\e8 oz & 25;\\e048 g \\\\
+		Poundz & 3 \$_2\$Mz & 16;\\e\\e64 oz & 0;6567 kg \\\\
+		Denz & {} & 52;5146 lb/ft\$^3\$ & 6\\e3;\\e7\\e7 kg/m\$^3\$ \\\\
+		Mag & {} & 108\\x;2\\e62 pdl & 191;7151 N \\\\
+		{} & {} & 49;0154 lbf & 21;\\x38\\x\\ kgf \\\\
+		Werg & {} & 47;37\\x7 lbf\$\\cdot\$ft & 62;\\e96\\e N\$\\cdot\$m \\\\
+		Prem & {} & 0;506\\e\\ lbf/in\$^2\$ & 1818;6\\e\\e0 Pa \\\\
+		Atmoz & 2\\e\\ Pm & 12;8836 lbf/in\$^2\$ & 4\\x900;4916 Pa \\\\
+		{} & {} & 25;\\e89 inHg & 535;56\\e\\ mmHg \\\\
+		Pov & {} & 0;6\\e45 hp & 2\\e\\e;\\x\\x08 W \\\\
+	\\end{tabular}%
+	\\hfil}%
+\\vfil}%
+\\hfill
+\\vbox{%
+	\\hbox to.49\\textwidth{\\hfil%
+	\\begin{tabular}{llrr}
+	\\multicolumn{4}{c}{\\tabheadsty Temp., Elec., and Chemistry} \\\\
+	Calg & {} & 0;0021 \$^\\circ\$F & 0;0012 K \\\\
+	Decigree & \$^2\$Cg & 0;21 \$^\\circ\$F & 0.1 K \\\\
+	Tregree & \$^3\$Cg & 2;1 \$^\\circ\$F & 1;2497 K \\\\
+	Kur & {} & Current & 0;5\\e47 A \\\\
+	{} & {} & 6 \$_6\$Kr & 0;\\e\\e53 \$\\mu\$A \\\\
+	Pel & {} & Elec.\ Pot.\ & 607;3167 V \\\\
+	{} & {} & \$_3\$Pl & 0;6073 V \\\\
+	{} & {} & 2 \$_2\$Pl & 10;1263 V \\\\
+	Og & {} & Resistance & 1025;6860 \$\\Omega\$ \\\\
+	Quel & {} & Elec.\ Quant.\ & 0;1048 C \\\\
+	{} & {} & \$^1\$Ql & 1;0487 C \\\\
+	Molz & {} & {} & 21;\\x254 kmol \\\\
+	\\end{tabular}
+	}%
+\\vfil}%
+}%
+\\newpage
+ENDTGMTABLE
+	print <<ENDSDNTABLE;
+\\hbox to\\linewidth{%
+	\\hfil\\Biggie\\scshape Systematic Dozenal Nomenclature\\hfil}%
+\\vskip0.5em%
+\\hbox to\\linewidth{%
+	\\hfil\\Big\\scshape At a Glance\\hfil}%
+\\vskip1em
+
+\\lettrine{S}{ystematic Dozenal Nomenclature} (SDN) is a
+system of referring to numbers, similar to what we do in
+decimal with words like ``hundred,'' ``thousand,''
+``million,'' and so forth.  When we count in twelves, we
+can't use these decimal terms; SDN provides a analogous, but
+superior, set of terms for dozenal.  Using the
+internationally recognized and accepted number-word roots
+employed by the International Union of Pure and Applied
+Chemistry (IUPAC), and augmenting them with roots for
+``ten'' and ``eleven,'' SDN is a perfectly rational,
+coherent, and easy-to-learn system, requiring only twelve
+roots, two suffixes, and two particles.
+
+\\vskip1em
+\\hbox to \\linewidth{\\hfil%
+	\\setlength{\\extrarowheight}{0pt}%
+	\\begin{tabular}{ccccc}
+	\\toprule
+	\\multicolumn{5}{c}{Complete Set of SDN Prefixes} \\\\
+	\\midrule
+	Value & Root & Multiplier & Pos.\\ Power & Neg.\\ Power \\\\
+	\\midrule
+	0 & nil & nili & nilqua & nilcia \\\\
+	1 & un & uni & unqua & uncia \\\\
+	2 & bi & bina & biqua & bicia \\\\
+	3 & tri & trina & triqua & tricia \\\\
+	4 & quad & quadra & quadqua & quadcia \\\\
+	5 & pent & penta & pentqua & pentcia \\\\
+	6 & hex & hexa & hexqua & hexcia \\\\
+	7 & sept & septa & septqua & septcia \\\\
+	8 & oct & octa & octqua & octcia \\\\
+	9 & enn & ennea & ennqua & enncia \\\\
+	\\x & dec & deca & decqua & deccia \\\\
+	\\e & lev & leva & levqua & levcia \\\\
+	\\bottomrule
+	\\end{tabular}
+\\hfil}%
+\\vskip1em
+
+The twelve roots are listed in the ``Root'' column; the
+multiplier forms are essentially the same as the roots with
+a vowel inserted, with only ``quadra'' varying even slightly
+beyond that.  The suffixes are ``-qua,'' for positive powers
+of the dozen, and ``-cia,'' for negative powers of the
+dozen.  The particles are ``dit,'' for the so-called
+``decimal'' point, separating the whole numbers from the
+fractional parts (usually written ;, but sometimes '); and
+``per,'' which is used to create fractional words.
+
+\\hskip2em SDN leaves most of our daily language about
+numbers substantially unchanged.  A quadruped is still a
+quadruped, a pentagon is still a pentagon, and so forth.
+These words, and many others, are perfectly regular and
+orthodox SDN.  SDN also, however, greatly expands the reach
+our number words can have.
+
+\\hskip2em The multipliers simply multiply what they are
+attached to by the number they indicate; for example, a
+``tricycle'' is a ``cycle'' (wheel) multiplied by three, and
+a ``hexacycle'' is a ``cycle'' multiplied by six.  These
+roots can be combined, without their multiplier prefixes, to
+form number words they same way that we combine digits to
+form numbers.  
+In other words, use these in order according to
+place notation, the same way that you use digits.  For
+example, for a hypothetical insect with 357 legs:
+
+\\hbox to\\linewidth{\\hfil%
+	\\setlength{\\extrarowheight}{0pt}%
+	\\begin{tabular}{ccc}
+	Three & Five & Seven \\\\
+	3 & 5 & 7 \\\\
+	Tri & Pent & Septa \\\\
+	\\end{tabular}
+\\hfil}
+
+Yielding ``tripentseptaped.''  What we often call an
+``eighteen-wheeler'' (dozenal 16) is a ``dechexacycle''
+(``dec'' + ``hexa'' + ``cycle'' = ``1'' + ``6'' +
+``wheeler'').  Note that the multiplier forms mean
+multiplication, so only use it on the last part;
+``decahexacycle'' would mean ten \\emph{times} six, or five
+dozen, rather than twelve \\emph{plus} six, or one dozen
+six.
+
+\\hskip2em The particles can be used the same way.  Suppose
+you want a word for something that occurs twice a year; that
+is, every half year.  One possibility is
+``nildithexennial,'' remembering that 0;6 (``zero dit six'')
+is dozenal for one half.  ``Per'' is used for fractions
+which don't fit well into uncials.  E.g., \\sfrac{1}{7},
+which in uncials is 0;186\\x35 repeating, can be simply
+``unpersepta.''  In other words, the ``dit'' stands in for
+``;'' and the ``per'' for ``/''.
+
+\\hskip2em Finally, the power prefixes indicate powers of
+the dozen.  We are all familiar with terms like
+``bicentennial,'' and some of us with more difficult terms
+like ``sesquicentennial.''  These are decimal terms; but
+their dozenal analogues are easy.  ``100'' is 10\$^2\$; so
+we use the \\emph{power prefix} with the root for ``two'':
+``bi'' plus ``qua.''  This gives us ``biquennial.''  This
+can be combined with multiplier forms; for example,
+``quadrubiquennial'' means ``quad'' times ``biqua,'' for
+four biqua years.  Similarly for the negative prefixes:  a
+cell 0;00008 Grafut in diameter is 8 \\emph{hexcia}Grafut in
+diameter.
+
+\\hskip2em And this is SDN, a much more robust number
+nomenclature than our current one.
+
+ENDSDNTABLE
+}
+
+# finish the document
+
+sub finish()
+{
+	print "\\end{document}\n";
+}
+
+# produces the copyright page; takes the calendar year
+
+sub copypage($)
+{
+	my $year = doz_int($_[0]);
+	print <<ENDCOPYPAGE
+\\vspace*{\\stretch{1}}
+
+\\noindent\\copypagesty \\emph{Dozenal} numeration is a
+system of thinking of numbers in twelves, rather than tens.
+Twelve is a much more versatile number, having four even
+divisors---2, 3, 4, and 6---as opposed to only two for ten.
+This means that such hatefulness as ``0.333\\ldots'' for
+\\sfrac{1}{3} and ``0.1666\\ldots'' for \\sfrac{1}{6} are
+things of the past, replaced by easy ``0;4'' and
+``0;2.''\\hfil
+\\vskip\\baselineskip
+\\noindent In dozenal, counting goes ``one, two, three,
+four, five, six, seven, eight, nine, ten, elv, dozen; dozen
+one, dozen two, dozen three, dozen four, dozen five, dozen
+six, dozen seven, dozen eight, dozen nine, dozen ten, dozen
+elv, two dozen, two dozen one\\ldots''  It's written as
+such:  1, 2, 3, 4, 5, 6, 7, 8, 9, \\x, \\e, 10, 11, 12, 13,
+14, 15, 16, 17, 18, 19, 1\\x, 1\\e, 20, 21\\ldots\\hfil
+\\vskip\\baselineskip
+Dozenal counting is at once much more efficient and much
+easier than decimal counting, and takes only a little bit of
+time to get used to.  Further information can be had from
+the dozenal societies, as well as in many other places on
+the Internet.
+
+\\vspace*{\\stretch{1}}
+
+\\begin{center}
+The Dozenal Society of America\\linebreak
+\\url{http://www.dozenal.org}\\linebreak
+\\vskip\\baselineskip
+The Dozenal Society of Great Britain\\linebreak
+\\url{http://www.dozenalsociety.org.uk}\\linebreak
+\\end{center}
+
+\\vspace*{\\stretch{1}}
+
+\\noindent\\copypagesty \\textcopyright\\ $year  Donald P.\\
+Goodman III.  All rights reserved.\\hspace{\\stretch{1}}
+
+\\vskip 1em
+
+\\noindent\\fontsize{9pt}{9pt}\\selectfont This document may
+be copied and distributed freely, subject to the Creative
+Commons Attribution-Share Alike 3.0 United States License,
+available at
+\\url{http://www.creativecommons.org/licenses/by-sa/3.0/us/}.
+\\hspace{\\stretch{1}}\\fontsize{12pt}{12pt}\\selectfont
+\\newpage
+ENDCOPYPAGE
+}
+
+# produces the page with the yearly calendar on it; takes
+# the desired calendar year
+
+sub yearlypage($)
+{
+	my $curryear = doz_int($_[0]);
+	my $lastyear = doz_int($_[0]-1);
+	my $nextyear = doz_int($_[0]+1);
+	my @monnames = qw( January February March April May June
+		July August September October November December );
+	print "\\begin{center}%\n";
+	print "\\vbox{%\n";
+	print "\\scalebox{.8}{\\framebox{%\n";
+	print "\\begin{tabular}{cccc}%\n";
+	print "\\multicolumn{4}{c}{\\yearlytitsty $lastyear}\\\\%\n";
+	for (my $i=0; $i < 12; $i++) {
+		print "\\vbox{\\hbox to\\daywidth{\\hfil\\thumbtitsty $monnames[$i]\\hfil}%\n";
+		print "\\hbox{\\hfil ";
+		run_smallmonth($_[0] - 1,$i+1);
+		if (($i + 1) % 4 == 0) {
+			print "}}\\\\%\n";
+			if (($i + 1) % 12 != 0) {
+				print "{} & {} & {} & {} \\\\%\n";
+			}
+		} else {
+			print "}} & ";
+		}
+	}
+	print "\\end{tabular}}}\\vskip2pt%\n\n";
+	print "\\scalebox{.8}{\\framebox{%\n";
+	print "\\begin{tabular}{cccc}%\n";
+	print "\\multicolumn{4}{c}{\\yearlytitsty $curryear}\\\\%\n";
+	for (my $i=0; $i < 12; $i++) {
+		print "\\vbox{\\hbox to\\daywidth{\\hfil\\thumbtitsty $monnames[$i]\\hfil}%\n";
+		print "\\hbox{\\hfil ";
+		run_smallmonth($_[0],$i+1);
+		if (($i + 1) % 4 == 0) {
+			print "}}\\\\%\n";
+			if (($i +1 ) % 12 != 0) {
+				print "{} & {} & {} & {} \\\\%\n";
+			}
+		} else {
+			print "}} & ";
+		}
+	}
+	print "\\end{tabular}}}\\vskip2pt%\n\n";
+	print "\\scalebox{.8}{\\framebox{%\n";
+	print "\\begin{tabular}{cccc}%\n";
+	print "\\multicolumn{4}{c}{\\yearlytitsty $nextyear}\\\\%\n";
+	for (my $i=0; $i < 12; $i++) {
+		print "\\vbox{\\hbox to\\daywidth{\\hfil\\thumbtitsty $monnames[$i]\\hfil}%\n";
+		print "\\hbox{\\hfil ";
+		run_smallmonth($_[0]+1,$i+1);
+		if (($i + 1) % 4 == 0) {
+			print "}}\\\\%\n";
+			if (($i + 1) % 12 != 0) {
+				print "{} & {} & {} & {} \\\\%\n";
+			}
+		} else {
+			print "}} & ";
+		}
+	}
+	print "\\end{tabular}}}}%\n\n";
+	print "\\end{center}%\n";
+	print "\\newpage%\n";
+}
+
+# we all know what this one is for
+
+sub main()
+{
+	my $callist;
+	my $date = dec_int($opt_d);
+	my $datemin = doz_int($date - 1);
+	my $dateplus = doz_int($date + 1);
+	my $date = $opt_d;
+	$datemin =~ s/\\x/X/g;
+	$datemin =~ s/\\e/E/g;
+	$dateplus =~ s/\\x/X/g;
+	$dateplus =~ s/\\e/E/g;
+
+	print STDERR "Compiling Nov $datemin...\n";
+	$callist .= qx(./dozcal $opt_o -d"Nov $datemin");
+	print STDERR "Compiling Dec $datemin...\n";
+	$callist .= qx(./dozcal $opt_o -d"Dec $datemin");
+	print STDERR "Compiling Jan-Dec $date...\n";
+	$callist .= qx(./dozcal $opt_o -d"$date");
+	print STDERR "Compiling Jan $dateplus...\n";
+	$callist .= qx(./dozcal $opt_o -d"Jan $dateplus");
+	print STDERR "Compiling Feb $dateplus...\n";
+	$callist .= qx(./dozcal $opt_o -d"Feb $dateplus");
+	@callist = split(/\n/,$callist);
+	preamble(dec_int($opt_d));
+	if ($opt_f) {
+		print STDERR "Putting together the frontmatter...\n";
+		copypage(dec_int($opt_d));
+		yearlypage(dec_int($opt_d));
+	}
+	$calyear = dec_int($date);
+	if ($opt_l) {
+		print STDERR "Assembling the small monthlies...\n";
+		small_monthlies($calyear);
+		print STDERR "Assembling the large monthlies...\n";
+		large_monthlies($calyear);
+	}
+	if ($opt_w) {
+		print STDERR "Assembling the weeklies...\n";
+		weeklies($calyear);
+	}
+	if ($opt_b) {
+		print STDERR "Assembling the backmatter...\n";
+		closingdata() if !$opt_H;
+		if ($opt_H) {
+			print "\\begin{landscape}%\n";
+			print "\\includepdf[offset=4em 0em,delta=0em -4em,noautoscale,scale=0.70,landscape,turn=false,pages=-,nup=1x2]{closing.pdf}%\n";
+			print "\\end{landscape}%\n";
+		}
+	}
+	finish();
+	print STDERR "Done!\n";
+}
+
+main();

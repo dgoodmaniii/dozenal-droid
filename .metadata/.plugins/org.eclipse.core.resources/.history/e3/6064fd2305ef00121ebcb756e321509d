@@ -1,0 +1,8 @@
+package com.example.dozcaldroid;
+
+import java.util.Comparator;
+
+public static class SortArray implements Comparator<T extends Comparable> {
+
+
+}

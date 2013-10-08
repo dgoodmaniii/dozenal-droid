@@ -1,0 +1,20 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::import";
+	"UNIVERSAL::isa";
+}
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@12";
+	"Time::Piece::localtime";
+}
+subgraph cluster_Time_Seconds {
+	label="Time::Seconds";
+	"Time::Seconds::BEGIN@6";
+}
+"Time::Piece::localtime" -> "UNIVERSAL::isa";
+"Time::Piece::BEGIN@12" -> "UNIVERSAL::import";
+"Time::Seconds::BEGIN@6" -> "UNIVERSAL::import";
+}

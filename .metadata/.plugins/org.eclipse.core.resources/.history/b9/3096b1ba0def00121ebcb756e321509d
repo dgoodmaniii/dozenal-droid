@@ -1,0 +1,26 @@
+package com.example.dozcaldroid;
+
+import java.util.*;
+
+public class SortArray {
+
+    public static void main(final String[][] data) {
+
+        Arrays.sort(data, new Comparator<String[]>() {
+            @Override
+            public int compare(final String[] entry1, final String[] entry2) {
+                final String col1 = entry1[0];
+                final String col2 = entry2[0];
+                return col1.compareTo(col2);
+            }
+        });
+
+        for (final String[] s : data) {
+            System.out.println(s[0] + " " + s[1]);
+        }
+    }
+    
+    public static String[][] chunk_sort (final String[][] fullevents) {
+    	
+    }
+}

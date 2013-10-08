@@ -1,0 +1,80 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Date_Pcalc {
+	label="Date::Pcalc";
+	"Date::Pcalc::BEGIN@16";
+}
+subgraph cluster_Date_Day {
+	label="Date::Day";
+	"Date::Day::BEGIN@4";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@9";
+}
+subgraph cluster_POSIX_SigRt {
+	label="POSIX::SigRt";
+	"POSIX::SigRt::BEGIN@66";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::BEGIN@6";
+}
+subgraph cluster_Time_Seconds {
+	label="Time::Seconds";
+	"Time::Seconds::BEGIN@5";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::BEGIN@3";
+	"vars::BEGIN@8";
+	"vars::import";
+	"vars::CORE:match";
+	"vars::BEGIN@7";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+subgraph cluster_Carp_Clan {
+	label="Carp::Clan";
+	"Carp::Clan::BEGIN@17";
+}
+subgraph cluster_String_Escape {
+	label="String::Escape";
+	"String::Escape::BEGIN@516";
+	"String::Escape::BEGIN@13";
+	"String::Escape::BEGIN@364";
+	"String::Escape::BEGIN@255";
+	"String::Escape::BEGIN@57";
+	"String::Escape::BEGIN@182";
+}
+subgraph cluster_Date_Easter {
+	label="Date::Easter";
+	"Date::Easter::BEGIN@27";
+}
+"POSIX::SigRt::BEGIN@66" -> "vars::BEGIN@8";
+"String::Escape::BEGIN@516" -> "vars::import";
+"Carp::Clan::BEGIN@17" -> "vars::import";
+"String::Escape::BEGIN@364" -> "vars::import";
+"Date::Day::BEGIN@4" -> "vars::import";
+"POSIX::SigRt::BEGIN@66" -> "vars::import";
+"Date::Easter::BEGIN@27" -> "vars::import";
+"String::Escape::BEGIN@182" -> "vars::import";
+"String::Escape::BEGIN@13" -> "vars::import";
+"String::Escape::BEGIN@255" -> "vars::import";
+"Date::Pcalc::BEGIN@16" -> "vars::import";
+"Time::Seconds::BEGIN@5" -> "vars::import";
+"String::Escape::BEGIN@57" -> "vars::import";
+"constant::BEGIN@6" -> "vars::import";
+"Time::Local::BEGIN@9" -> "vars::import";
+"vars::import" -> "vars::CORE:match";
+"POSIX::SigRt::BEGIN@66" -> "vars::BEGIN@3";
+"vars::BEGIN@8" -> "strict::import";
+"POSIX::SigRt::BEGIN@66" -> "vars::BEGIN@7";
+"vars::BEGIN@7" -> "warnings::register::import";
+}

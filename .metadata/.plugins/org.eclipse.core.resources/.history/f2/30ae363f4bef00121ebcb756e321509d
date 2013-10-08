@@ -1,0 +1,15 @@
+package com.example.dozcaldroid;
+
+import java.util.Comparator;
+
+public class Sorter {
+
+public static <T extends Comparable> void sort(final T [][] toSort,final int onColumn) {
+List list = Arrays.asList(toSort);
+Collections.sort(list, new Comparator(){
+public int compare(T[] a, T[] b) {
+return a[onColumn].compareTo(b[onColumn]);
+}
+});
+}
+}

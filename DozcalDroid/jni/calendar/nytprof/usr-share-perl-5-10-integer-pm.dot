@@ -1,0 +1,17 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@423";
+}
+subgraph cluster_integer {
+	label="integer";
+	"integer::import";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@7";
+}
+"Time::Piece::BEGIN@423" -> "integer::import";
+"Time::Local::BEGIN@7" -> "integer::import";
+}

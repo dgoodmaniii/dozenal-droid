@@ -1,0 +1,34 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@125";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@40";
+	"POSIX::BEGIN@3";
+}
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::BEGIN@186";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::unimport";
+	"warnings::CORE:regcomp";
+	"warnings::CORE:match";
+	"warnings::import";
+}
+subgraph cluster_String_Escape {
+	label="String::Escape";
+	"String::Escape::BEGIN@10";
+}
+"Exporter::Heavy::BEGIN@186" -> "warnings::unimport";
+"Time::Piece::BEGIN@125" -> "warnings::unimport";
+"POSIX::BEGIN@40" -> "warnings::unimport";
+"POSIX::BEGIN@3" -> "warnings::CORE:match";
+"String::Escape::BEGIN@10" -> "warnings::import";
+"POSIX::BEGIN@3" -> "warnings::import";
+"POSIX::BEGIN@3" -> "warnings::CORE:regcomp";
+}

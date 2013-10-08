@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout01"
+    android:layout_height="100dp"
+    android:layout_width="fill_parent"
+    android:layout_weight="1"
+    android:layout_margin="2dp"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    >
+    
+<!-- android:background="#88000000"-->
+    <TextView
+        android:id="@+id/widget_timeview"
+        android:layout_width="fill_parent"
+        android:clickable="true"
+        android:layout_height="26pt"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:textSize="24pt" />
+    <TextView
+        android:id="@+id/widget_dateview"
+        android:layout_width="fill_parent"
+        android:layout_height="16pt"
+        android:gravity="center_horizontal"
+        android:textColor="#00BB00"
+        android:textSize="12pt" />
+</LinearLayout>

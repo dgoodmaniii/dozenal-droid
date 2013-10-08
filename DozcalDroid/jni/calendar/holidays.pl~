@@ -1,0 +1,60 @@
+#!/usr/bin/perl
+# +AMDG
+
+use Date::Holidays;
+
+#my $dh = Date::Holidays->new(countrycode=>'dk');
+#$hashref = $dh->holidays(year => 2012);
+
+use Date::Holidays;
+
+        my $dh = Date::Holidays->new(
+                countrycode => 'dk'
+        );
+
+        $holidayname = $dh->is_holiday(
+                year  => 2004,
+                month => 12,
+                day   => 25
+        );
+
+        $hashref = $dh->holidays(
+                year => 2004
+        );
+
+        
+        $holidays_hashref = Date::Holidays->is_holiday(
+                year      => 2004,
+                month     => 12,
+                day       => 25,
+                countries => ['se', 'dk', 'no'],
+        );
+
+        foreach my $country (keys %{$holidays_hashref}) {
+                print $holidays_hashref->{$country}."\n";
+        }
+
+
+        $holidays_hashref = Date::Holidays->is_holiday(
+                year      => 2004,
+                month     => 12,
+                day       => 25,
+        );
+        
+        
+        #Example of a module with additional parameters
+        my $dh = Date::Holidays->new(
+                countrycode => 'au'
+        );
+
+        $holidayname = $dh->is_holiday(
+                year  => 2004,
+                month => 12,
+                day   => 25,
+                state => 'TAS',
+        );      
+
+        $hashref = $dh->holidays(
+                year => 2004
+                state => 'TAS',
+        );

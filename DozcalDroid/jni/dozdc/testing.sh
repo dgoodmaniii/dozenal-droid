@@ -1,0 +1,40 @@
+#!/bin/bash
+# +AMDG
+
+echo "One quarter:			`./dozdc \"1 4 / =\"`";
+echo "Two quarters:			`./dozdc \"2 4 / =\"`";
+echo "Three quarters:			`./dozdc \"3 4 / =\"`";
+echo "Four quarters:			`./dozdc \"4 4 / =\"`";
+echo "Five quarters:			`./dozdc \"5 4 / =\"`";
+echo "Six quarters:			`./dozdc \"6 4 / =\"`";
+echo "Seven quarters:			`./dozdc \"7 4 / =\"`";
+echo "Eight quarters:			`./dozdc \"8 4 / =\"`";
+echo "One third:			`./dozdc \"1 3 / =\"`";
+echo "Two thirds:			`./dozdc \"2 3 / =\"`";
+echo "Three thirds:			`./dozdc \"3 3 / =\"`";
+echo "Four thirds:			`./dozdc \"4 3 / =\"`";
+echo "Five thirds:			`./dozdc \"5 3 / =\"`";
+echo "Six thirds:			`./dozdc \"6 3 / =\"`";
+echo "Seven thirds:			`./dozdc \"7 3 / =\"`";
+echo "Eight thirds:			`./dozdc \"8 3 / =\"`";
+echo "Nine thirds:			`./dozdc \"9 3 / =\"`";
+echo "Cube root of eight:		`./dozdc \"8 1 3 / ^ =\"`";
+echo "0;2 sin (0;6):			`./dozdc \"0;2 sin =\"`";
+echo "d 26 sin (0;6):			`./dozdc \"d 26 sin =\"`";
+echo "dec d 26 sin (0.5):		`./dozdc \"d 26 sin =\" | dec`";
+echo "0;2 cos (0;X485):		`./dozdc \"0;2 cos =\"`";
+echo "d 26 cos (0;X485):		`./dozdc \"d 26 cos =\"`";
+echo "dec d 26 cos (0.8660):		`./dozdc \"d 26 cos =\" | dec`";
+echo "logx 39 (1;7X08):		`./dozdc \"39 logx =\"`";
+echo "dec logx 39 (1.6532):		`./dozdc \"39 logx =\" | dec`";
+echo "ln 39 (3;9819):			`./dozdc \"39 ln =\"`";
+echo "dec ln 39 (3.8066):		`./dozdc \"39 ln =\" | dec`";
+echo "log 39 (1;6471):		`./dozdc \"39 log =\"`";
+echo "dec log 39 (1.5319):		`./dozdc \"39 log =\" | dec`";
+echo "5!				`./dozdc \"5 ! =\"`";
+echo "pi				`./dozdc -kX \"pi =\"`";
+echo "dec pi				`./dozdc -kE \"pi =\" | dec -k11`";
+echo "eul				`./dozdc -kX \"eul =\"`";
+echo "dec eul				`./dozdc -kE \"eul =\" | dec -k11`";
+echo "phi				`./dozdc -kX \"phi =\"`";
+echo "dec phi				`./dozdc -kE \"phi =\"| dec -k11`";

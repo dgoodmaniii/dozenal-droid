@@ -1,0 +1,1 @@
+valgrind -v --leak-check=full ./dozdate "@T:@E_t:%5d:@c:@k:@C:@-4y:%e:@6t:_%T_:%A:@7#Y"

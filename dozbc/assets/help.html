@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>dozbc v1.0 Help
+<body>
+<h1>dozbc v1.0 Help</h1>
+
+<p>dozbc is a simple infix dozenal (base-twelve) calculator
+written in Javascript for Android.  It has the four basic
+functions, square roots, exponents, parentheses for
+grouping, and the two constants, &pi; and <i>e</i>.  It's
+also capable of rudimentary memory functions.</p>
+
+<p>Mostly, dozbc is pretty self-explanatory.  However, a few
+of the functions deserve some comment.</p>
+
+<ol>
+<li>"&radic;" is the square-root operator; it will insert
+the string "sqrt(" into your calculator field, and you will
+have to input the number you want the square root of, plus
+close the parentheses.  E.g., "sqrt(56)".</li>
+<li>"^" is the exponentiation operator.  It's a binary
+operator like addition or division, so it needs two
+arguments, one before it and one behind it.  Enter them like
+this:  "2^3".</li>
+<li>"&plusmn;" is the negation operator.  It's important to
+use this for negation (making a number negative) rather than
+the subtraction sign, which won't do what you want.</li>
+<li>"&larr;" will erase something; if it's a number, it'll
+erase one at a time, but if it's an operator, it'll erase
+the whole thing.  (E.g., it'll erase "sqrt(" all at
+once.)</li>
+<li>"m" adds the current input field into memory.</li>
+<li>"M" takes the current memory and inserts it into the
+input field.  It does <em>not</em> clear the memory, which
+remains until replaced.</li>
+<li>"C" clears the input field entirely.</li>
+<li>The dropdown list with numbers is the precision level;
+namely, the number of places after the decimal point which
+dozbc will calculate.  Too many and you'll fill up your
+input field, or even run it off the edge and make parts of
+it invisible.  This makes sure that can't happen.  Only
+values 0 through 9 are possible; the default is a reasonable
+4.</li>
+</ol>
+
+<p>
+Enjoy!  For more information about dozenalism and the twelve
+base, please visit:
+</p>
+
+<center>
+dozenal.org
+</center>
+
+<font size="200%">
+<center>
+<a href="dozbc_javascript.html">Back</a>
+</center>
+</font>
+</body>
+</html>

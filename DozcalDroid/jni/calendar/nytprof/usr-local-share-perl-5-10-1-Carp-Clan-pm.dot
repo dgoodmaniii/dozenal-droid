@@ -1,0 +1,38 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Date_Pcalc {
+	label="Date::Pcalc";
+	"Date::Pcalc::BEGIN@18";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_Carp_Clan {
+	label="Carp::Clan";
+	"Carp::Clan::BEGIN@224";
+	"Carp::Clan::BEGIN@17";
+	"Carp::Clan::CORE:regcomp";
+	"Carp::Clan::BEGIN@16";
+	"Carp::Clan::CORE:match";
+	"Carp::Clan::import";
+	"Carp::Clan::BEGIN@18";
+	"Carp::Clan::CORE:qr";
+}
+"Carp::Clan::BEGIN@224" -> "strict::unimport";
+"Carp::Clan::import" -> "Carp::Clan::CORE:qr";
+"Carp::Clan::import" -> "Carp::Clan::CORE:regcomp";
+"Carp::Clan::BEGIN@17" -> "vars::import";
+"Carp::Clan::import" -> "Carp::Clan::CORE:match";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::import";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@16";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@224";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@18";
+"Date::Pcalc::BEGIN@18" -> "Carp::Clan::BEGIN@17";
+"Carp::Clan::BEGIN@16" -> "strict::import";
+}

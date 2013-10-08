@@ -1,0 +1,59 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@11";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::BEGIN@35";
+	"Config::CORE:subst";
+	"Config::TIEHASH";
+	"Config::CORE:match";
+	"Config::BEGIN@5";
+	"Config::fetch_string";
+	"Config::AUTOLOAD";
+	"Config::import";
+	"Config::CORE:pack";
+	"Config::BEGIN@9";
+	"Config::launcher";
+	"Config::CORE:substcont";
+	"Config::CORE:unpack";
+	"Config::FETCH";
+}
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::BEGIN@24";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@5";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@11";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+"Config::AUTOLOAD" -> "Config::CORE:match";
+"Config::AUTOLOAD" -> "Config::CORE:pack";
+"Time::Local::BEGIN@5" -> "Config::BEGIN@35";
+"Config::FETCH" -> "Config::AUTOLOAD";
+"Config::BEGIN@35" -> "strict::unimport";
+"Config::AUTOLOAD" -> "Config::CORE:substcont";
+"Config::FETCH" -> "Config::fetch_string";
+"Config::FETCH" -> "Config::launcher";
+"Config::AUTOLOAD" -> "Config::CORE:unpack";
+"Time::Local::BEGIN@5" -> "Config::TIEHASH";
+"Config::AUTOLOAD" -> "Config::BEGIN@5";
+"Time::Local::BEGIN@5" -> "Config::import";
+"DynaLoader::BEGIN@24" -> "Config::import";
+"Time::Local::BEGIN@5" -> "Config::BEGIN@9";
+"Time::Piece::BEGIN@11" -> "Config::FETCH";
+"main::BEGIN@11" -> "Config::FETCH";
+"Config::AUTOLOAD" -> "Config::CORE:subst";
+"Config::BEGIN@9" -> "strict::import";
+}

@@ -1,0 +1,202 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::import";
+	"UNIVERSAL::isa";
+}
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@40";
+	"Time::Piece::BEGIN@576";
+	"Time::Piece::BEGIN@10";
+	"Time::Piece::BEGIN@46";
+	"Time::Piece::__ANON__[Time/Piece.pm:116]";
+	"Time::Piece::BEGIN@41";
+	"Time::Piece::BEGIN@43";
+	"Time::Piece::BEGIN@45";
+	"Time::Piece::BEGIN@42";
+	"Time::Piece::BEGIN@39";
+	"Time::Piece::year";
+	"Time::Piece::_tzset";
+	"Time::Piece::BEGIN@9";
+	"Time::Piece::BEGIN@37";
+	"Time::Piece::BEGIN@534";
+	"Time::Piece::BEGIN@11";
+	"Time::Piece::BEGIN@125";
+	"Time::Piece::bootstrap";
+	"Time::Piece::_mktime";
+	"Time::Piece::BEGIN@5";
+	"Time::Piece::localtime";
+	"Time::Piece::BEGIN@38";
+	"Time::Piece::import";
+	"Time::Piece::BEGIN@44";
+	"Time::Piece::BEGIN@12";
+	"Time::Piece::BEGIN@511";
+	"Time::Piece::BEGIN@423";
+	"Time::Piece::__ANON__[Time/Piece.pm:117]";
+	"Time::Piece::export";
+	"Time::Piece::BEGIN@124";
+	"Time::Piece::BEGIN@47";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::FETCH";
+}
+subgraph cluster_integer {
+	label="integer";
+	"integer::import";
+}
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::bootstrap";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@5";
+	"Time::Local::BEGIN@28";
+	"Time::Local::BEGIN@30";
+	"Time::Local::_daygm";
+	"Time::Local::BEGIN@29";
+	"Time::Local::BEGIN@6";
+	"Time::Local::BEGIN@7";
+	"Time::Local::BEGIN@4";
+	"Time::Local::BEGIN@9";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::unimport";
+}
+subgraph cluster_overload {
+	label="overload";
+	"overload::import";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::import";
+}
+subgraph cluster_Time_Seconds {
+	label="Time::Seconds";
+	"Time::Seconds::BEGIN@33";
+	"Time::Seconds::BEGIN@43";
+	"Time::Seconds::BEGIN@6";
+	"Time::Seconds::BEGIN@28";
+	"Time::Seconds::BEGIN@34";
+	"Time::Seconds::BEGIN@29";
+	"Time::Seconds::BEGIN@31";
+	"Time::Seconds::BEGIN@36";
+	"Time::Seconds::BEGIN@4";
+	"Time::Seconds::BEGIN@30";
+	"Time::Seconds::BEGIN@27";
+	"Time::Seconds::BEGIN@40";
+	"Time::Seconds::BEGIN@35";
+	"Time::Seconds::BEGIN@32";
+	"Time::Seconds::BEGIN@39";
+	"Time::Seconds::BEGIN@5";
+	"Time::Seconds::BEGIN@26";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::ind_date";
+	"main::parse_dates";
+	"main::parse_it";
+	"main::parse_daynames";
+	"main::BEGIN@11";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+"main::BEGIN@11" -> "Time::Piece::BEGIN@576";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@40";
+"Time::Piece::BEGIN@11" -> "Time::Local::_daygm";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@41";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@28";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@7";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@39";
+"Time::Piece::_mktime" -> "Time::Piece::_tzset";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@125";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@29";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@36";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@30";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@30";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@38";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@27";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@32";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@35";
+"Time::Piece::BEGIN@125" -> "warnings::unimport";
+"Time::Piece::BEGIN@10" -> "Exporter::import";
+"Time::Piece::BEGIN@9" -> "Exporter::import";
+"Time::Piece::BEGIN@11" -> "Exporter::import";
+"Time::Piece::BEGIN@12" -> "Exporter::import";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@511";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@6";
+"Time::Piece::import" -> "Time::Piece::export";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@47";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@26";
+"Time::Piece::BEGIN@40" -> "constant::import";
+"Time::Piece::BEGIN@41" -> "constant::import";
+"Time::Piece::BEGIN@46" -> "constant::import";
+"Time::Piece::BEGIN@45" -> "constant::import";
+"Time::Piece::BEGIN@43" -> "constant::import";
+"Time::Piece::BEGIN@39" -> "constant::import";
+"Time::Piece::BEGIN@42" -> "constant::import";
+"Time::Piece::BEGIN@37" -> "constant::import";
+"Time::Piece::BEGIN@38" -> "constant::import";
+"Time::Piece::BEGIN@44" -> "constant::import";
+"Time::Piece::BEGIN@47" -> "constant::import";
+"main::ind_date" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"main::parse_dates" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"Time::Piece::export" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"main::parse_daynames" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"main::parse_it" -> "Time::Piece::__ANON__[Time/Piece.pm:116]";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@43";
+"Time::Piece::BEGIN@124" -> "strict::unimport";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@11";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@534";
+"Time::Piece::localtime" -> "UNIVERSAL::isa";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@31";
+"Time::Piece::BEGIN@576" -> "overload::import";
+"Time::Piece::BEGIN@511" -> "overload::import";
+"Time::Piece::BEGIN@534" -> "overload::import";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@5";
+"main::BEGIN@11" -> "Time::Piece::import";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@4";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@40";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@39";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@45";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@43";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@6";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@42";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@5";
+"Time::Piece::localtime" -> "Time::Piece::_mktime";
+"DynaLoader::bootstrap" -> "Time::Piece::bootstrap";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@28";
+"Time::Piece::BEGIN@12" -> "UNIVERSAL::import";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@4";
+"Time::Piece::__ANON__[Time/Piece.pm:116]" -> "Time::Piece::localtime";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@12";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@44";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@423";
+"Time::Piece::export" -> "Time::Piece::__ANON__[Time/Piece.pm:117]";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@9";
+"Time::Piece::BEGIN@423" -> "integer::import";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@33";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@46";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@10";
+"main::parse_dates" -> "Time::Piece::year";
+"main::parse_daynames" -> "Time::Piece::year";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@37";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@9";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@34";
+"Time::Piece::BEGIN@11" -> "Time::Local::BEGIN@29";
+"Time::Piece::BEGIN@11" -> "Config::FETCH";
+"Time::Piece::BEGIN@5" -> "strict::import";
+"Time::Piece::BEGIN@9" -> "Time::Seconds::BEGIN@5";
+"main::BEGIN@11" -> "Time::Piece::BEGIN@124";
+}

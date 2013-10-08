@@ -1,0 +1,21 @@
+package com.example.dozcaldroid;
+
+import java.util.Comparator;
+
+/*public class SortArray implements Comparator<T extends Comparable> {
+
+
+}*/
+
+public static class SortArray<T extends Comparable>
+implements Comparator<T[]> {
+private int column;
+
+public ColumnComparator(int column) {
+this.column = column;
+}
+
+public int compare(T[] o1, T[] o2) {
+return o1[column].compareTo(o2[column]);
+}
+}

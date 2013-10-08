@@ -1,0 +1,1982 @@
+#!/usr/bin/perl
+# +AMDG  This document was begun on 8 Sept 11E8, the feast
+# of the Nativity of the Blessed Virgin Mary and the Comm.
+# of St. Hadrian, Martyr, and it is humbly dedicated to them
+# for their prayers, and to the Sacred Heart of Jesus for
+# His mercy.
+#
+# The main function for the decimal-to-dozenal convert.
+#
+# (C) Copyright 2012  Donald P. Goodman III
+#
+# This file is part of dozcal and the dozenal suite.
+#
+# dozcal is free software:  you can redistribute it and/or
+# modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any
+# later version.
+#
+# dozcal is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.  See the GNU General Public License
+# for more details.
+#
+# You should have received a copy of the GNU General Public
+# License along with dozcal.  If not, see
+# <http://www.gnu.org/licenses/>.
+
+use strict;
+use POSIX;
+use String::Escape qw (unbackslash backslash);
+use Time::Piece;
+use Time::Local 'timelocal_nocheck';
+use DateTime::TimeZone;
+use Date::Day;
+use Date::Easter;
+use Date::Pcalc qw(:all);
+use Date::Passover;
+use Calendar::Hijri;
+use Date::GoldenNumber;
+use Date::Convert;
+use Astro::MoonPhase;
+use Astro::Sunrise;
+use Astro::Coord::ECI;
+use Astro::Coord::ECI::Sun;
+use Astro::Coord::ECI::Utils qw {deg2rad};
+use LWP::Simple;
+use JSON qw( decode_json );
+use Geo::Coder::OSM;
+use Getopt::Std;
+getopts('f:d:o:m:thwls:r:a:g:n:z:M:');
+our($opt_M,$opt_m,$opt_z,$opt_g,$opt_n,$opt_f,$opt_d,$opt_o,$opt_t,$opt_h,$opt_w,$opt_l,$opt_s,$opt_r,$opt_a);
+
+my $INFIN = 999999999;
+
+# define our exit codes
+
+my $SUCCESS = 0;
+my $BAD_INPUT_FILE = 1;
+my $INPUT_FILE_NOT_EXIST = 2;
+my $BAD_OUTPUT_FORMAT = 3;
+my $BAD_MAIN_DATE = 4;
+my $BAD_EXCEPTION_DATE = 5;
+my $BAD_CONFIGFILE_OPTION = 6;
+my $BAD_DATE_FOR_WEEKLY = 7;
+my $BAD_WDAY_NAME = 8;
+my $NEED_LATITUDE = 9;
+my $BAD_TIMEZONE = 10;
+my $NEED_EMAIL_ADDRESS = 11;
+
+# change to dozenal digits; takes the scalar integer,
+# returnst he dozenal digit character
+
+sub dozenize($)
+{
+	if (($_[0] >= 0) && ($_[0] <= 9)) {
+		return $_[0];
+	} else {
+		return 'X' if ($_[0] == 10);
+		return 'E' if ($_[0] == 11);
+	}
+}
+
+# convert integers from decimal to dozenal; takes the scalar
+# integer, returns the scalar string
+
+sub doz_int($)
+{
+	my $decnum = $_[0];
+	my $holder = 1;
+	my $doznum = "";
+
+	while ($decnum >= 12) {
+		$holder = $decnum % 12;
+		$holder = dozenize($holder);
+		$doznum .= $holder;
+		$decnum /= 12;
+	}
+	$holder = $decnum % 12;
+	$holder = dozenize($holder);
+	$doznum .= $holder;
+	return scalar reverse($doznum);
+}
+
+# converts single dozenal digits to decimal digit
+
+sub decimalize($)
+{
+	if ($_[0] eq 'X') {
+		return 10;
+	} elsif ($_[0] eq 'E') {
+		return 11;
+	} else {
+		return $_[0];
+	}
+}
+
+# converts dozenal integers into decimal integers; takes the
+# dozenal integer as a scalar, returns the decimal integer
+# as a scalar
+
+sub dec_int($)
+{
+	my @digits;
+	my $len;
+	my $decnum;
+	my $exp = 0;
+
+	@digits = split(//,$_[0]);
+	$exp = $#digits;
+	foreach my $var (@digits) {
+		$decnum += decimalize($var) * (12**($exp--));
+	}
+	return $decnum;
+}
+
+# define our mod functions; both take two arguments, x and
+# y, and return an integer
+
+sub mod($$)
+{
+	return $_[0] - $_[1] * ($_[0] / $_[1]);
+}
+sub amod($$)
+{
+	return $_[1] + mod($_[0],-$_[1]);
+}
+
+# get the julian date; takes year, month, day
+
+sub julday($$$)
+{
+#	print STDERR "$_[0] - $_[1] - $_[2]\n";
+	my $juldate = 1721423.5 + Date_to_Days($_[0],$_[1],$_[2]) + 1;
+	return $juldate;
+}
+
+# convert julian date back to gregorian date; takes the
+# julian day, returns an array of year, month, day
+
+sub jultogreg($)
+{
+#	print STDERR "$_[0]\n";
+	return Add_Delta_Days(1,1,1,$_[0] - 1721423.5 - 2);
+}
+
+# define @calendar; this array eats the contents of our
+# data file; also define a variety of globally useful
+# variables
+
+my $calfile;
+my @calendar;
+my @callist;			# holds unordered list from file(s)
+my @months = qw( jan feb mar apr may jun jul aug sep oct nov dec );
+my @monnums = qw( 31 28 31 30 31 30 31 31 30 31 30 31 );
+my @wdays = qw( sun mon tue wed thu fri sat );
+my $currdate = localtime;
+my $year = doz_int($currdate->year);
+my $month = -1;
+my $day = -1;
+my $output = "";
+
+# define the default date format variable; this can be
+# changed by command line or by config file
+
+my $date_format = "%d %b %Y";
+
+# configure options from the config file; takes a scalar,
+# returns nothing
+
+sub config_opts($)
+{
+	my $option = $_[0];
+
+	chomp($option);
+	if ($option =~ /^%DATEFORM:\s*(.*)$/) {
+		$date_format = $1;
+	} elsif ($option =~ /^%GEOGRAPHY:\s*(.*)$/) {
+		$opt_g = $1 if (!$opt_g);
+	} elsif ($option =~ /^%NATIONAL:\s*(.*)$/) {
+		$opt_n = $1 if (!$opt_n);
+	} elsif ($option =~ /^%ASTRONOMY:\s*(.*)$/) {
+		$opt_a = $1 if (!$opt_a);
+	} elsif ($option =~ /^%STARTDAY:\s*(.*)$/) {
+		$opt_s = $1 if (!$opt_s);
+	} elsif ($option =~ /^%TIMEZONE:\s*(.*)$/) {
+		$opt_z = $1 if (!$opt_z);
+	} elsif ($option =~ /^%RELIGIOUS:\s*(.*)$/) {
+		$opt_r = $1 if (!$opt_r);
+	} else {
+		print STDERR "dozcal:  error:  dozcal does not ";
+		print STDERR "recognize the configure option ";
+		print STDERR "\n\t\"$option\"\n";
+		exit $BAD_CONFIGFILE_OPTION;
+	}
+}
+
+# reads the files; takes a scalar list of files; returns
+# number of lines read if success, otherwise dies returning
+# error code
+
+sub read_files($)
+{
+	my @filearray;			# takes filenames from opt_f
+	my $calfile;			# file handle for read files
+	my $j = 0;				# number of read non-comment lines
+
+	@filearray = split(/,/,$_[0]);
+	for (my $i = 0; $i <= $#filearray; $i++) {
+		if (!-e $filearray[$i]) {
+			print STDERR "dozcal error:  data file \"$filearray[$i]\" ";
+			print STDERR "does not exist\n";
+			exit $INPUT_FILE_NOT_EXIST;
+		} else {
+			open($calfile,"<","$filearray[$i]") || die $!;
+			while (<$calfile>) {
+				if ($_ =~ /^%/) {
+					config_opts($_);
+					next;
+				}
+				$callist[$j++] = $_ if ($_ !~ /^#/);
+			}
+		}
+	}
+	return $j;
+}
+
+# takes two scalars, the first is the date string in
+# question, and the second the entire line; expands this
+# into a list of julian days meeting the criteria, plus the
+# remainders of the data lines; returns zero if success, one
+# if failure
+
+sub expand_dates($$)
+{
+	my $matches = 0;			# number of matching days to return
+	my $wholeline = $_[1];	# the whole line, including datestring
+	my $hasmonth = 0;			# if there's a month
+	my $haswday = 0;			# if there's a wday
+	my $i;
+	my $j;
+	my $k;
+	my $thedate;				# julian day in question
+	my $theday = 1;			# local version of the day
+	my $yeardays;
+	my $theyear;
+	my $success = 1;			# error; set to zero if works
+	my $origstr = $_[0];		# full original string
+
+	$origstr =~ s/$/,/;
+	while ($origstr =~ /(.*?),/) {
+		my $udatestring = $1;
+		my $datestring = lc($udatestring);
+		for ($i = 0; $i <= $#wdays; $i++) {
+			if ($datestring =~ /$wdays[$i]/) {
+				$haswday = 1;
+				last;
+			}
+		}
+		for ($j = 0; $j <= $#months; $j++) {
+			if ($datestring =~ /$months[$j]/) {
+				$hasmonth = 1;
+				last;
+			}
+		}
+		if ($datestring =~ /([\dxe]{4,4})/) {
+			$theyear = uc($1);
+		} else {
+			$theyear = $year;
+		}
+		$yeardays = (leap_year(dec_int($theyear))) ? 366 : 365;
+		if (($haswday == 1) && ($hasmonth == 0)) {
+			if (($datestring !~ /first/) && ($datestring !~ /second/) &&
+				($datestring !~ /third/) && ($datestring !~ /fourth/) &&
+				($datestring !~ /fifth/) && ($datestring !~ /last/)) {
+				$theday+=1 while ($wdays[$i] ne 
+					lc(&day(1,$theday,dec_int($theyear))));
+				for (my $k = $theday; $k <= $yeardays; $k+=7) {
+					my ($themon,$theday) = get_month($k);
+					$thedate = julday(dec_int($theyear),$themon+1,$theday);
+					my $tmpline = $wholeline;
+					$tmpline =~ s/$_[0]/$thedate/;
+					push(@calendar,$tmpline);
+					$success = 0;
+				}
+			} else {
+				my $nextday;
+				$nextday = 0 if ($datestring =~ /last/);
+				$nextday = 0 if ($datestring =~ /first/);
+				$nextday = 1 if ($datestring =~ /second/);
+				$nextday = 2 if ($datestring =~ /third/);
+				$nextday = 3 if ($datestring =~ /fourth/);
+				$nextday = 4 if ($datestring =~ /fifth/);
+				for ($k = 0; $k <= 11; $k++) {
+					$theday+=1 while 
+						($wdays[$i] ne lc(&day($k+1,$theday,dec_int($theyear)))) && 
+						($theday <= $monnums[$k]);
+					if ($datestring =~ /last/) {
+						$theday = $monnums[$k];
+						$theday += 1 if ((leap_year(dec_int($theyear)))
+							&& ($j == 1));
+						$theday-=1 while
+							($wdays[$i] ne 
+								lc(&day($k+1,$theday,dec_int($theyear))));
+					}
+					$thedate = julday(dec_int($theyear),$k+1,$theday+(7*$nextday));
+					my $tmpline = $wholeline;
+					$tmpline =~ s/$_[0]/$thedate/;
+					push(@calendar,$tmpline);
+					$theday = 1;
+				}
+				$success = 0;
+			}
+		} elsif (($haswday == 1) && ($hasmonth == 1)) {
+			if (($datestring !~ /first/) && ($datestring !~ /second/) &&
+				($datestring !~ /third/) && ($datestring !~ /fourth/) &&
+				($datestring !~ /fifth/) && ($datestring !~ /last/)) {
+				$theday+=1 while 
+					($wdays[$i] ne lc(&day($j+1,$theday,dec_int($theyear))));
+				my $numdays = $monnums[$j];
+				$numdays++ if (leap_year(dec_int($theyear)) && ($j == 1));
+				for (my $k = $theday; $k <= $numdays; $k+=7) {
+					$thedate = julday(dec_int($theyear),$j+1,$k);
+					my $tmpline = $wholeline;
+					$tmpline =~ s/$_[0]/$thedate/;
+					push(@calendar,$tmpline);
+					$success = 0;
+				}
+			} else {
+				my $nextday;
+				$nextday = 0 if ($datestring =~ /last/);
+				$nextday = 0 if ($datestring =~ /first/);
+				$nextday = 1 if ($datestring =~ /second/);
+				$nextday = 2 if ($datestring =~ /third/);
+				$nextday = 3 if ($datestring =~ /fourth/);
+				$nextday = 4 if ($datestring =~ /fifth/);
+				$theday+=1 while 
+					($wdays[$i] ne lc(&day($j+1,$theday,dec_int($theyear))))
+					&& ($theday <= $monnums[$j]);
+				if ($datestring =~ /last/) {
+					$theday = $monnums[$j];
+					$theday += 1 if ((leap_year(dec_int($theyear)))
+						&& ($j == 1));
+					$theday-=1 while
+						($wdays[$i] ne lc(&day($j+1,$theday,dec_int($theyear))))
+						&& ($theday <= $monnums[$j]);
+				}
+				$thedate = julday(dec_int($theyear),$j+1,$theday+(7*$nextday));
+				my $tmpline = $wholeline;
+				$tmpline =~ s/$_[0]/$thedate/;
+				push(@calendar,$tmpline);
+				$success = 0;
+			}
+		} elsif (($hasmonth == 1) && ($haswday == 0)) {
+			if ($datestring =~ /--/) {
+				my $firstdate; my $lastdate;
+				($firstdate,$lastdate) = ($datestring =~ /(.*)--(.*)/);
+				$firstdate = spec_date($firstdate);
+				$lastdate = spec_date($lastdate);
+				while ($firstdate <= $lastdate) {
+					my $tmpline = $wholeline;
+					$tmpline =~ s/$_[0]/$firstdate/;
+					push(@calendar,$tmpline);
+					$firstdate++;
+				}
+				$success = 0;
+			} else {
+				$thedate = spec_date($datestring);
+				my $tmpline = $wholeline;
+				$tmpline =~ s/$_[0]/$thedate/;
+				push(@calendar,$tmpline);
+				$success = 0;
+			}
+		}
+	$origstr =~ s/$udatestring,//;
+	}
+	return $success;
+}
+
+# takes a date string; returns the julian day associated
+# therewith
+
+sub spec_date($)
+{
+	my $date = $_[0];
+	my $theyear;
+	my $theday;
+	my $themon;
+
+	if ($date =~ /([\dxe]{4,4})/) {
+		$theyear = uc($1);
+	} else {
+		$theyear = $year;
+	}
+	if ($date =~ /([\dxe]{1,2})/) {
+		$theday = uc($1);
+	} else {
+		$theday = 1;
+	}
+	for (my $i = 0; $i <= $#months; $i++) {
+		$themon = $i if ($date =~ /$months[$i]/);
+		last if ($date =~ /$months[$i]/);
+	}
+	return julday(dec_int($theyear),$themon+1,dec_int($theday));
+}
+
+# takes one scalar, yday; returns the month and day of that
+# yday
+
+sub get_month($)
+{
+	my $yday = $_[0];
+	my $mon = 0;
+	my $j = 0;
+	my $theday = 1;
+
+	for (my $i = 1; $i <= $yday; $i++) {
+		$j++;
+		if (($mon == 0) && ($j == 31)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 1) && ((($j == 28) || ($j == 29)))) {
+			if ((leap_year(dec_int($year))) && ($j == 29)) {
+				$mon++; $theday = $j;
+				$j = 0;
+			} elsif ((!leap_year(dec_int($year))) && ($j == 28)) {
+				$mon++; $theday = $j;
+				$j = 0;
+			}
+		} elsif (($mon == 2) && ($j == 31)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 3) && ($j == 30)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 4) && ($j == 31)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 5) && ($j == 30)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 6) && ($j == 31)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 7) && ($j == 31)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 8) && ($j == 30)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 9) && ($j == 31)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		} elsif (($mon == 10) && ($j == 30)) {
+			$mon++; $theday = $j;
+			$j = 0;
+		}
+	}
+	$mon-- if ($j == 0);
+	$j = $theday if ($j == 0);
+	return ($mon,$j);
+}
+
+# takes the date requested on command line as scalar;
+# modifies global date variables if necessary; returns the
+# start and end julian dates of the requested period
+
+sub parse_date($)
+{
+	my $date = $_[0];
+	my $theday;
+	my $themon = -1;
+	my $theyear;
+	my $startdate;
+	my $enddate;
+	my $numdays;
+
+	if ($date =~ /([\dXE]{4,4})/) {
+		$year = $theyear = $1;
+		$date =~ s/$1//;
+	}
+	if ($date =~ /([\dXE]{1,2})/) {
+		$theday = $1;
+		$date =~ s/$1//;
+	}
+	$date = lc($date);
+	for(my $i = 0; $i <= $#months; $i++) {
+		$themon = $i+1 if ($date =~ /$months[$i]/);
+	}
+	if (($themon == -1) && ($theday eq "")) {
+		$startdate = julday(dec_int($theyear),1,1);
+		$enddate = julday(dec_int($theyear),12,31);
+	} elsif (($theday eq "") && ($themon != -1)) {
+		$startdate = julday(dec_int($theyear),$themon,1);
+		$numdays = $monnums[$themon-1];
+		$numdays++ if (($themon == 2) && (leap_year(dec_int($theyear))));
+		$enddate = julday(dec_int($theyear),$themon,$numdays);
+	} elsif (($theday ne "") && ($themon != -1)) {
+		$startdate = julday(dec_int($theyear),$themon,dec_int($theday));
+		$enddate = $startdate;
+	} else {
+		print STDERR "dozcal:  error:  date string \"$date\" ";
+		print STDERR "is not understood; must include at least \n";
+		print STDERR "four-digit year; if month is included, ";
+		print STDERR "must be alphabetic with at least three \n";
+		print STDERR "letters\n";
+	}
+	return ($startdate,$enddate);
+}
+
+# remove exceptions from the calendar results; takes the
+# good array and the exception array, returns the array of
+# non-excepted dates
+
+sub remove_exceptions(\@\@)
+{
+	my @excepts = @{$_[1]};
+	my @goods = @{$_[0]};
+	my @line;
+
+	foreach my $var (@excepts) {
+		@line = split('\|',$var);
+		for (my $i = 0; $i <= $#goods; $i++) {
+			if (($goods[$i] =~ /$line[3]/) && ($goods[$i] =~ /$line[0]/)) {
+				splice(@goods,$i,1);
+			}
+		}
+	}
+	return @goods;
+}
+
+# subtract "2" from all times to make them sortable; takes
+# nothing, receives nothing
+
+sub shrink_time()
+{
+	my $hour;
+	my $bicia;
+	my $newnum;
+
+	for (my $i = 0; $i <= $#calendar; $i++) {
+		($hour,$bicia) = ($calendar[$i][2] =~ 
+			/([\dXE]{1,2});([\dXE]{1,2})/);
+		next if ($hour eq "");
+		$hour = dec_int($hour) - 2;
+		$bicia = dec_int($bicia) - 2;
+		$newnum = $hour.".".$bicia;
+		$calendar[$i][2] = $newnum;
+	}
+}
+
+# adds "2" to all times to make them dozenal again; takes
+# nothing, returns nothing
+
+sub unshrink_time()
+{
+	my $hour;
+	my $bicia;
+	my $newnum;
+
+	for (my $i = 0; $i <= $#calendar; $i++) {
+		($hour,$bicia) = ($calendar[$i][2] =~ 
+			/([\dXE]{1,2})\.([-\dXE]{1,3})/);
+		next if ($hour eq "");
+		$hour += 2; $bicia += 2;
+		$newnum = $hour.";".$bicia;
+		$hour = doz_int($hour); $bicia = doz_int($bicia);
+		$hour = "0".$hour if ($hour =~ /^[\dXE]$/);
+		$bicia = "0".$bicia if ($bicia =~ /^[\dXE]$/);
+		$newnum = $hour.";".$bicia;
+		$calendar[$i][2] = $newnum;
+	}
+}
+
+# trims the calendar array to include only the requested
+# date range ($opt_d); takes the start and end date in
+# julian days, returns nothing
+
+sub limit_to_date($$)
+{
+	my $startdate = $_[0];
+	my $enddate = $_[1];
+	my $i = 0;
+
+	while ($i <= $#calendar) {
+		if (($calendar[$i][1] < $startdate) || 
+		($calendar[$i][1] > $enddate)) {
+			splice(@calendar,$i,1);
+		} else {
+			$i++;
+		}
+	}
+}
+
+# configures the output for plain text results; takes no
+# arguments, returns nothinga
+
+sub text_output()
+{
+	for (my $i = 0; $i <= $#calendar; $i++) {
+		$output .=  "$calendar[$i][1]:  ";
+		if ($calendar[$i][2] ne "") {
+			$output .=  "$calendar[$i][2]:  ";
+		} else {
+			$output .=  "        ";
+		}
+		$output .=  "$calendar[$i][0]";
+		if ($opt_t) {
+			my $type = $calendar[$i][4];
+			chomp $type;
+			$output .=  " %$type% ";
+		}
+		$output .=  "\n";
+	}
+}
+
+# configures the output for basic format plain text results;
+# takes no arguments, returns nothing
+
+sub basic_output()
+{
+	my $lastdate = -1;	# keeps track of prior date
+
+	for (my $i = 0; $i <= $#calendar; $i++) {
+		if ($calendar[$i][1] ne $lastdate) {
+			$output .= "$calendar[$i][1]\n";
+			$lastdate = $calendar[$i][1];
+		}
+		if ($calendar[$i][2] ne '') {
+			$output .= "\t$calendar[$i][2]:\t";
+		} else {
+			$output .= "\t     \t";
+		}
+		$output .= "$calendar[$i][0]\n";
+	}
+}
+
+# get requested first day of week; takes no arguments,
+# returns the number of that day
+
+sub get_first_wday()
+{
+	my $j;
+
+	for ($j = 0; $j <= $#wdays; $j++) {
+		last if (lc($opt_s) =~ /$wdays[$j]/);
+	}
+	if ($j > 6) {
+		print STDERR "error:  dozcal:  $opt_s is not ";
+		print STDERR "a valid weekday name\n";
+		exit $BAD_WDAY_NAME;
+	}
+	return $j;
+}
+
+# produce weekly output; just takes the first day of the
+# requested date range and returns that week; takes
+# startdate and enddate, returns the new startdate and
+# enddate
+
+sub weekly_output($$)
+{
+	my $start = $_[0]; my $end = $_[1];
+	my $theyear; my $themon; my $theday;
+	my $weekday = -1;
+	my $i; my $j;
+	my $startweek = 0;	# to start week on Sunday
+	my $distance;			# distance to start of week
+
+	$startweek = get_first_wday() if ($opt_s);
+	if ($start != $end) {
+		print STDERR "dozcal:  error:  when using the \"-w\" ";
+		print STDERR "option, an individual date must be \n";
+		print STDERR "requested; e.g., \"-d\'1E Apr 11E8\'\"\n";
+		exit $BAD_DATE_FOR_WEEKLY;
+	}
+	($theyear,$themon,$theday) = jultogreg($start);
+	$weekday = lc(&day($themon,$theday,$theyear));
+	for ($j = 0; $j <= $#wdays; $j++) {
+		last if ($weekday =~ /$wdays[$j]/);
+	}
+	$start = $start - ($j + (7 - $startweek)) if ($startweek > $j);
+	$start = $start - ($j - $startweek) if ($startweek < $j);
+	return ($start,$start+6);
+}
+
+# fills up the dates in the array which don't have anything;
+# this makes it easier to produce formatted calendars; not
+# called by default in plain text; takes no arguments,
+# returns nothing
+
+sub fill_up()
+{
+	my @newarray = ();
+	my $pastdate = $calendar[0][1];
+
+	foreach my $var (@calendar) {
+		while (($var->[1] - $pastdate) > 1) {
+			push(@newarray,[("",++$pastdate,"","","blank")]);
+		}
+		push(@newarray,$var);
+		$pastdate = $var->[1];
+	}
+	@calendar = @newarray;
+}
+
+# the help function; exits successfully
+
+sub help_func()
+{
+	print <<ENDHELP;
+dozcal v1.0, part of the dozenal suite.
+
+Copyright (C) 2010, 2011  Donald P. Goodman III
+
+License GPLv3+:  GNU GPL version 3 or later
+(<http://gnu.org/licenses/gpl.html>).  This is free
+software: you are free to change and redistribute it.  There
+is NO WARRANTY, to the extent permitted by law.
+
+dozcal is designed to facilitate the keeping of calendars in
+dozenal.
+
+DATA FILE
+
+The data file(s) are what are read into memory by dozcal to
+populate the calendar.  These can be as many as are desired,
+listed to dozcal in a comma-separated list.  E.g.:
+
+	dozcal -f "oct_11E8,nov_11E8,dec_11E8"
+
+The final results will be sorted and ordered without regard
+to what file they came from.
+
+The format of the data file is quite simple; each line is an
+entry for the calendar, and it consists of fields separated
+by the pipe character ("|").  The fields are defined as
+follows:
+
+	Name | Date(s) | Time(s) | Exceptions | Type
+
+The name is simply what you'd write into a calendar; e.g.,
+"staff meeting" or "workout."  The date(s) are the dates on
+which you wish these things to be listed; more on that later
+in the section "DATE FORMATS".  The time is, of course, the
+time on the date this will be happening.  "Exceptions" are
+those exceptions to t date given in field 2; e.g., if you
+want something listed on all Wednesdays in September, but
+not one particular Wednesday, that exception would be listed
+here.
+
+Finally, the type.  This is a largely arbitrary string used
+primarily for ordering results if the date and time are
+otherwise the same; this information could also be used for
+formatting the results by a different script.  It is often
+wise to use a simple word---"meeting," "event," or
+similar---and prefix to it a digit---"1meeting,"
+"2meeting"---for ordering purposes.  So if you have three
+events at the same date and time, like so:
+
+	Staff Meeting (event)
+	Job Picnic (2event)
+	Workout (1event)
+
+They would be ordered according to this "type" field, like
+so:
+
+	Workout (1event)
+	Job Picnic (2event)
+	Staff Meeting (event)
+
+"1" comes before "2," which comes before "e."  This is
+standard ASCII-text ordering.
+
+Options can be specified in lines which begin with the
+character "%".  So, for example, to change the default
+format of the date to list a full, rather than abbreviated,
+month, simply put this line in your file:
+
+	%DATEFORM:  %d %B %Y
+
+Since dozcal is really a wrapper around dozdate, you can use
+any valid dozdate format string for this.
+
+Many of the command-line options have corresponding data
+file equivalents.  If you give more than one data file
+command for a given option, the last given will control; if
+you give data file commands and the corresponding command
+line option, the command line option will control.  The data
+file string are given with the description of the option.
+
+DATE FORMATS
+
+Dates can be provided to dozcal in a number of ways, always
+with the "-d" option on the command line:
+
+	*  Weekdays.  These can be listed by themselves, in which
+	case dozcal will assume that it means all of those
+	weekdays in the year; or with a month, in which case
+	dozcal only expands this to those weekdays in a given
+	month.  
+	*  Months.  You can ask dozcal to give you an entire
+	month at a time.  You must list a year with it so that
+	dozcal knows what you mean.
+	*  Years.  You can tell dozcal to give you an entire
+	year's worth of results at once.
+	*  Specific dates.  You can tell dozcal to give you just
+	the results  for a specific date.  If you do this,  you
+	can also use the "-w" option, possibly with the "-s"
+	option, for which see below.
+
+OPTIONS
+	-f	The files that will be read from for data
+		information; multiple files can be listed in a
+		comma-separated list.  Take the file(s) as an
+		argument.
+	-d	The dates you want returned to you.  See above, "DATE
+		FORMATS," for more details.  Takes the requested date
+		string as an argument.
+	-t	Outputs the last column of a data line, the "type"
+		field, surrounded by "%" characters in the output.
+		Useful when dozcals' output is going to be filtered by
+		another program and can use that information for
+		formatting or other tasks.
+	-o	Output format; tells dozcal how you'd like your output
+		to be displayed for you.  Possible settings are:
+		-text	This is the default; it's a simple list of
+			dates in the file which meet the criteria
+			given.  No argument gives text output.
+		-basic	Gives a slightly fancier list, with calendar
+			entries on the same date grouped together.
+		-html	Gives HTML output.  Precise output varies
+			depending on the requested date range.  If a
+			whole month is requested, that is displayed,
+			with the week starting on the day given by
+			"-s."
+	-l	LaTeX formatting; prepares the output for use with
+		latexcal, a helper script which builds a professional
+		and beautifully typeset calendar in LaTeX.  Note that,
+		if you specify another format in the data file, it
+		will be ignored when this option is chosen; however,
+		if you specify another format on the command line, it
+		will override this option.
+	-w	Weekly; gives as output the entire week which includes
+		the requested date, rather than only the date itself.
+		This can only be used in conjunction with a specific
+		date given with the "-d" option.
+	-s	Starting day; tells dozcal which day it should
+		consider the start  of the week.  This is used in a
+		variety of places, most especially in conjunction with
+		the "-w" option and when HTML output is requested for
+		a given month.  Use a string containing at least the
+		first three letters of the weekday you want to be the
+		start of the week.  Defaults to Sunday.
+	-r	Religious holidays.  The arguments to this flag come
+		in strings.  A string containing "chr" will trigger
+		Christian holidays, for example; containing "west" as
+		well as "chr" will trigger generic Western Christian
+		holidays (e.g., Western Easter, Ascension Thursday,
+		Pentecost, and so forth), which containing "east" will
+		trigger Eastern Christian calculations (a different
+		date for Easter, for example).  These strings can be
+		combined if you want the results from more than one.
+		The following strings are accepted:
+			"chr"	Christian holidays; must come *before* the
+				qualifier, such as "west" or "east".
+				"west"	Western Christian moving holidays.
+					These are generic and common to most Western
+					Christians; specifically, Ash Wednesday, Good
+					Friday, Easter, Ascension, and Pentecost.
+				"east"	Eastern Christian moving holidays.
+					Essentially this means "Orthodox moving
+					holidays."  The Greek Orthodox disagree with
+					other Orthodox about the date of Christmas;
+					this puts in the Greek Orthodox Christmas
+					(the same as Western Christmas).  Includes
+					Easter, the important dates of Great Lent,
+					important days preceding Great Lent,
+					Christmas, and the Epiphany.
+			"rc"	A fairly complete listing of the moveable
+				feasts of the Roman Catholic calendar.  Does
+				*not* require a "chr" to work, though of course
+				Roman Catholics are Christians.  Implements the
+				liturgical calendar of 1962, because that's the
+				one I know.  Includes all the dates of Advent
+				and the Christmas season; Septuagesima,
+				Sexagesima, and Quinquegesima; Ash Wednesday;
+				the important days of Lent; Easter and the
+				Easter season through Pentecost; all the Sundays
+				of the year; Christ the King; and Corpus
+				Christi.  Does the right thing with the Feast of
+				the Holy Name (the Sunday between the
+				Circumcision and the Epiphany; or, if there
+				isn't one, 2 January).  Does *not* produce a
+				useable liturgical calendar; particularly,
+				almost all of the fixed feasts are completely
+				ignored.  A complete and accurate liturgical
+				calendar could pretty easily be implemented in a
+				dozcal script; but I considered that beyond the
+				scope of the core.  Note that this option is
+				much more complete than the others, principly
+				because it's the one I personally follow and
+				thus am most interested in; extensions for the
+				others are welcome.
+			"jew"	Jewish holidays, mostly as one would expect;
+				Hanukkah, Passover, and so forth.  These are
+				listed in what I (possibly wrongly) understand
+				to be the customary manner on Hebrew calendars:
+				although technically the holidays begin the
+				evening prior, they are listed on the first full
+				day.  If I'm reliably informed that I'm wrong
+				about this, I'll change it.
+			"isl"	Islamic holidays.  The same information about
+				dates beginning in the evening of the preceding day
+				for the Jewish holidays applies to these, as
+				well.  Includes Ramadan; Eid al-Fitr; and Eid
+				al-Asha.
+	-n	National holidays.  The arguments to this flag come in
+		strings.  The following strings are accepted:
+			"usa"	American national holidays.
+			"uk"	National holidays in the United Kingdom.
+				This (perhaps controversially) includes the
+				national holidays of all the constituent nations
+				of the UK.  If this displeases you, select the
+				nation you want particularly.  Note that
+				selecting "uk" simply aggregates all the
+				holidays of the constitutents nations; this
+				results in many duplicates.
+			"eng"	English national holidays.
+			"wales"	Welsh national holidays.
+			"scot"	Scottish national holidays.
+			"nire"	Northern Irish national holidays.
+			"ire"	Irish holidays.
+			"can"	Canadian national holidays.
+			"aus"	Australian national holidays.
+			"nz"	New Zealand national holidays.
+		The data file equivalent of this option is "%NATIONAL: "; 
+		e.g. "%NATIONAL:  wales".
+	-a	Astronomical dates.  The arguments to this flag come
+		in strings.  The following strings are accepted:
+			"moon"	The phases of the moon; lists four, the
+				new, first quarter, full, and last quarter.
+				Only by day, not by time.
+			"sunrise"	The time of sunrise and sunset at a
+				given latitude.  Requires that latitude be given
+				with the "-g" option.
+			"season"	The dates of the "official" changes of
+				season; that is, the dates of the vernal and
+				autumnal equinoxes and the summer and winter
+				solstices.
+		The data file equivalent of this option is simply 
+		"%ASTRONOMY:  "; e.g., "%ASTRONOMY:  sunrise".
+	-g	Geographical data; since this is used chiefly for
+		astronomical data, latitude and longitude is what's
+		required.  Give this in the form LONG:LAT; e.g.,
+		"15;474:82;760".  This argument is necessary for the
+		"-a sunrise" options.  Latitude and longitude can be
+		given in the customary degrees (0--260), or in TGM
+		unciaPis (0--1); if degrees are used, as above, prefix
+		with a "d"; e.g., "d15;474:82;760".  Note that angular
+		measurements are expected in *uncia*Pis; that is, Pis
+		divided by twelve.  Giving the measurements in Pis
+		will result in wildly inaccurate results.  However,
+		since this is a simple matter of moving the uncial
+		point, this is no difficulty.
+		
+		If a number of this sort is not provided, dozcal reads
+		the argument and sends it to Open Street Maps for
+		analysis; it uses those results as a location if it's
+		valid, throws an error and dies if it's not.  E.g.:
+			-g "Martinsville, VA"
+		This will ask Open Street Maps for the latitude and
+		longitude of Martinsville, Virginia.  The data file
+		equivalent of "%GEOGRAPHY:  ".
+	-z	Timezone; useful for determining the times of sunrise
+		and sunset.  If not provided, dozcal will attempt to
+		get the local timezone, along with daylight savings
+		time, from the local system time; if it can't do this,
+		it will die.  Data file:  "%TIMEZONE:  ".  This has to
+		be given as a UTC offset; e.g., "-05" for American EST.
+	-m	Date format; choose this letter because "f", "o", and
+		"r" were already taken.  This governs the manner in
+		which the date itself will be presented; it's a format
+		string identical to that which would be used for
+		dozdate (for which see the man page).  Data file:
+		"%DATEFORM".
+ENDHELP
+	exit 0;
+}
+
+# format for HTML output
+
+sub html_output()
+{
+	my $weekday;
+	my $i = 0; my $j = 0; my $k; my $l;
+	my $lastdate;
+
+	$output .= "<html><body>\n";
+	$output .= "<style>\n";
+	$output .= "table {\n";
+	$output .= "\tborder:  2px;\n";
+	$output .= "\ttable-layout:  fixed;\n";
+	$output .= "}\n";
+	$output .= "td {\n";
+	$output .= "\twidth:  14%;\n";
+	$output .= "\tvertical-align:  top;\n";
+	$output .= "\tfont-size:  70%;\n";
+	$output .= "}\n";
+	$output .= ".heading {\n";
+	$output .= "\tfont-weight:  bold;\n";
+	$output .= "\tfont-size:  140%;\n";
+	$output .= "\tcolor:  black;\n";
+	$output .= "\tbackground-color:  gray;\n";
+	$output .= "\twidth:  100%;\n";
+	$output .= "\ttext-align:  center;\n";
+	$output .= "}\n";
+	$output .= ".hanger {\n";
+	$output .= "\tpadding-left:  1em;\n";
+	$output .= "\ttext-indent:  -1em;\n";
+	$output .= "}\n";
+	$output .= "</style>\n";
+	$output .= "<table border=\"2px\">\n";
+	$output .= "<tr><th colspan=\"7\">Calendar</th></tr>\n";
+	$weekday = lc(qx( dozdate -d"$calendar[0][1]" "%a"));
+	$j++ while ($weekday !~ /$wdays[$j]/);
+	$output .= "<tr>\n";
+	$k = get_first_wday() if ($opt_s);
+	$k = 0 if (!$opt_s);
+	$l = $k;
+	for ($i = 0; $i <= 6; $i++) {
+		$output .= "\t<th>$wdays[$l++]</th>\n";
+		$l = 0 if ($l == 7);
+	}
+	$output .= "</tr>\n";
+	$l = 0;
+	if ($k < $j) {
+		while ($k++ != $j) {
+			$output .= "<td></td>\n";
+			$l++;
+		}
+	} elsif ($k > $j) {
+		$k -= 7;
+		while ($k++ != $j){
+			$output .= "<td></td>\n";
+			$l++;
+		}
+	}
+	$output .= "<td><div class=\"heading\">$calendar[0][1]</div>\n";
+	$lastdate = $calendar[0][1];
+	for ($i = 0; $i <= $#calendar; $i++) {
+		if ($calendar[$i][1] eq $lastdate) {
+			$output .= "<div class=\"hanger\">\n";
+			$output .= "$calendar[$i][2]:  \n" if $calendar[$i][2] ne "";
+			$output .= "$calendar[$i][0]</div>\n";
+		} else {
+			$l++;
+			$output .= "</tr><tr>\n" if ((($l % 7) == 0) && ($l != 0));
+			$output .= "<td><div class=\"heading\">$calendar[$i][1]</div>\n";
+			$output .= "<div class=\"hanger\">\n";
+			$output .= "$calendar[$i][2]:  \n" if $calendar[$i][2] ne "";
+			$output .= "$calendar[$i][0]</div>\n";
+			$lastdate = $calendar[$i][1];
+		}
+	}
+	$output .= "</table></html>";
+}
+
+# attempt to get latitude and longitude from Open Street
+# Maps if a non-numerical figure is given for $opt_g; takes
+# the $opt_g argument, returns longitude and latitude
+
+sub osm_latlong($)
+{
+	my $geocoder = Geo::Coder::OSM->new();
+	my $location;
+	$location = $geocoder->geocode(location=>$opt_g);
+#	print STDERR "$location->{lon}, $location->{lat}";
+	return ($location->{lon}, $location->{lat});
+}
+
+# inserts the phases of the moon; takes the array and the
+# start and stop dates concerned, returns the array
+
+sub astronomical(\@$$)
+{
+	my @goods = @{$_[0]};
+	my $thestart = $_[1];
+	my $theend = $_[2];
+	my $phase;
+	my @times;
+	my $startsecs;
+	my $endsecs;
+	my @name = ("New Moon", "First Quarter", "Full Moon", "Last Quarter");
+	my $theyear; my $themon; my $theday; my $sec; my $min; my $hour;
+	my $thedate;
+	my $lat; my $long; my $tz; my $isdst;
+
+	($theyear,$themon,$theday) = jultogreg($_[1]);
+	$startsecs = timelocal_nocheck(0,0,0,$theday,$themon-1,$theyear);
+	($theyear,$themon,$theday) = jultogreg($_[2]);
+	$endsecs = timelocal_nocheck(0,0,0,$theday,$themon-1,$theyear);
+	if ($opt_a =~ /moon/) {
+		($phase, @times) = phaselist($startsecs,$endsecs);
+		while (@times) {
+			($sec,$min,$hour,$theday,$themon,$theyear) =
+				localtime(scalar localtime shift @times);
+			$theyear += 1900;
+			$thedate = julday($theyear,$themon+1,$theday);
+			push(@goods,"$name[$phase]|$thedate|||1event");
+			$phase = ($phase + 1) % 4;
+		}
+	}
+	if ($opt_a =~ /sun/) {
+		if (!$opt_z) {
+			$tz = strftime("%z",localtime());
+			if ($tz eq "") {
+				print STDERR "dozcal:  error:  unable to ";
+				print STDERR "determine local timezone; please \n";
+				print STDERR "specify explicitly with \"-z\"\n";
+				exit $BAD_TIMEZONE;
+			}
+			my $dt = new DateTime(
+				year => $theyear,
+#				month => $themon + 1,
+				month => $themon,
+				day => $theday,
+				time_zone => $tz
+			);
+			my $dst = DateTime::TimeZone->new(name => 'local');
+			$isdst = 0 if ($dst->is_dst_for_datetime($dt));
+			$tz = strftime("%z",localtime());
+			$tz =~ s/0+$//;
+			print STDERR "dozcal:  warning:  no timezone given; ";
+			print STDERR "using local timezone, \"$tz\", \n";
+			print STDERR "modified for daylight savings time if ";
+			print STDERR "necessary\n";
+		} else {
+			$tz = $opt_z;
+			$tz =~ s/0+$//;
+		}
+		if (!$opt_g) {
+			print STDERR "dozcal:  error:  calculating the time ";
+			print STDERR "of sunrise and sunset requires the \n";
+			print STDERR "latitude be given with the \"-g\" option.\n";
+			exit $NEED_LATITUDE;
+		} else {
+			if ($opt_g =~ /([-\dXE;]+):([-\dXE;]+)/) {
+				if ($opt_g =~ /^d/) {
+					$opt_g =~ /([-\dXE;]+):([-\dXE;]+)/;
+					$long = qx(dec \"$1\");
+					$lat = qx(dec \"$2\");
+				} else {
+					$opt_g =~ /([-\dXE;]+):([-\dXE;]+)/;
+					$long = qx(dec "$1") / 12;
+					$long = qx(doz "$long");
+					$long = qx(dozdc " $long pi * =" | tgmconv -irad -odeg | dec);
+					$lat = qx(dec "$2") / 12;
+					$lat = qx(doz "$lat");
+					$lat = qx(dozdc " $lat pi * =" | tgmconv -irad -odeg | dec);
+				}
+			} else {
+				($long, $lat) = osm_latlong($opt_g);
+				if (($long eq "") or ($lat eq "")) {
+					print STDERR "dozcal:  error:  unable to ";
+					print STDERR "determine latitude and longitude; ";
+					print STDERR "please\nspecify explicitly ";
+					print STDERR "with \"-g\"\n";
+					exit $NEED_LATITUDE;
+				}
+			}
+		}
+		if (($opt_a =~ /rise/) || ($opt_a =~ /set/)) {
+			my $sunrise; my $sunset; my $currdate = $thestart;
+			while ($currdate <= $theend) {
+				($theyear,$themon,$theday) = jultogreg($currdate);
+				$themon--;
+				($sunrise, $sunset) = 
+					sunrise($theyear,$themon+1,$theday,$long,$lat,$tz,$isdst,
+					-0.833);
+				$thedate = julday($theyear,$themon+1,$theday);
+				my $risemin; my $risesec;
+				my $setmin; my $setsec;
+				($risemin,$risesec) = ($sunrise =~ /(\d+):(\d+)/);
+				($setmin,$setsec) = ($sunset =~ /(\d+):(\d+)/);
+				$sunrise = qx(doz $risemin).":".qx(doz $risesec);
+				$sunset = qx(doz $setmin).":".qx(doz $setsec);
+				$sunrise =~ s/\n//; $sunset =~ s/\n//;
+				$sunrise = qx(dozdate "\@s" -d"$sunrise");
+				$sunset = qx(dozdate "\@s" -d"$sunset");
+				chomp($sunrise); chomp($sunset);
+				push(@goods,"Sunrise|$currdate|$sunrise||1event");
+				push(@goods,"Sunset|$currdate|$sunset||1event");
+				$currdate++;
+			}
+		}
+		if ($opt_a =~ /season/) {
+			my $time; my $quarter; my $desc; my $rise;
+			my $sun = Astro::Coord::ECI::Sun->new();
+			my $sta = Astro::Coord::ECI->universal(time())->
+				geodetic(deg2rad($lat),deg2rad($long),0);
+			$desc = timelocal_nocheck(1,1,1,1,0,$theyear) - 2592000;
+			my ($sec,$min,$hour,$theday,$themon,$theyear) = localtime($desc);
+			my @almanac = $sun->almanac($sta,$desc);
+			for (my $i = 0; $i <= 3; $i++) {
+				($time,$quarter,$desc) = $sun->next_quarter();
+				my ($sec,$min,$hour,$theday,$themon,$theyear) = 
+					localtime($time);
+#				print STDERR "$theday - $themon - $theyear --- $desc\n";
+				my $name;
+				$name = "Equinox" if (($quarter == 0) || ($quarter == 2));
+				$name = "Solstice" if (($quarter == 1) || ($quarter == 3));
+#				print STDERR "$theday - $themon - $theyear --- $name\n";
+				$thedate = julday($theyear+1900,$themon+1,$theday);
+				push(@goods,"$name|$thedate|||1event");
+			}
+		}
+	}
+	return @goods;
+}
+
+# inserts the generic Christian moveable feasts; most
+# particularly Easter, Pentecost, Ascension, and such;
+# Western versions; takes and returns array
+
+sub religious(\@)
+{
+	my $themon;
+	my $theday;
+	my $theyear;
+	my $thedate;
+	my @goods = @{$_[0]};
+
+	if ($opt_d =~ /([\dXE]{4,4})/) {
+		$theyear = $1;
+	} else {
+		$theyear = $year;
+	}
+	if (($opt_r =~ /chr/) && ($opt_r =~ /west/)) {
+		($themon,$theday) = gregorian_easter(dec_int($theyear));
+		$thedate = julday(dec_int($theyear),$themon,$theday);
+		$thedate -= 46;
+		push(@goods,"Ash Wednesday|$thedate|||0event");
+		$thedate += 44;
+		push(@goods,"Good Friday|$thedate|||0event");
+		$thedate += 2;
+		push(@goods,"Easter|$thedate|||0event");
+		$thedate += 39;
+		push(@goods,"Ascension|$thedate|||0event");
+		$thedate += 10;
+		push(@goods,"Pentecost|$thedate|||0event");
+	}
+	if ($opt_r =~ /rc/) {
+		if ($opt_d =~ /([\dXE]{4,4})/) {
+			$theyear = $1;
+		} else {
+			$theyear = $year;
+		}
+		($themon,$theday) = gregorian_easter(dec_int($theyear));
+		$thedate = julday(dec_int($theyear),$themon,$theday);
+		$thedate -= 63;
+		my $thesept = $thedate;
+		push(@goods,"Septuagesima (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"Sexagesima (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"Quinquagesima (RC)|$thedate|||0event");
+		$thedate += 3;
+		push(@goods,"Ash Wednesday (RC)|$thedate|||0event");
+		$thedate += 4;
+		push(@goods,"1st Sun. of Lent (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"2nd Sun. of Lent (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"3rd Sun. of Lent (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"4th Sun. of Lent, Laetare Sunday (RC)|$thedate|||0event");
+		$thedate += 3;
+		push(@goods,"Ember Wednesday (RC)|$thedate|||0event");
+		$thedate += 2;
+		push(@goods,"Ember Friday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Ember Saturday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Passion Sunday (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"Palm Sunday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Monday in Holy Week (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Tuesday in Holy Week (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Spy Wednesday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Maundy Thursday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Good Friday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Holy Saturday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Easter (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Easter Monday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Easter Tuesday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Easter Wednesday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Easter Thursday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Easter Friday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Easter Saturday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Low Sunday (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"2nd Sun. of Easter (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"3rd Sun. of Easter (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"4th Sun. of Easter (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"5th Sun. of Easter (RC)|$thedate|||0event");
+		$thedate += 4;
+		push(@goods,"Ascension (RC)|$thedate|||0event");
+		$thedate += 3;
+		push(@goods,"6th Sun. of Easter (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"Pentecost (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Mon. in Octave of Pentecost (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Tues. in Octave of Pentecost (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Ember Wednesday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Thu. in Octave of Pentecost (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Ember Friday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Ember Saturday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Trinity Sunday (RC)|$thedate|||0event");
+		$thedate += 4;
+		push(@goods,"Corpus Christi (RC)|$thedate|||0event");
+		$thedate += 3;
+		push(@goods,"2nd Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"3rd Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"4th Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"5th Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"6th Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"7th Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"8th Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"9th Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"Xth Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"Eth Sun. after Pentecost (RC)|$thedate|||0event");
+		$thedate += 7;
+		my $elvsun = $thedate;
+#		push(@goods,"10th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"11th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"12th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"13th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"14th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"15th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"16th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"17th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"18th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"19th Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"1Xth Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"1Eth Sun. after Pentecost (RC)|$thedate|||0event");
+#		$thedate += 7;
+#		push(@goods,"20th Sun. after Pentecost (RC)|$thedate|||0event");
+		$themon = 10; $theday = 31;
+		$theday-- while (&day($themon,$theday,dec_int($theyear)) ne "SUN");
+		$thedate = julday(dec_int($theyear),$themon,$theday);
+		my $ctk = $thedate;
+		$themon = 9; $theday = 14;
+		$theday++ while (&day($themon,$theday,dec_int($theyear)) ne "SUN");
+		$thedate = julday(dec_int($theyear),$themon,$theday+3);
+		push(@goods,"Ember Wednesday (RC)|$thedate|||0event");
+		$thedate += 2;
+		push(@goods,"Ember Friday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Ember Saturday (RC)|$thedate|||0event");
+		$themon = 12; $theday = 25;
+		$theday-- while (&day($themon,$theday,dec_int($theyear)) ne "SUN");
+		$thedate = julday(dec_int($theyear),$themon,$theday);
+		$thedate -= 21;
+		my $firstadv = $thedate;
+		$thedate = $elvsun;
+		my $number = 12;
+		while ($thedate <= $firstadv) {
+			if (($thedate != $ctk) && ($thedate != $firstadv)) {
+				my $doznum = doz_int($number);
+				push(@goods,"${doznum}th Sun. after Pentecost (RC)|$thedate|||0event");
+			} elsif ($thedate == $firstadv) {
+				push(@goods,"1st Sun. of Advent (RC)|$thedate|||0event");
+			} elsif ($thedate == $ctk) {
+				push(@goods,"Christ the King (RC)|$thedate|||0event");
+			}
+			$thedate += 7;
+			$number += 1;
+		}
+		$thedate = $firstadv + 7;
+		push(@goods,"2nd Sun. of Advent (RC)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"3rd Sun. of Advent; Gaudete Sun. (RC)|$thedate|||0event");
+		$thedate += 3;
+		push(@goods,"Ember Wednesday (RC)|$thedate|||0event");
+		$thedate += 2;
+		push(@goods,"Ember Friday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Ember Saturday (RC)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"4th Sun. of Advent (RC)|$thedate|||0event");
+		$thedate += 7;
+		($theyear,$themon,$theday) = jultogreg($thedate);
+		if (($themon == 12) && ($theday == 25)) {
+			$thedate += 5;
+			push(@goods,"Sun. in Oct. of Christmas, Observed (RC)|$thedate|||0event");
+			$thedate += 2;
+			push(@goods,"Oct. of Christmas (RC)|$thedate|||0event");
+		} else {
+			push(@goods,"Sun. in Oct. of Christmas (RC)|$thedate|||0event");
+		}
+		$thedate = julday($theyear,1,1);
+		push(@goods,"The Circumcision of Christ (RC)|$thedate|||0event");
+		my $thenum = 1;
+		$thedate++ while (&day(1,++$thenum,$theyear) ne "SUN");
+		if ($thenum >= 6) {
+			$thedate = julday($theyear,1,2);
+		} else {
+			$thedate = julday($theyear,1,$thenum);
+		}
+		push(@goods,"Most Holy Name of Jesus (RC)|$thedate|||0event");
+		$thedate = julday($theyear,1,6);
+		push(@goods,"Epiphany (RC)|$thedate|||0event");
+		$thenum = 6;
+		$thedate++ while (&day(1,++$thenum,$theyear) ne "SUN");
+		$thedate++;
+		push(@goods,"Holy Family (RC)|$thedate|||0event");
+		$thenum = 2;
+		$thedate += 7;
+		while ($thedate < $thesept) {
+			push(@goods,"2nd Sun. after Epiphany|$thedate|||0event") 
+				if ($thenum == 2);
+			push(@goods,"3rd Sun. after Epiphany|$thedate|||0event") 
+				if ($thenum == 3);
+			push(@goods,"4th Sun. after Epiphany|$thedate|||0event") 
+				if ($thenum == 4);
+			push(@goods,"5th Sun. after Epiphany|$thedate|||0event") 
+				if ($thenum == 5);
+			push(@goods,"6th Sun. after Epiphany|$thedate|||0event") 
+				if ($thenum == 6);
+			push(@goods,"7th Sun. after Epiphany|$thedate|||0event") 
+				if ($thenum == 7);
+			$thenum += 1;
+			$thedate += 7;
+		}
+		#FIXME
+	}
+	if (($opt_r =~ /chr/) && ($opt_r =~ /east/)) {
+		if ($opt_d =~ /([\dXE]{4,4})/) {
+			$theyear = $1;
+		} else {
+			$theyear = $year;
+		}
+		($themon,$theday) = orthodox_easter(dec_int($theyear));
+		$thedate = julday(dec_int($theyear),$themon,$theday);
+		push(@goods,"Easter (Orthodox)|$thedate|||0event");
+		$thedate -= 48;
+		push(@goods,"Clean Monday (Orthodox)|$thedate|||0event");
+		$thedate += 5;
+		push(@goods,"St. Theodore Saturday (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Feast of Orthodoxy (Orthodox)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"St. Gregory Palamas (Orthodox)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"Veneration of the Cross (Orthodox)|$thedate|||0event");
+		$thedate += 7;
+		push(@goods,"St. John Climacus (Orthodox)|$thedate|||0event");
+		$thedate += 6;
+		push(@goods,"Saturday of the Akathist (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"St. Mary of Egypt (Orthodox)|$thedate|||0event");
+		$thedate += 5;
+		push(@goods,"End of Great Lent at Vespers (Orthodox)|$thedate|||0event");
+		$thedate += 2;
+		push(@goods,"Palm Sunday (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Holy and Great Monday (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Holy and Great Tuesday (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Holy and Great Wednesday (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Holy and Great Thursday (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Holy and Great Friday (Orthodox)|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Holy and Great Saturday (Orthodox)|$thedate|||0event");
+		$thedate -= 48;
+		push(@goods,"Cheesefare (Orthodox)|$thedate|||0event");
+		$thedate -= 7;
+		push(@goods,"Meatfare (Orthodox)|$thedate|||0event");
+		$thedate -= 7;
+		push(@goods,"Prodigal Son (Orthodox)|$thedate|||0event");
+		$thedate -= 7;
+		push(@goods,"Publican & Pharisee (Orthodox)|$thedate|||0event");
+		$thedate -= 7;
+		push(@goods,"Zacchaeus Sunday (Orthodox)|$thedate|||0event");
+		$thedate += 116;
+		push(@goods,"Ascension (Orthodox)|$thedate|||0event");
+		$thedate -= 15;
+		push(@goods,"Midfeast (Orthodox)|$thedate|||0event");
+		$thedate += 25;
+		push(@goods,"Pentecost (Orthodox)|$thedate|||0event");
+		$thedate = julday(dec_int($theyear),12,25);
+		push(@goods,"Christmas (Greek Orthodox)|$thedate|||0event");
+		$thedate = julday(dec_int($theyear),1,6);
+		push(@goods,"Epiphany (Orthodox)|$thedate|||0event");
+	}
+	if ($opt_r =~ /jew/) {
+		if ($opt_d =~ /([\dXE]{4,4})/) {
+			$theyear = $1;
+		} else {
+			$theyear = $year;
+		}
+		($themon,$theday) = roshhashanah(dec_int($theyear));
+		$thedate = julday(dec_int($theyear),$themon,$theday);
+		push(@goods,"Rosh Hashanah|$thedate|||0event");
+		$thedate += 1;
+		push(@goods,"Rosh Hashanah|$thedate|||0event");
+		$thedate += 8;
+		push(@goods,"Yom Kippur|$thedate|||0event");
+		my $testdate = $thedate;
+		($themon,$theday) = passover(dec_int($theyear));
+		$thedate = julday(dec_int($theyear),$themon,$theday);
+		for (my $i = 0; $i <= 7; $i++) {
+			push(@goods,"Passover|$thedate|||0event");
+			$thedate++;
+		}
+		($theyear,$themon,$theday) = jultogreg($testdate);
+		my $dt = new Date::Convert::Hebrew($theyear+3761,9,25);
+		my @date = $dt->date;
+		convert Date::Convert::Gregorian $dt;
+		$theyear = $dt->year;
+		$themon = $dt->month;
+		$theday = $dt->day;
+		$thedate = julday($theyear,$themon,$theday);
+		for (my $i = 0; $i < 8; $i++) {
+			push(@goods,"Hanukkah|$thedate|||0event");
+			$thedate++;
+		}
+	}
+	if ($opt_r =~ /isl/) {
+		if ($opt_d =~ /([\dXE]{4,4})/) {
+			$theyear = $1;
+		} else {
+			$theyear = $year;
+		}
+		my $islamyear = dec_int($theyear) - 579;
+		my $calendar = Calendar::Hijri->new($islamyear,9,1);
+		my $numdays = $calendar->days_in_month($islamyear,9);
+		for (my $i = 1; $i <= $numdays; $i++) {
+			my $calendar = Calendar::Hijri->new($islamyear,9,$i);
+			$calendar->get_calendar();
+			my ($yyyy,$mm,$dd) = $calendar->to_gregorian();
+			$thedate = julday($yyyy,$mm,$dd);
+			push(@goods,"Ramadan (Islam)|$thedate|||0event");
+		}
+		push(@goods,"Eid al-Fitr (Islam)|$thedate|||0event");
+		for (my $i = 10; $i <= 12; $i++) {
+			my $calendar = Calendar::Hijri->new($islamyear,12,$i);
+			$calendar->get_calendar();
+			my ($yyyy,$mm,$dd) = $calendar->to_gregorian();
+			$thedate = julday($yyyy,$mm,$dd);
+			push(@goods,"Eid al-Adha (Islam)|$thedate|||0event");
+		}
+	}
+	return @goods;
+}
+
+# national holidays
+
+sub national(\@$$)
+{
+	my @goods = @{$_[0]};
+	my $thestart = $_[1];
+	my $theend = $_[2];
+	my $thedate; my $theyear; my $themon; my $theday;
+
+	if ($opt_d =~ /([\dXE]{4,4})/) {
+		$theyear = dec_int($1);
+	} else {
+		$theyear = $year;
+	}
+	if ($opt_n =~ /uk/) {
+		$opt_n =~ s/uk/eng,scot,wales,nire/;
+	}
+	if ($opt_n =~ /usa/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (US)|$thedate|||1event");
+		$thedate = julday($theyear,7,4);
+		push(@goods,"Independence Day (US)|$thedate|||1event");
+		$thedate = julday($theyear,11,11);
+		push(@goods,"Veterans' Day (US)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas (US)|$thedate|||1event");
+		$themon = 0; $theday = 1; my $i = 0;
+		$theday+=1 while (&day(1,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,1,$theday+14);
+		push(@goods,"Martin Luther King, Jr.  (US)|$thedate|||1event");
+		if ((($theyear-1) % 4) == 0) {
+			if (&day(1,20,$theyear) ne "SUN") {
+				$thedate = julday($theyear,1,20);
+				push(@goods,"Inauguration Day (US)|$thedate|||1event");
+			} else {
+				$thedate = julday($theyear,1,21);
+				push(@goods,"Inauguration Day (US)|$thedate|||1event");
+			}
+		}
+		$theday = 1;
+		$theday+=1 while (&day(2,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,2,$theday+14);
+		push(@goods,"Presidents' Day (US)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"Memorial Day (US)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(9,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,9,$theday);
+		push(@goods,"Labor Day (US)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(10,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,10,$theday+7);
+		push(@goods,"Columbus Day (US)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(11,$theday,$theyear) ne "THU");
+		$thedate = julday($theyear,11,$theday+21);
+		push(@goods,"Thanksgiving (US)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(5,$theday,$theyear) ne "SUN");
+		$theday += 7;
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"Mother's Day (US)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(6,$theday,$theyear) ne "SUN");
+		$theday += 14;
+		$thedate = julday($theyear,6,$theday);
+		push(@goods,"Father's Day (US)|$thedate|||1event");
+		$thedate = julday($theyear,6,14);
+		push(@goods,"Flag Day (US)|$thedate|||1event");
+		$thedate = julday($theyear,9,11);
+		push(@goods,"Patriot Day (US)|$thedate|||1event");
+		$thedate = julday($theyear,9,17);
+		push(@goods,"Constitution Day (US)|$thedate|||1event");
+		if (($theyear % 2) == 0) {
+			$theday = 1;
+			$theday+=1 while (&day(11,$theday,$theyear) ne "MON");
+			$theday+=1;
+			$thedate = julday($theyear,11,$theday);
+			push(@goods,"Election Day (US)|$thedate|||1event");
+		}
+		$thedate = julday($theyear,10,31);
+		push(@goods,"Halloween (US)|$thedate|||1event");
+	}
+	if ($opt_n =~ /eng/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (Eng)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"May Day (Eng)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"Spring Bank Holiday (Eng)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(8,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,8,$theday);
+		push(@goods,"Late Summer Bank Holiday (Eng)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (Eng)|$thedate|||1event");
+		$thedate = julday($theyear,12,26);
+		push(@goods,"Boxing Day (Eng)|$thedate|||1event");
+		($themon,$theday) = gregorian_easter($theyear);
+		$thedate = julday($theyear,$themon,$theday);
+		$thedate -= 2;
+		push(@goods,"Good Friday (Eng)|$thedate|||1event");
+		$thedate += 3;
+		push(@goods,"Easter Monday (Eng)|$thedate|||1event");
+	}
+	if ($opt_n =~ /scot/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (Scot)|$thedate|||1event");
+		$thedate = julday($theyear,1,2);
+		push(@goods,"2 January (Scot)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"May Day (Scot)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(8,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,8,$theday);
+		push(@goods,"Summer Bank Holiday (Scot)|$thedate|||1event");
+		$thedate = julday($theyear,11,30);
+		push(@goods,"St Andrew's Day (Scot)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (Scot)|$thedate|||1event");
+		$thedate = julday($theyear,12,26);
+		push(@goods,"Boxing Day (Scot)|$thedate|||1event");
+	}
+	if ($opt_n =~ /wales/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (Wales)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"May Day (Wales)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"Spring Bank Holiday (Wales)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(8,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,8,$theday);
+		push(@goods,"Late Summer Bank Holiday (Wales)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (Wales)|$thedate|||1event");
+		$thedate = julday($theyear,12,26);
+		push(@goods,"Boxing Day (Wales)|$thedate|||1event");
+		($themon,$theday) = gregorian_easter($theyear);
+		$thedate = julday($theyear,$themon,$theday);
+		$thedate -= 2;
+		push(@goods,"Good Friday (Wales)|$thedate|||1event");
+		$thedate += 3;
+		push(@goods,"Easter Monday (Wales)|$thedate|||1event");
+	}
+	if ($opt_n =~ /nire/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (N. Ire.)|$thedate|||1event");
+		$thedate = julday($theyear,3,17);
+		push(@goods,"St Patrick's Day (N. Ire.)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"May Day (N. Ire.)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"Spring Bank Holiday (N. Ire.)|$thedate|||1event");
+		$thedate = julday($theyear,7,12);
+		push(@goods,"The Twelfth (N. Ire.)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(8,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,8,$theday);
+		push(@goods,"Late Summer Bank Holiday (N. Ire.)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (N. Ire.)|$thedate|||1event");
+		$thedate = julday($theyear,12,26);
+		push(@goods,"Boxing Day (N. Ire.)|$thedate|||1event");
+		($themon,$theday) = gregorian_easter($theyear);
+		$thedate = julday($theyear,$themon,$theday);
+		$thedate -= 2;
+		push(@goods,"Good Friday (N. Ire.)|$thedate|||1event");
+		$thedate += 3;
+		push(@goods,"Easter Monday (N. Ire.)|$thedate|||1event");
+	}
+	if ($opt_n =~ /(?<!n)ire/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (Ire)|$thedate|||1event");
+		$thedate = julday($theyear,3,17);
+		push(@goods,"St Patrick's Day (Ire)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(5,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,5,$theday);
+		push(@goods,"May Day (Ire)|$thedate|||1event");
+		($themon,$theday) = gregorian_easter($theyear);
+		$thedate = julday($theyear,$themon,$theday) + 1;
+		push(@goods,"Easter Monday (Ire)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(6,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,6,$theday);
+		push(@goods,"June Holiday (Ire)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(8,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,8,$theday);
+		push(@goods,"August Holiday (Ire)|$thedate|||1event");
+		$theday = 31;
+		$theday-=1 while (&day(10,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,10,$theday);
+		push(@goods,"October Holiday (Ire)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (Ire)|$thedate|||1event");
+		$thedate = julday($theyear,12,26);
+		push(@goods,"St. Stephen's Day (Ire)|$thedate|||1event");
+	}
+	if ($opt_n =~ /can/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (Can)|$thedate|||1event");
+		($themon,$theday) = gregorian_easter($theyear);
+		$thedate = julday($theyear,$themon,$theday);
+		$thedate -= 2;
+		push(@goods,"Good Friday (Can)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(9,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,9,$theday);
+		push(@goods,"Labour Day (Can)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (Can)|$thedate|||1event");
+	}
+	if ($opt_n =~ /aus/) {
+		$thedate = julday($theyear,1,26);
+		push(@goods,"Australia Day (Aus)|$thedate|||1event");
+		$thedate = julday($theyear,4,25);
+		push(@goods,"Anzac Day (Aus)|$thedate|||1event");
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (Aus)|$thedate|||1event");
+		($themon,$theday) = gregorian_easter($theyear);
+		$thedate = julday($theyear,$themon,$theday);
+		$thedate -= 2;
+		push(@goods,"Good Friday (Aus)|$thedate|||1event");
+		$thedate += 3;
+		push(@goods,"Easter Monday (Aus)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (Aus)|$thedate|||1event");
+		$thedate = julday($theyear,12,26);
+		push(@goods,"Boxing Day (Aus)|$thedate|||1event");
+	}
+	if ($opt_n =~ /nz/) {
+		$thedate = julday($theyear,1,1);
+		push(@goods,"New Year's Day (NZ)|$thedate|||1event");
+		$thedate = julday($theyear,1,2);
+		push(@goods,"2 January (NZ)|$thedate|||1event");
+		$thedate = julday($theyear,2,6);
+		push(@goods,"Waitangi (NZ)|$thedate|||1event");
+		$thedate = julday($theyear,4,25);
+		push(@goods,"Anzac Day (NZ)|$thedate|||1event");
+		($themon,$theday) = gregorian_easter($theyear);
+		$thedate = julday($theyear,$themon,$theday);
+		$thedate -= 2;
+		push(@goods,"Good Friday (NZ)|$thedate|||1event");
+		$thedate += 3;
+		push(@goods,"Easter Monday (NZ)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(6,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,6,$theday);
+		push(@goods,"Queen's Birthday (NZ)|$thedate|||1event");
+		$theday = 1;
+		$theday+=1 while (&day(10,$theday,$theyear) ne "MON");
+		$thedate = julday($theyear,10,$theday+21);
+		push(@goods,"Labour Day (NZ)|$thedate|||1event");
+		$thedate = julday($theyear,12,25);
+		push(@goods,"Christmas Day (NZ)|$thedate|||1event");
+		$thedate = julday($theyear,12,26);
+		push(@goods,"Boxing Day (NZ)|$thedate|||1event");
+	}
+	return @goods;
+}
+
+# we know what this is for
+
+sub main()
+{
+	my $lines;				# number of lines read from files
+	my @line;				# a line from the data file
+	my @goodlines;			# array of dates
+	my @exceptions;		# array of exceptions
+	my $fault = 0;			# set to one if error
+	my $startdate = 0;	# if date range is requested
+	my $enddate = 0;		# if date range is requested
+
+	if (!$opt_d) {
+		print STDERR "dozcal:  error:  must specify a date or ";
+		print STDERR "date range with -d option\n";
+	}
+	help_func() if ($opt_h);
+	$lines = read_files($opt_f);
+	($startdate,$enddate) = parse_date($opt_d) if $opt_d;
+	$enddate = $INFIN if ($enddate == 0);
+	($startdate,$enddate) = weekly_output($startdate,$enddate) 
+		if ($opt_w);
+	for (my $i = 0; $i < $lines; $i++) {
+		@line = split('\|',$callist[$i]);
+		$fault = expand_dates($line[1],$callist[$i]);
+		if ($fault == 1) {
+			chomp($callist[$i]);
+			print STDERR "dozcal:  error:  the following line's ";
+			print STDERR "main date is malformed:\n\t \"$callist[$i]\"";
+			exit $BAD_MAIN_DATE;
+		}
+	} # next, do the exceptions
+	@goodlines = @calendar;
+	@calendar = ();
+	for (my $i = 0; $i < $lines; $i++) {
+		@line = split('\|',$callist[$i]);
+		$fault = expand_dates($line[3],$callist[$i]);
+		if (($fault == 1) && ($callist[$i] != "")) {
+			chomp($callist[$i]);
+			print STDERR "dozcal:  error:  the following line's ";
+			print STDERR "exception date is malformed:\n\t \"$callist[$i]\"";
+			exit $BAD_EXCEPTION_DATE;
+		} elsif (($fault == 1) && ($callist[$i] == "")) {
+			$fault = 0;
+		}
+	}
+	@goodlines = remove_exceptions(@goodlines,@calendar);
+	@goodlines = religious(@goodlines) if ($opt_r);
+	@goodlines = astronomical(@goodlines,$startdate,$enddate) if ($opt_a);
+	@goodlines = national(@goodlines,$startdate,$enddate) if ($opt_n);
+	@calendar = ();
+	for (my $i = 0; $i <= $#goodlines; $i++) {
+		push @{$calendar[$i]},split('\|',$goodlines[$i]);
+	}
+	limit_to_date($startdate,$enddate);
+	fill_up() if ($opt_o eq 'html');
+	shrink_time();
+	@calendar = sort { $a->[1] <=> $b->[1] || $a->[2] <=>
+		$b->[2] || $a->[4] cmp $b->[4] } @calendar;
+	unshrink_time();
+	$date_format = "%Y/%m/%d" if ($opt_l);
+	$date_format = "$opt_m" if ($opt_m);
+	for (my $i = 0; $i <= $#calendar; $i++) {
+		my ($theyear,$themon,$theday) = jultogreg($calendar[$i][1]);
+		$theyear = doz_int($theyear); $themon = doz_int($themon);
+		$theday = doz_int($theday);
+		my $thedate = 
+			qx( dozdate "$date_format" -d"$theyear-$themon-$theday" );
+		chomp($thedate);
+		$calendar[$i][1] = $thedate;
+	}
+	text_output() if ((!$opt_o) || ($opt_o eq 'text'));
+	basic_output() if ($opt_o eq 'basic');
+	html_output() if ($opt_o eq 'html');
+	print $output;
+}
+
+main();

@@ -1,0 +1,18 @@
+package com.example.dozcaldroid;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class TwoDColumnComparator {
+
+public static <T extends Comparable> void sort(final T [][] toSort,final int onColumn) {
+	List list = Arrays.asList(toSort);
+	Collections.sort(list, new Comparator<T[]>(){
+		public int compare(T[] a, T[] b) {
+			return a[onColumn].compareTo(b[onColumn]);
+		}
+	});
+}
+}

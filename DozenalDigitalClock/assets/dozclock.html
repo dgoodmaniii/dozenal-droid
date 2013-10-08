@@ -1,0 +1,168 @@
+<!-- +AMDG  This document was begun on 7 June 2011, and it
+is humbly dedicated to the Immaculate Heart of Mary for her
+prayers, and to the Sacred Heart of Jesus, for His mercy.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<meta name="TGM Dozenal Clock" />
+<title>TGM Dozenal CLock</title>
+<style type="text/css">
+body {
+	background:  white;
+}
+#clock {
+	float:  left;
+	width:  50%;
+	font-size:  200%;
+	height:  48pt;
+}
+#date {
+	float:  right;
+	text-align:  center;
+	width:  40%;
+	font-size:  70%;
+	height:  48pt;
+}
+.popup {
+	font-size:  24pt;
+	margin:  0pt;
+	margin-left:  -5px;
+	padding:  0pt;
+	border:  0pt;
+	width:  100%;
+}
+</style>
+</head>
+<body>
+<script type="text/javascript">
+
+function simpdoz(number)
+{
+	if (number == 10)
+		number = "X";
+	else if (number == 11)
+		number = "E";
+	else if (number == 12)
+		number = 10;
+	else
+		number = number;
+	return number;
+}
+
+function dozenalize(number)
+{
+	doznum = "";
+	while (number >= 12) {
+		nextdig = number % 12;
+		number /= 12;
+		nextdig = simpdoz(Math.floor(nextdig));
+		doznum = doznum + nextdig;
+	}
+	nextdig = number % 12;
+	number /= 12;
+	nextdig = simpdoz(Math.floor(nextdig));
+	doznum += nextdig;
+	doznum = reverse(doznum);
+	if (doznum.length == 1)
+		doznum = '0'+doznum;
+	return doznum;
+}
+
+function reverse(string)
+{
+	var revstring='';
+	for (i = string.length-1; i>=0; i--)
+		revstring+=string.charAt(i);
+	return revstring;
+}
+
+function monthname(number)
+{
+	if (number == 1)
+		return "Jan";
+	else if (number == 2)
+		return "Feb";
+	else if (number == 3)
+		return "Mar";
+	else if (number == 4)
+		return "Apr";
+	else if (number == 5)
+		return "May";
+	else if (number == 6)
+		return "Jun";
+	else if (number == 7)
+		return "Jul";
+	else if (number == 8)
+		return "Aug";
+	else if (number == 9)
+		return "Sep";
+	else if (number == 10)
+		return "Oct";
+	else if (number == 11)
+		return "Nov";
+	else if (number == 12)
+		return "Dec";
+}
+
+function wdayname(number)
+{
+	if (number == 0)
+		return "Sun";
+	else if (number == 1)
+		return "Mon";
+	else if (number == 2)
+		return "Tue";
+	else if (number == 3)
+		return "Wed";
+	else if (number == 4)
+		return "Thu";
+	else if (number == 5)
+		return "Fri";
+	else if (number == 6)
+		return "Sat";
+}
+
+function sectotim(number)
+{
+	return Math.floor(number / 0.17361111);
+}
+
+function init()
+{
+	timeDisplay = document.createTextNode ( "" );
+	document.getElementById("clock").appendChild(timeDisplay);
+}
+
+function updateClock ( )
+{
+	var today = new Date();
+	
+	var hours = today.getHours();
+	var minutes = today.getMinutes();
+	var seconds = today.getSeconds();
+	var dunatims = Math.floor(sectotim((minutes * 60 + today.getSeconds()) / 144));
+//	var timestring = dozenalize(hours)+';'+dozenalize(dunatims)+';'+dozenalize(seconds);
+	var timestring = dozenalize(hours)+';'+dozenalize(dunatims);
+	var newdate = new Date();
+	var month = monthname(newdate.getMonth()+1);
+	var day = newdate.getDate();
+	var year = newdate.getFullYear();
+	var wday = wdayname(newdate.getDay());
+	var wdaystring = wday;
+	var datestring = wday+' '+dozenalize(day)+' '+month+' '+dozenalize(year);
+	var yearstring = dozenalize(year);
+	
+	document.getElementById("clock").firstChild.nodeValue = timestring;
+	document.getElementById("date").firstChild.nodeValue = datestring;
+}
+</script>
+<div class="popup">
+<div id="clock">&nbsp;</div>
+<div id="date">&nbsp;</div>
+<script type="text/javascript">setInterval('updateClock()',1000);</script>
+<script type="text/javascript">clockApp();</script>
+</div>
+</body>
+</html>

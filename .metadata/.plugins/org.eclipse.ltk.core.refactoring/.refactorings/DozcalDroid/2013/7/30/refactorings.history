@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;AstronOpts.java&apos; to &apos;DozcalDroid/src/com.example.dozcaldroid&apos;&#x0A;- Original project: &apos;DozcalDroid&apos;&#x0A;- Destination element: &apos;DozcalDroid/src/com.example.dozcaldroid&apos;&#x0A;- Original element: &apos;AstronOpts.java&apos;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;com.example.dozcaldroid" element1="/src&lt;{AstronOpts.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1374675516454" units="1" version="1.0"/>
+</session>

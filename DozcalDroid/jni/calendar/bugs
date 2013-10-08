@@ -1,0 +1,3 @@
+-Including more than one of the same format string (e.g.,
+"%n") in a config-file format can produce some strange regex
+bugs about "unknown verb"

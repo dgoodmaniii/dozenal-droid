@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+    <ScrollView
+  		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent">
+  	<LinearLayout
+  	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical" >
+     <TextView 
+         android:id="@+id/date_form_label"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="3dp"
+         android:textSize="8pt"
+         android:gravity="left"
+         android:textColor="#000000"
+         android:text="@string/date_form_label"
+         android:textIsSelectable="true" />
+    <EditText 
+         android:id="@+id/date_form_text"
+         android:inputType="text"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="3dp"
+         android:textSize="8pt"
+         android:hint="@string/date_form_hint"
+         android:gravity="center"
+         android:textColor="#000000"
+         android:textIsSelectable="true" />
+    <TextView 
+         android:id="@+id/date_form_exp"
+         android:layout_width="fill_parent"
+         android:layout_height="0dp"
+         android:layout_marginTop="3dp"
+         android:textColor="#000000"
+         android:gravity="left"
+         android:layout_weight="0.05"
+         android:textSize="4pt"
+         android:text="@string/date_form_exp"
+         android:textIsSelectable="true" />
+    
+    <TextView 
+        android:id="@+id/first_dow_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12pt"
+        android:text="@string/first_dow_title"/>
+    <Spinner
+        android:id="@+id/first_dow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/dow_names"
+    />
+    <TextView 
+         android:id="@+id/first_dow_exp"
+         android:layout_width="fill_parent"
+         android:layout_height="0dp"
+         android:layout_marginTop="3dp"
+         android:textColor="#000000"
+         android:gravity="left"
+         android:layout_weight="0.05"
+         android:textSize="4pt"
+         android:text="@string/first_dow_exp"
+         android:textIsSelectable="true" />
+    
+    <TextView 
+        android:id="@+id/astron_opts_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12pt"
+        android:text="@string/astron_opts_title"/>
+    <LinearLayout
+  	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+		<CheckBox android:id="@+id/moonphase_opt"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/moonphase_text" />
+		<CheckBox android:id="@+id/nomoonphase_opt"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/nomoonphase_text" />
+	</LinearLayout>
+	 <!-- <LinearLayout
+  	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+		<CheckBox android:id="@+id/solar_opt"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/sunriseset_text" />
+		<CheckBox android:id="@+id/nosolar_opt"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/nosunriseset_text" />
+	</LinearLayout>-->
+	
+	<TextView 
+        android:id="@+id/astron_opts_exp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="4pt"
+        android:text="@string/astron_opts_exp"/>
+
+	<Button
+        android:id="@+id/save_settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="12pt"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="0dp"
+        android:text="@string/save_settings_button"
+        android:textColor="#FF000000" />
+	</LinearLayout>
+    </ScrollView>
+</LinearLayout>

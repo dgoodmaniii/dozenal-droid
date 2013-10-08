@@ -1,0 +1,30 @@
+%+AMDG
+\documentclass{minimal}
+
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{lmodern}
+\setlength{\extrarowheight}{0pt}
+
+\begin{document}
+
+\scshape\fontsize{18pt}{18pt}\selectfont
+\centering
+\begin{tabular}{%
+	>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{0.4\linewidth}
+	>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{0.4\linewidth}
+}
+\includegraphics[scale=0.25]{Dodecahedron.png} &
+\includegraphics[scale=0.25]{Small_stellated_dodecahedron.png} \\
+Dodecahedron & Small Stellated Dodecahedron \\
+\includegraphics[scale=0.25]{Great_dodecahedron.png} &
+\includegraphics[scale=0.25]{Great_stellated_dodecahedron.png} \\
+Great Dodecahedron & Great Stellated Dodecahedron \\
+\end{tabular}
+
+\parbox{\linewidth}{\fontsize{8pt}{9pt}\selectfont\centering
+Images copyright CC-BY, Robert Webb; created by Robert
+Webb's Stella Software,
+http://www.software3d.com/Stella.php.}
+
+\end{document}

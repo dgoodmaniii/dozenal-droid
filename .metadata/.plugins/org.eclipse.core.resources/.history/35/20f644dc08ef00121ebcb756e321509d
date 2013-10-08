@@ -1,0 +1,24 @@
+package com.example.dozcaldroid;
+
+import java.util.*;
+
+public class SortArray {
+
+    public static void main(String fullevents[][]) {
+
+        Arrays.sort(fullevents, new Comparator<String[]>() {
+            @Override
+            public String[] compare(int[] o1, int[] o2) {
+                return ((Integer) o2[0]).compareTo(o1[0]);
+            }
+
+			@Override
+			public int compare(String[] arg0, String[] arg1) {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+        });
+
+        System.out.println(Arrays.deepToString(twoDim));
+    }
+}

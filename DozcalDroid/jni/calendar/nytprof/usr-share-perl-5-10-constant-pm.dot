@@ -1,0 +1,114 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Time_Piece {
+	label="Time::Piece";
+	"Time::Piece::BEGIN@40";
+	"Time::Piece::BEGIN@41";
+	"Time::Piece::BEGIN@46";
+	"Time::Piece::BEGIN@45";
+	"Time::Piece::BEGIN@43";
+	"Time::Piece::BEGIN@38";
+	"Time::Piece::BEGIN@39";
+	"Time::Piece::BEGIN@42";
+	"Time::Piece::BEGIN@44";
+	"Time::Piece::BEGIN@37";
+	"Time::Piece::BEGIN@47";
+}
+subgraph cluster_Internals {
+	label="Internals";
+	"Internals::SvREADONLY";
+}
+subgraph cluster_Time_Local {
+	label="Time::Local";
+	"Time::Local::BEGIN@28";
+	"Time::Local::BEGIN@30";
+	"Time::Local::BEGIN@29";
+}
+subgraph cluster_Time_Seconds {
+	label="Time::Seconds";
+	"Time::Seconds::BEGIN@33";
+	"Time::Seconds::BEGIN@30";
+	"Time::Seconds::BEGIN@28";
+	"Time::Seconds::BEGIN@40";
+	"Time::Seconds::BEGIN@27";
+	"Time::Seconds::BEGIN@35";
+	"Time::Seconds::BEGIN@32";
+	"Time::Seconds::BEGIN@34";
+	"Time::Seconds::BEGIN@39";
+	"Time::Seconds::BEGIN@29";
+	"Time::Seconds::BEGIN@31";
+	"Time::Seconds::BEGIN@36";
+	"Time::Seconds::BEGIN@26";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::import";
+	"constant::BEGIN@4";
+	"constant::BEGIN@3";
+	"constant::BEGIN@38";
+	"constant::CORE:regcomp";
+	"constant::BEGIN@101";
+	"constant::BEGIN@2";
+	"constant::BEGIN@6";
+	"constant::CORE:match";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+subgraph cluster_mro {
+	label="mro";
+	"mro::method_changed_in";
+}
+"constant::import" -> "mro::method_changed_in";
+"Time::Seconds::BEGIN@26" -> "constant::BEGIN@2";
+"Time::Seconds::BEGIN@26" -> "constant::BEGIN@4";
+"Time::Seconds::BEGIN@26" -> "constant::BEGIN@6";
+"Time::Piece::BEGIN@40" -> "constant::import";
+"Time::Seconds::BEGIN@33" -> "constant::import";
+"Time::Piece::BEGIN@46" -> "constant::import";
+"Time::Piece::BEGIN@41" -> "constant::import";
+"Time::Piece::BEGIN@43" -> "constant::import";
+"Time::Piece::BEGIN@45" -> "constant::import";
+"Time::Seconds::BEGIN@28" -> "constant::import";
+"Time::Piece::BEGIN@42" -> "constant::import";
+"Time::Piece::BEGIN@39" -> "constant::import";
+"Time::Piece::BEGIN@37" -> "constant::import";
+"Time::Seconds::BEGIN@34" -> "constant::import";
+"Time::Local::BEGIN@29" -> "constant::import";
+"Time::Seconds::BEGIN@29" -> "constant::import";
+"Time::Seconds::BEGIN@31" -> "constant::import";
+"Time::Seconds::BEGIN@36" -> "constant::import";
+"Time::Local::BEGIN@28" -> "constant::import";
+"Time::Local::BEGIN@30" -> "constant::import";
+"Time::Seconds::BEGIN@30" -> "constant::import";
+"Time::Piece::BEGIN@38" -> "constant::import";
+"Time::Seconds::BEGIN@27" -> "constant::import";
+"Time::Seconds::BEGIN@40" -> "constant::import";
+"Time::Piece::BEGIN@44" -> "constant::import";
+"Time::Seconds::BEGIN@32" -> "constant::import";
+"Time::Seconds::BEGIN@35" -> "constant::import";
+"Time::Seconds::BEGIN@39" -> "constant::import";
+"Time::Seconds::BEGIN@26" -> "constant::import";
+"Time::Piece::BEGIN@47" -> "constant::import";
+"constant::BEGIN@38" -> "strict::unimport";
+"constant::BEGIN@101" -> "strict::unimport";
+"constant::import" -> "constant::CORE:regcomp";
+"constant::import" -> "Internals::SvREADONLY";
+"Time::Seconds::BEGIN@26" -> "constant::BEGIN@38";
+"constant::BEGIN@6" -> "vars::import";
+"Time::Seconds::BEGIN@26" -> "constant::BEGIN@3";
+"constant::import" -> "constant::CORE:match";
+"constant::BEGIN@3" -> "strict::import";
+"Time::Seconds::BEGIN@26" -> "constant::BEGIN@101";
+"constant::BEGIN@4" -> "warnings::register::import";
+}
