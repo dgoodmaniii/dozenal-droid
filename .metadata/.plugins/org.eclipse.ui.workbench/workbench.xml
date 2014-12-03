@@ -18,7 +18,7 @@
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="80" y="26"/>
 <coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="114" y="26"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="62" y="26"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
@@ -44,13 +44,12 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" partName="MainActivity.java" path="/home/dpg/androidapps/DozcalDroid/src/com/example/dozcaldroid/MainActivity.java" title="MainActivity.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/MainActivity.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozcalDroid/src/com/example/dozcaldroid/MainActivity.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7399" selectionTopPixel="2547"/>
+<editor id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="DozcalDroid Manifest" path="/home/dpg/androidapps/DozcalDroid/AndroidManifest.xml" title="DozcalDroid Manifest" tooltip="DozcalDroid/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozcalDroid/AndroidManifest.xml"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Addnew_activity.java" partName="Addnew_activity.java" path="/home/dpg/androidapps/DozcalDroid/src/com/example/dozcaldroid/Addnew_activity.java" title="Addnew_activity.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/Addnew_activity.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozcalDroid/src/com/example/dozcaldroid/Addnew_activity.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6481" selectionTopPixel="1242"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="decimalize_date.java" partName="decimalize_date.java" path="/home/dpg/androidapps/DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java" title="decimalize_date.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="331" selectionTopPixel="120"/>
 </editor>
 </editors>
 <views>
@@ -84,9 +83,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Warnings (47 items)"/>
+<category IMemento.internal.id="Warnings (26 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="387" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="1080"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -132,7 +129,9 @@
 <view id="com.android.ide.eclipse.ddms.views.EmulatorControlView" partName="Emulator Control">
 <viewState/>
 </view>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration">
+<viewState/>
+</view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc">
 <viewState/>
 </view>
@@ -277,19 +276,13 @@
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.RunToLine"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.jdt.ui.JavadocView"/>
+<view id="org.eclipse.jdt.ui.SourceView"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="com.android.ide.eclipse.adt.internal.lint.LintViewPart"/>
+<view id="com.android.ide.eclipse.ddms.views.LogCatView"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer"/>
-<fastViewBars>
-<fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="com.android.ide.eclipse.ddms.views.LogCatView" style="0">
-<fastViews>
-<view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
-<view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
-<view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
-<view id="com.android.ide.eclipse.adt.internal.lint.LintViewPart" ratio="0.2987013"/>
-<view id="com.android.ide.eclipse.ddms.views.LogCatView" ratio="0.54805195"/>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.2961039"/>
-</fastViews>
-</fastViewBar>
-</fastViewBars>
+<fastViewBars/>
 <layout>
 <mainWindow>
 <info folder="true" part="left">
@@ -314,17 +307,23 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.24950495" ratioLeft="252" ratioRight="758" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.55528843" ratioLeft="231" ratioRight="185" relationship="4" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="2">
+<folder activePageID="com.android.ide.eclipse.ddms.views.LogCatView" appearance="2" expanded="2">
+<page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
+<page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
+<page content="com.android.ide.eclipse.adt.internal.lint.LintViewPart" label="Lint Warnings"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LogCat"/>
 <page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
-<page content="org.eclipse.jdt.ui.JavadocView" label="LabelNotFound"/>
-<page content="org.eclipse.jdt.ui.SourceView" label="LabelNotFound"/>
-<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
-<page content="com.android.ide.eclipse.adt.internal.lint.LintViewPart" label="LabelNotFound"/>
-<page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LabelNotFound"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+</presentation>
 </folder>
 </info>
 <info folder="true" part="right" ratio="0.74934036" ratioLeft="568" ratioRight="190" relationship="2" relative="org.eclipse.ui.editorss">
@@ -459,149 +458,162 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/MainActivity.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/DozcalDroid/AndroidManifest.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/DozcalDroid/res/layout/addnew_layout.xml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/Addnew_activity.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" path="/DozcalDroid/res/layout/addnew_layout.xml"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/Julian.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/MainActivity.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/SortArray.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/Addnew_activity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/Addnew_activity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/DozcalDroid/AndroidManifest.xml"/>
 </editors>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="6991" y="7"/>
-</item>
-<item historyLabel="DozcalDroid Manifest" index="1"/>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="7171" y="0"/>
-</item>
-<item historyLabel="addnew_layout.xml" index="2"/>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="6348" y="0"/>
-</item>
-<item historyLabel="addnew_layout.xml" index="2"/>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="6348" y="0"/>
-</item>
-<item historyLabel="addnew_layout.xml" index="2"/>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="6348" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="7171" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="13806" y="0"/>
-</item>
-<item historyLabel="addnew_layout.xml" index="4"/>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="12936" y="0"/>
-</item>
-<item historyLabel="DozcalDroid Manifest" index="1"/>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="8876" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="5">
-<position info="not_deleted" x="622" y="0"/>
-</item>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="8876" y="0"/>
-</item>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="8876" y="0"/>
-</item>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="8886" y="0"/>
-</item>
-<item historyLabel="Addnew_activity.java" index="3">
-<position info="not_deleted" x="8814" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="5">
-<position info="not_deleted" x="3640" y="0"/>
-</item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8674" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="5">
+<item historyLabel="Julian.java" index="3">
 <position info="not_deleted" x="1174" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8681" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="5">
+<item historyLabel="Julian.java" index="3">
 <position info="not_deleted" x="1067" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8681" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="5">
+<item historyLabel="Julian.java" index="3">
 <position info="not_deleted" x="1006" y="0"/>
 </item>
 <item historyLabel="MainActivity.java" index="0">
 <position info="not_deleted" x="12936" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8681" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="5">
+<item historyLabel="Julian.java" index="3">
 <position info="not_deleted" x="1109" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8681" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8777" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8735" y="8"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="8853" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="10708" y="0"/>
 </item>
 <item historyLabel="MainActivity.java" index="0">
 <position info="not_deleted" x="13012" y="0"/>
 </item>
-<item historyLabel="addnew_layout.xml" index="4"/>
+<item historyLabel="addnew_layout.xml" index="2"/>
 <item historyLabel="MainActivity.java" index="0">
 <position info="not_deleted" x="13012" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="10708" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position info="not_deleted" x="13049" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position info="not_deleted" x="3313" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position info="not_deleted" x="4470" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position info="not_deleted" x="4109" y="0"/>
 </item>
-<item historyLabel="Addnew_activity.java" index="3">
+<item historyLabel="Addnew_activity.java" index="1">
 <position info="not_deleted" x="6481" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position info="not_deleted" x="7311" y="0"/>
 </item>
-<item historyLabel="SortArray.java" index="7">
+<item historyLabel="SortArray.java" index="5">
 <position info="not_deleted" x="26" y="0"/>
 </item>
-<item active="true" historyLabel="MainActivity.java" index="6">
+<item historyLabel="MainActivity.java" index="4">
 <position info="not_deleted" x="7311" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="17080" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="17080" y="0"/>
+</item>
+<item historyLabel="Addnew_activity.java" index="6">
+<position info="not_deleted" x="6481" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="12599" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="17080" y="0"/>
+</item>
+<item historyLabel="decimalize_date.java" index="7">
+<position info="not_deleted" x="2137" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="17080" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position/>
+</item>
+<item historyLabel="decimalize_date.java" index="7">
+<position info="not_deleted" x="2532" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="17080" y="0"/>
+</item>
+<item historyLabel="decimalize_date.java" index="7">
+<position info="not_deleted" x="2455" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="17080" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="16754" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="16760" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="4">
+<position info="not_deleted" x="1155" y="0"/>
+</item>
+<item historyLabel="Addnew_activity.java" index="8">
+<position info="not_deleted" x="6481" y="0"/>
+</item>
+<item historyLabel="decimalize_date.java" index="9">
+<position info="not_deleted" x="2455" y="0"/>
+</item>
+<item historyLabel="DozcalDroid Manifest" index="10"/>
+<item active="true" historyLabel="decimalize_date.java" index="9">
+<position info="not_deleted" x="248" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -609,6 +621,12 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -622,6 +640,12 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="decimalize_date.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java">
+<persistable path="/DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="DozcalDroid/AndroidManifest.xml">
+<persistable path="/DozcalDroid/AndroidManifest.xml"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SortArray.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/SortArray.java">
 <persistable path="/DozcalDroid/src/com/example/dozcaldroid/SortArray.java"/>
 </file>
@@ -630,9 +654,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Julian.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/Julian.java">
 <persistable path="/DozcalDroid/src/com/example/dozcaldroid/Julian.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="DozcalDroid/AndroidManifest.xml">
-<persistable path="/DozcalDroid/AndroidManifest.xml"/>
 </file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.android.ide.eclipse.traceview.editors.TraceviewEditor" name="ddms4060938309623712815.trace" tooltip="/tmp/ddms4060938309623712815.trace">
 <persistable uri="file:/tmp/ddms4060938309623712815.trace"/>
@@ -663,9 +684,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/MainActivity.java">
 <persistable path="/DozcalDroid/src/com/example/dozcaldroid/MainActivity.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="decimalize_date.java" tooltip="DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java">
-<persistable path="/DozcalDroid/src/com/example/dozcaldroid/decimalize_date.java"/>
 </file>
 </mruList>
 </workbench>

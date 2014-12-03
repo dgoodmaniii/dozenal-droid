@@ -11,9 +11,8 @@ mercy. -->
 <style>
 .ansfield {
 	width:  100%;
-	font-size:  250%;
-	min-height:  1.2em;
-	max-height:  1.2em;
+	height:  15%;
+	font-size:  3.5em;
 	border-top:  2px;
 	border-bottom:  2px;
 	border-left:  0px;
@@ -21,63 +20,82 @@ mercy. -->
 	border-color:  black;
 	border-style:  solid;
 	margin-bottom:  6px;
+	vertical-align:  middle;
+	text-align:  center;
 }
 .unittype {
 	width:  100%;
-	font-size:  250%;
+	height:  14.0%;
+	font-size:  2em;
+	text-align:  center;
 }
 .fromfield select {
 	width:  50%;
-	font-size:  200%;
+	font-size:  2em;
 	color:  red;
 	float:  left;
+	text-align:  center;
 }
 .tofield select {
 	width:  50%;
 	color:  red;
-	font-size:  200%;
+	font-size:  2em;
 	float:  right;
+	text-align:  center;
 }
 .preclabel {
 	width:  50%;
-	font-size:  180%;
+	height:  14.0%;
+	font-size:  2em;
 	float:  left;
+	text-align:  center;
 }
 .precinput {
 	width:  50%;
-	font-size:  200%;
+	height:  14.0%;
 	float:  right;
+	font-size:  2em;
 	position:  relative;
 	overflow: visible;
+	text-align:  center;
 }
 .inputnum {
 	width:  100%;
-	font-size:  200%;
+	height:  14.0%;
+	font-size:  2em;
+	text-align:  center;
 }
 .frommultiple {
 	width:  50%;
-	font-size:  200%;
+	font-size:  2em;
+	height:  14.0%;
 	float:  left;
+	text-align:  center;
 }
 .tomultiple {
 	width:  50%;
-	font-size:  200%;
+	font-size:  2em;
+	height:  14.0%;
 	float:  right;
+	text-align:  center;
 }
 .frommultiple input {
-	font-size:  100%;
+	font-size:  1em;
 	width:  auto;
 	max-width:  2em;
+	text-align:  center;
 }
 .tomultiple input {
-	font-size:  100%;
+	font-size:  1em;
 	width:  auto;
 	max-width:  2em;
+	text-align:  center;
 }
 .convertbut {
-	padding:  0pt;
+	height:  14.0%;
 	width:  100%;
-	font-size:  200%;
+	font-size:  2em;
+	text-align:  center;
 }
 </style>
 <script type="text/javascript" src='./fastclick.js'></script>
@@ -768,16 +786,12 @@ Precision:
 	<option value="8">8</option>
 	<option value="9">9</option>
 </select>
-
 <input type="button" class="convertbut" text="Convert" 
 	value="Convert" onclick="doconvert();" />
-
 </form>
-
 <!-- get rid of this when done; just for debugging -->
 <!--<div id="debuganswers">
 </div>-->
-
 <script>
 document.getElementById("unitfield").value = unittype;
 document.getElementById("precfield").value = precision;
@@ -785,6 +799,5 @@ document.getElementById("frommultiple").value = frommult;
 document.getElementById("tomultiple").value = tomult;
 document.getElementById("inputquant").value = 1;
 </script>
-
 </body>
 </html>

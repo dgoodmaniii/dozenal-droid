@@ -19,6 +19,7 @@ mercy. -->
 body {
 	width:  2em;
 	width:  100%;
+	height:  100%;
 	padding:  0pt;
 	margin:  0pt;
 	border:  0pt;
@@ -27,8 +28,9 @@ body {
 	display:  block;
 	float:  left;
 	width:  20%;
+	height:  14.28571%;
 	vertical-align:  middle;
-	font-size:  280%;
+	font-size:  2em;
 	margin:  0pt;
 	padding:  0pt;
 	border-radius:  6px;
@@ -55,13 +57,15 @@ body {
 }
 .calcform {
 	width:  "100%";
+	height:  "100%";
 	padding:  0pt;
 	margin:  0pt;
 	border:  0pt;
 }
 .helpfield {
 	width:  8%;
-	font-size:  250%;
+	height:  14.28571%;
+	font-size:  2em;
 	padding:  0px;
 	margin:  0px;
 	float:  left;
@@ -85,20 +89,33 @@ body {
 #textfield {
 	width:  92%;
 	font-size:  250%;
-	height:  auto;
+	height:  14.28571%;
 	min-height:  1.2em;
 	float:  right;
 }
 .shortinput {
 	display:  block;
 	float:  left;
-	width:  20%;
+	width:  100%;
+	height:  100%;
+	line-height:  100%;
 	vertical-align:  middle;
-	font-size:  280%;
+	font-size:  2em;
 	margin:  0pt;
 	padding:  0pt;
 	border-radius:  6px;
+	background-image:  -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.09, rgb(186,204,204)),
+		color-stop(0.55, rgb(140,156,156)),
+		color-stop(0.78, rgb(124,138,138))
+	);
 	-webkit-tap-highlight-color:  rgba(0,0,0,0);
+	-moz-apperance:  none;
+	-webkit-appearance:  none;
+	appearance:  none;
 }
 </style>
 </head>
@@ -266,39 +283,44 @@ function dectodoz(decnumber)
 	}
 	return dozenalize(parts[0]);
 }
-function fixstring()
+function fixstring(problem)
 {
-	var ifpow = /([\-0-9XE;]+)[\s]*\^[\s]*([\-0-9XE;]+)/;
-	var ifsqrt = / sqrt\s*\(\s*([0-9XE;]+)\s*\)/;
+	var ifpow = /([\-0-9XE;]+|\(.*?\))[\s]*\^[\s]*([\-0-9XE;]+|\(.*?\))/g;
+/*	var ifsqrt = / sqrt\s*\(\s*([0-9XE;]+|\(.*?\))\s*\)/g;*/
+	var ifsqrt = / sqrt\s*\((.*?)\)/;
 	var ifpi = /pi/g;
 	var ife = /e/g;
+	var ifparen = /(.*?)/;
 	var matched;
+	var matchparen;
 	var amatched = new Array();
 
-	inputfield = inputfield.replace(ifpi,"3;18480949");
-	inputfield = inputfield.replace(ife,"2;87523606");
-	inputfield = inputfield.replace(/\(/," \( ");
-	inputfield = inputfield.replace(/\)/," \) ");
-	while (inputfield.indexOf(" sqrt") > -1) {
-		matched = doztodec(ifsqrt.exec(inputfield)[1]);
-		inputfield = inputfield.replace(ifsqrt,"Math.sqrt("+matched+")");
+	problem = problem.replace(ifpi,"3;18480949");
+	problem = problem.replace(ife,"2;87523606");
+	problem = problem.replace(/\(/g," \( ");
+	problem = problem.replace(/\)/g," \) ");
+	while (problem.indexOf(" sqrt") > -1) {
+		alert("ALERT:  "+problem);
+		matched = doztodec(solveprob(ifsqrt.exec(problem)[1]));
+		problem = problem.replace(ifsqrt,"Math.sqrt("+matched+")");
 	}
-	while (inputfield.indexOf("^") > -1) {
-		amatched = ifpow.exec(inputfield);
-		amatched[1] = doztodec(amatched[1]);
-		amatched[2] = doztodec(amatched[2]);
-		inputfield = inputfield.replace(amatched[0],"Math.pow("+amatched[1]+","+amatched[2]+")");
+	while (problem.indexOf("^") > -1) {
+		amatched = ifpow.exec(problem);
+		amatched[1] = doztodec(solveprob(amatched[1]));
+		amatched[2] = doztodec(solveprob(amatched[2]));
+		problem = problem.replace(amatched[0],"Math.pow("+amatched[1]+","+amatched[2]+")");
 	}
+	return problem;
 }
-function solveprob()
+function solveprob(problem)
 {
 	var addto = "";
 	var answer = "";
 	var isnumber = /[\-0-9XE;]+/;
 	var islet = /[a-z]/;
 
-	fixstring();
-	var figures = inputfield.split(" ");
+	problem = fixstring(problem);
+	var figures = problem.split(" ");
 	for (var i = 0; i < figures.length; i++) {
 		if (isnumber.test(figures[i]) && !islet.test(figures[i]) && 
 		!/^\-$/.test(figures[i])) {
@@ -313,8 +335,7 @@ function solveprob()
 	}
 	answer = eval(answer);
 	answer = dectodoz(answer);
-	inputfield = answer;
-	document.getElementById('textfield').innerHTML = answer;
+	return answer;
 }
 </script>
 
@@ -324,8 +345,8 @@ function solveprob()
 <div class="inputfield" id="textfield" /></div>
 <form class="calcform" name="textform">
 	<input onclick="addtostring('9');"  class="calcbut" type="button" 
-		value="9" /><!--
-	--><input onclick="addtostring('X');"  class="calcbut" type="button" 
+		value="9" />
+	<input onclick="addtostring('X');"  class="calcbut" type="button" 
 		value="X" />
 	<input onclick="addtostring('E');"  class="calcbut" type="button" 
 		value="E" />
@@ -371,12 +392,11 @@ function solveprob()
 		value=";" />
 	<input onclick="addtostring('-');"  class="calcbut" type="button" 
 		value="&plusmn;" />
-	<input onclick="solveprob();"  class="calcbut" type="button" 
-		value="=" />
+	<input onclick="inputfield = solveprob(inputfield); document.getElementById('textfield').innerHTML = inputfield;"  class="calcbut" type="button" value="=" />
 	<input onclick="addtostring(' + ');"  class="calcbut" type="button" 
 		value="+" />
-	<select onchange="setprecision();" class="shortinput"
-		id="precfield" />
+	<div class="calcbut"><select onchange="setprecision();" class="shortinput"
+		id="precfield">
 		<option value="0">0</option>
 		<option value="1">1</option>
 		<option value="2">2</option>
@@ -387,7 +407,7 @@ function solveprob()
 		<option value="7">7</option>
 		<option value="8">8</option>
 		<option value="9">9</option>
-	</select>
+	</select></div>
 	<br />
 	<input onclick="addtostring('(');"  class="calcbut" type="button" 
 		value="(" />
