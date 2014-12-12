@@ -3,35 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="307" key="DIALOG_WIDTH"/>
 		<item value="56" key="DIALOG_Y_ORIGIN"/>
-		<item value="37" key="DIALOG_X_ORIGIN"/>
 		<item value="416" key="DIALOG_HEIGHT"/>
+		<item value="37" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="true" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="get_datestring" key="selection"/>
+		<item value="System." key="selection"/>
 		<list key="findhistory">
-			<item value="get_datestring"/>
-			<item value="stdln"/>
-			<item value="doz_chars"/>
-			<item value="caldata"/>
-			<item value="pick_dis"/>
-			<item value="jun"/>
-			<item value="addone"/>
-			<item value="to_julian"/>
+			<item value="System."/>
+			<item value="proc_date"/>
+			<item value="contentblock"/>
+			<item value="contentbox"/>
+			<item value="startActivity"/>
+			<item value="mainactivity"/>
+			<item value="process_file"/>
+			<item value="startAct"/>
 		</list>
 		<list key="replacehistory">
+			<item value="initialize_range"/>
+			<item value="intialize_range"/>
+			<item value="sub_one_from_date"/>
+			<item value="button"/>
 			<item value="FFFFFF"/>
 			<item value="800000"/>
 			<item value="FF737CA1"/>
 			<item value="FF800000"/>
-			<item value="3300FF"/>
-			<item value="6600FF"/>
-			<item value="9900CC"/>
 		</list>
 	</section>
 </section>
