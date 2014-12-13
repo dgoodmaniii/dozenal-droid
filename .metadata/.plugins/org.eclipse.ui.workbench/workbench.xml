@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="21" version="2.0">
+<workbench progressCount="18" version="2.0">
 <workbenchAdvisor/>
 <window height="568" width="1022" x="0" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -47,15 +47,15 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" partName="MainActivity.java" path="/home/dpg/androidapps/DozCalendar/src/com/example/dozcalendar/MainActivity.java" title="MainActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/MainActivity.java" workbook="org.eclipse.ui.internal.EditorStack@1c15952">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozCalendar/src/com/example/dozcalendar/MainActivity.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8371" selectionTopPixel="3495"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="9028" selectionTopPixel="3915"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Julian.java" partName="Julian.java" path="/home/dpg/androidapps/DozCalendar/src/com/example/dozcalendar/Julian.java" title="Julian.java" tooltip="DozCalendar/src/com/example/dozcalendar/Julian.java" workbook="org.eclipse.ui.internal.EditorStack@1c15952">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozCalendar/src/com/example/dozcalendar/Julian.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3134" selectionTopPixel="1555"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddnewActivity.java" partName="AddnewActivity.java" path="/home/dpg/androidapps/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java" title="AddnewActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/AddnewActivity.java" workbook="org.eclipse.ui.internal.EditorStack@1c15952">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
+<editorState selectionHorizontalPixel="170" selectionLength="0" selectionOffset="5480" selectionTopPixel="1870"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Datelib.java" partName="Datelib.java" path="/home/dpg/androidapps/DozCalendar/src/com/example/dozcalendar/Datelib.java" title="Datelib.java" tooltip="DozCalendar/src/com/example/dozcalendar/Datelib.java" workbook="org.eclipse.ui.internal.EditorStack@1c15952">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1250" selectionTopPixel="675"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="463" selectionTopPixel="100"/>
 </editor>
 </editors>
 <views>
@@ -72,14 +72,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.cdt.debug.ui.executablesView" partName="Executables"/>
-<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints"/>
-<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
-<viewState/>
-</view>
 <view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
-<viewState/>
-</view>
 <view id="com.android.ide.eclipse.ddms.views.LogCatView" partName="LogCat">
 <viewState/>
 </view>
@@ -99,9 +92,6 @@
 </viewState>
 </view>
 <view id="com.android.ide.eclipse.ddms.views.NetworkStatsView" partName="Network Statistics">
-<viewState/>
-</view>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
@@ -130,6 +120,9 @@
 </xmlDefinedFilters>
 </customFilters>
 </viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
 </view>
 <view id="com.android.ide.eclipse.ddms.views.SysInfoView" partName="System Information">
 <viewState/>
@@ -186,42 +179,28 @@
 <view id="com.android.ide.eclipse.ddms.views.EmulatorControlView"/>
 <view id="com.android.ide.eclipse.ddms.views.SysInfoView"/>
 <view id="com.android.ide.eclipse.ddms.views.DeviceView"/>
-<fastViewBars>
-<fastViewBar fastViewLocation="1024" id="logcat" orientation="256" selectedTabId="com.android.ide.eclipse.ddms.views.LogCatView" style="0">
-<fastViews>
-<view id="com.android.ide.eclipse.ddms.views.LogCatView" ratio="0.2997602"/>
+<fastViewBars>&#x0A;<fastViewBar fastViewLocation="1024" id="logcat" orientation="256" selectedTabId="com.android.ide.eclipse.ddms.views.LogCatView" style="0">&#x0A;<fastViews>&#x0A;<view id="com.android.ide.eclipse.ddms.views.LogCatView" ratio="0.2997602"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
-<layout>
-<mainWindow>
-<info folder="true" part="devices">
-<folder activePageID="com.android.ide.eclipse.ddms.views.DeviceView" appearance="2" expanded="2">
-<page content="com.android.ide.eclipse.ddms.views.DeviceView" label="Devices"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="devices">&#x0A;<folder activePageID="com.android.ide.eclipse.ddms.views.DeviceView" appearance="2" expanded="2">&#x0A;<page content="com.android.ide.eclipse.ddms.views.DeviceView" label="Devices"/>
 <page content="com.android.ide.eclipse.ddms.views.DeviceView:*" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="devices">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="devices">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="logcat" ratio="0.8" ratioLeft="356" ratioRight="89" relationship="4" relative="devices">
-<folder appearance="2" expanded="0">
-<page content="com.android.ide.eclipse.ddms.views.LogCatView:*" label="LabelNotFound"/>
+<info folder="true" part="logcat" ratio="0.8" ratioLeft="356" ratioRight="89" relationship="4" relative="devices">&#x0A;<folder appearance="2" expanded="0">&#x0A;<page content="com.android.ide.eclipse.ddms.views.LogCatView:*" label="LabelNotFound"/>
 <page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.3" ratioLeft="303" ratioRight="707" relationship="2" relative="devices"/>
-<info folder="true" part="ddms-detail" ratio="0.4992928" ratioLeft="353" ratioRight="354" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="com.android.ide.eclipse.ddms.views.ThreadView" appearance="2" expanded="2">
-<page content="com.android.ide.eclipse.ddms.views.ThreadView" label="Threads"/>
+<info folder="true" part="ddms-detail" ratio="0.4992928" ratioLeft="353" ratioRight="354" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="com.android.ide.eclipse.ddms.views.ThreadView" appearance="2" expanded="2">&#x0A;<page content="com.android.ide.eclipse.ddms.views.ThreadView" label="Threads"/>
 <page content="com.android.ide.eclipse.ddms.views.AllocTrackerView" label="Allocation Tracker"/>
 <page content="com.android.ide.eclipse.ddms.views.NetworkStatsView" label="Network Statistics"/>
 <page content="com.android.ide.eclipse.ddms.views.FileExplorerView" label="File Explorer"/>
@@ -229,8 +208,7 @@
 <page content="com.android.ide.eclipse.ddms.views.SysInfoView" label="System Information"/>
 <page content="com.android.ide.eclipse.ddms.views.ThreadView:*" label="LabelNotFound"/>
 <page content="com.android.ide.eclipse.ddms.views.HeapView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
@@ -418,45 +396,30 @@
 <view id="org.eclipse.ui.views.TaskList"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.cdt.debug.ui.executablesView"/>
-<fastViewBars>
-<fastViewBar fastViewLocation="131072" id="org.eclipse.debug.internal.ui.ToolsFolderView" orientation="256" selectedTabId="org.eclipse.debug.ui.VariableView" style="1">
-<fastViews>
-<view id="org.eclipse.debug.ui.VariableView" ratio="0.3"/>
+<fastViewBars>&#x0A;<fastViewBar fastViewLocation="131072" id="org.eclipse.debug.internal.ui.ToolsFolderView" orientation="256" selectedTabId="org.eclipse.debug.ui.VariableView" style="1">&#x0A;<fastViews>&#x0A;<view id="org.eclipse.debug.ui.VariableView" ratio="0.3"/>
 <view id="org.eclipse.debug.ui.BreakpointView" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
-<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1b740d8" orientation="256" selectedTabId="com.android.ide.eclipse.ddms.views.LogCatView" style="1">
-<fastViews>
-<view id="com.android.ide.eclipse.ddms.views.LogCatView" ratio="0.3"/>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1b740d8" orientation="256" selectedTabId="com.android.ide.eclipse.ddms.views.LogCatView" style="1">&#x0A;<fastViews>&#x0A;<view id="com.android.ide.eclipse.ddms.views.LogCatView" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
-<fastViewBar fastViewLocation="131072" id="org.eclipse.debug.internal.ui.OutlineFolderView" orientation="256" selectedTabId="org.eclipse.ui.views.ContentOutline" style="1">
-<fastViews>
-<view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.debug.internal.ui.OutlineFolderView" orientation="256" selectedTabId="org.eclipse.ui.views.ContentOutline" style="1">&#x0A;<fastViews>&#x0A;<view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
-<layout>
-<mainWindow maximized="org.eclipse.debug.internal.ui.ConsoleFolderView">
-<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.DebugView" label="LabelNotFound"/>
+<layout>&#x0A;<mainWindow maximized="org.eclipse.debug.internal.ui.ConsoleFolderView">&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="756" ratioRight="252" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="756" ratioRight="252" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74820143" ratioLeft="312" ratioRight="105" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="1">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74820143" ratioLeft="312" ratioRight="105" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="1">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.cdt.debug.ui.executablesView" label="Executables"/>
@@ -464,33 +427,26 @@
 <page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
 <page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1b740d8" ratio="0.5" ratioLeft="504" ratioRight="504" relationship="2" relative="org.eclipse.debug.internal.ui.ConsoleFolderView">
-<folder appearance="2" expanded="0">
-<page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1b740d8" ratio="0.5" ratioLeft="504" ratioRight="504" relationship="2" relative="org.eclipse.debug.internal.ui.ConsoleFolderView">&#x0A;<folder appearance="2" expanded="0">&#x0A;<page content="com.android.ide.eclipse.ddms.views.LogCatView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.44871795" ratioLeft="140" ratioRight="172" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
-<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.75" ratioLeft="756" ratioRight="252" relationship="2" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="0">
-<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.75" ratioLeft="756" ratioRight="252" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder appearance="2" expanded="0">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.dsf.gdb.ui.tracecontrol.view" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="504" ratioRight="504" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="0">
-<page content="org.eclipse.debug.ui.VariableView" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="504" ratioRight="504" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="0">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
@@ -506,160 +462,161 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/MainActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Julian.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Numconvert.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/MainActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
 </editors>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1561" y="0"/>
-</item>
-<item historyLabel="Numconvert.java" index="3">
-<position info="not_deleted" x="390" y="56"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1016" y="0"/>
-</item>
-<item historyLabel="Numconvert.java" index="3">
-<position info="not_deleted" x="517" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1016" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1078" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1222" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1538" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4790" y="0"/>
 </item>
 <item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3134" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1538" y="0"/>
-</item>
-<item historyLabel="Numconvert.java" index="3">
-<position info="not_deleted" x="2340" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1538" y="0"/>
+<position info="not_deleted" x="4833" y="0"/>
 </item>
 <item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3134" y="0"/>
+<position info="not_deleted" x="4834" y="0"/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1538" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4835" y="0"/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1296" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3706" y="0"/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1309" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1336" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1561" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="7228" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="7535" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
 <position/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="863" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4020" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3330" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3331" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3755" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3768" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3769" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3867" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4374" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4527" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
 <position/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="144" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4554" y="0"/>
+</item>
+<item historyLabel="AddnewActivity.java" index="0">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="7744" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3160" y="62"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="9230" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="7495" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="0">
+<item historyLabel="AddnewActivity.java" index="0">
 <position/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8521" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="144" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5238" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8554" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5247" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8657" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3907" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8486" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5201" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8489" y="57"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="3907" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8483" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4554" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="9368" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5224" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="9371" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5548" y="0"/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1203" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5517" y="0"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="9371" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5620" y="0"/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1538" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5537" y="30"/>
 </item>
-<item historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8371" y="0"/>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5395" y="0"/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1538" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="2481" y="0"/>
 </item>
-<item historyLabel="Datelib.java" index="2">
-<position info="not_deleted" x="1250" y="0"/>
+<item historyLabel="Numconvert.java" index="2">
+<position/>
 </item>
-<item active="true" historyLabel="MainActivity.java" index="0">
-<position info="not_deleted" x="8371" y="0"/>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4526" y="0"/>
+</item>
+<item historyLabel="Numconvert.java" index="2">
+<position info="not_deleted" x="845" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="3">
+<position/>
+</item>
+<item historyLabel="Numconvert.java" index="2">
+<position info="not_deleted" x="179" y="0"/>
+</item>
+<item historyLabel="Julian.java" index="1">
+<position info="not_deleted" x="4526" y="0"/>
+</item>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5395" y="0"/>
+</item>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5465" y="0"/>
+</item>
+<item historyLabel="AddnewActivity.java" index="0">
+<position info="not_deleted" x="5480" y="0"/>
+</item>
+<item historyLabel="Datelib.java" index="4">
+<position info="not_deleted" x="463" y="0"/>
+</item>
+<item active="true" historyLabel="MainActivity.java" index="3">
+<position info="not_deleted" x="943" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -667,11 +624,8 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
-<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.ToolsFolderView"/>
-<trimItem IMemento.internal.id="org.eclipse.debug.internal.ui.OutlineFolderView"/>
-<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@1b740d8"/>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
 </trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
@@ -681,31 +635,34 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.HeapStatus"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="logcat"/>
+<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Numconvert.java" tooltip="DozCalendar/src/com/example/dozcalendar/Numconvert.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/Numconvert.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Datelib.java" tooltip="DozCalendar/src/com/example/dozcalendar/Datelib.java">
 <persistable path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddnewActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/AddnewActivity.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Numconvert.java" tooltip="DozCalendar/src/com/example/dozcalendar/Numconvert.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/Numconvert.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Julian.java" tooltip="DozCalendar/src/com/example/dozcalendar/Julian.java">
 <persistable path="/DozCalendar/src/com/example/dozcalendar/Julian.java"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="DozCalendar/AndroidManifest.xml">
+<persistable path="/DozCalendar/AndroidManifest.xml"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="addnew_layout.xml" tooltip="DozCalendar/res/layout/addnew_layout.xml">
 <persistable path="/DozCalendar/res/layout/addnew_layout.xml"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddnewActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/AddnewActivity.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DateCompare.java" tooltip="DozCalendar/src/com/example/dozcalendar/DateCompare.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/DateCompare.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_main.xml" tooltip="DozCalendar/res/layout/activity_main.xml">
 <persistable path="/DozCalendar/res/layout/activity_main.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="DozCalendar/AndroidManifest.xml">
-<persistable path="/DozCalendar/AndroidManifest.xml"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="R.java" tooltip="DozCalendar/gen/com/example/dozcalendar/R.java">
 <persistable path="/DozCalendar/gen/com/example/dozcalendar/R.java"/>

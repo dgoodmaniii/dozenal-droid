@@ -8,7 +8,7 @@ public class Julian {
 
 	public static Integer jdn_to_dow_num(double jdn) {
 		Integer i = (int) jdn;
-		return i % 7;
+		return (i+1) % 7;
 	}
 
 	public static double to_julian(Date date) {
@@ -109,5 +109,64 @@ public class Julian {
 			}
 		}
 		return 0.0;
+	}
+	public static String[] parse_intermitt(String inter, Integer days[],Integer months[]) {
+		String[] datestrings = new String[365];
+		SimpleDateFormat standard = new SimpleDateFormat("dd MMM yyyy");
+		Calendar cal = Calendar.getInstance();
+		int whichone = intermit_val(inter);
+		int i, j; int k = 0;
+		for (i = 0; months[i] != null; ++i) {
+			for (j = 0; days[j] != null; ++j) {
+				cal.set(Calendar.MONTH, months[i]);
+				cal.set(Calendar.DAY_OF_MONTH, 1);
+				while (cal.get(Calendar.DAY_OF_WEEK) != days[j])
+					cal.add(Calendar.DAY_OF_MONTH,1);
+				switch (whichone) {
+				case 0:
+					while(cal.get(Calendar.MONTH) == months[i]) {
+						datestrings[k++] = standard.format(cal.getTime());
+						cal.add(Calendar.DAY_OF_MONTH,7);
+					}
+					break;
+				case 1: 
+					datestrings[k++] = standard.format(cal.getTime()); 
+					break;
+				case 2: 
+					cal.add(Calendar.DAY_OF_MONTH,7);
+					datestrings[k++] = standard.format(cal.getTime());
+					break;
+				case 3: 
+					cal.add(Calendar.DAY_OF_MONTH,14);
+					datestrings[k++] = standard.format(cal.getTime());
+					break;
+				case 4: 
+					cal.add(Calendar.DAY_OF_MONTH,21);
+					datestrings[k++] = standard.format(cal.getTime());
+					break;
+				case 5:
+					cal.add(Calendar.MONTH,1);
+					while (cal.get(Calendar.DAY_OF_WEEK) != days[j])
+						cal.add(Calendar.DAY_OF_MONTH,-1);
+					datestrings[k++] = standard.format(cal.getTime());
+					break;
+				}
+			}
+		}
+		return datestrings;
+	}
+	public static int intermit_val(String inter) {
+		if (inter.equals("Every"))
+			return 0;
+		else if (inter.equals("1st"))
+			return 1;
+		else if (inter.equals("2nd"))
+			return 2;
+		else if (inter.equals("3rd"))
+			return 3;
+		else if (inter.equals("4th"))
+			return 4;
+		else
+			return 5;
 	}
 }

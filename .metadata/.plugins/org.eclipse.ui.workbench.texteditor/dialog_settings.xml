@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="307" key="DIALOG_WIDTH"/>
 		<item value="56" key="DIALOG_Y_ORIGIN"/>
-		<item value="416" key="DIALOG_HEIGHT"/>
 		<item value="37" key="DIALOG_X_ORIGIN"/>
+		<item value="416" key="DIALOG_HEIGHT"/>
 		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="true" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="System." key="selection"/>
+		<item value="index-1" key="selection"/>
 		<list key="findhistory">
-			<item value="System."/>
-			<item value="proc_date"/>
-			<item value="contentblock"/>
-			<item value="contentbox"/>
-			<item value="startActivity"/>
-			<item value="mainactivity"/>
-			<item value="process_file"/>
-			<item value="startAct"/>
+			<item value="index-1"/>
+			<item value="charify"/>
+			<item value="Calendar"/>
+			<item value="date_text"/>
+			<item value="time"/>
+			<item value="background"/>
+			<item value="#FFFFF"/>
+			<item value="EditText"/>
 		</list>
 		<list key="replacehistory">
 			<item value="initialize_range"/>

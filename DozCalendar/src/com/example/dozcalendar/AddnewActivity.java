@@ -6,17 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class AddnewActivity extends Activity {
@@ -27,11 +24,9 @@ public class AddnewActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addnew_layout);
-		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-		Typeface symbola = Typeface.createFromAsset(getAssets(),"Symbola.ttf");
 		final Button submit_event = (Button) findViewById(R.id.submit_event);
 		final EditText event_name = (EditText) findViewById(R.id.event_name);
+		event_name.requestFocus();
 		final EditText date_text = (EditText) findViewById(R.id.date_text);
 		final EditText date_endrange = (EditText) findViewById(R.id.date_range_end);
 		final EditText time_text = (EditText) findViewById(R.id.time_text);
@@ -84,12 +79,68 @@ public class AddnewActivity extends Activity {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+				} else {
+					RadioButton checked_intermit = (RadioButton) intermitt.findViewById(intermitt.getCheckedRadioButtonId());
+					String checked_inter = checked_intermit.getText().toString();
+					Integer[] inter_days = new Integer[7];
+					Integer[] inter_mons = new Integer[12];
+					int i = 0;
+					if (sun.isChecked())
+						inter_days[i++] = 1;
+					if (mon.isChecked())
+						inter_days[i++] = 2;
+					if (tue.isChecked())
+						inter_days[i++] = 3;
+					if (wed.isChecked())
+						inter_days[i++] = 4;
+					if (thu.isChecked())
+						inter_days[i++] = 5;
+					if (fri.isChecked())
+						inter_days[i++] = 6;
+					if (sat.isChecked())
+						inter_days[i++] = 7;
+					i = 0;
+					if (jan.isChecked())
+						inter_mons[i++] = 0;
+					if (feb.isChecked())
+						inter_mons[i++] = 1;
+					if (mar.isChecked())
+						inter_mons[i++] = 2;
+					if (apr.isChecked())
+						inter_mons[i++] = 3;
+					if (may.isChecked())
+						inter_mons[i++] = 4;
+					if (jun.isChecked())
+						inter_mons[i++] = 5;
+					if (jul.isChecked())
+						inter_mons[i++] = 6;
+					if (aug.isChecked())
+						inter_mons[i++] = 7;
+					if (sep.isChecked())
+						inter_mons[i++] = 8;
+					if (oct.isChecked())
+						inter_mons[i++] = 9;
+					if (nov.isChecked())
+						inter_mons[i++] = 10;
+					if (dec.isChecked())
+						inter_mons[i++] = 11;
+					String datestrings[] = Julian.parse_intermitt(checked_inter, inter_days, inter_mons);
+					FileOutputStream fos;
+					try {
+						fos = new FileOutputStream(file, true);
+						for (i = 0; datestrings[i] != null; ++i) {
+							String fileline = eventname+"|"+Numconvert.dozdatestr(datestrings[i])+"|"+timetext+"|"+excepttext+"|"+eventtype+"|\n";
+							fos.write(fileline.getBytes());
+						}
+						fos.close();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				AddnewActivity.activity.finish();	
 			}
 		});
-	}
-	protected void onDestroy(Bundle savedInstanceState) {
-		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 }

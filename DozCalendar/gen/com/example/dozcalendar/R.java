@@ -161,8 +161,6 @@ public final class R {
         public static final int start_range_hint=0x7f050039;
         public static final int sun=0x7f050016;
         public static final int sunriseset_text=0x7f05000a;
-        /**  <string name="right_arrow">\u27A7</string> 
-         */
         public static final int text_daily=0x7f050006;
         public static final int text_monthly=0x7f050008;
         public static final int text_settings=0x7f050009;

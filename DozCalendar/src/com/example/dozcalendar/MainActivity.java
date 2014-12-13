@@ -29,8 +29,8 @@ public class MainActivity extends Activity {
 	public static String usedate = "";
 	public static String date_format = "EEE, dd MMM yyyy";
 	public static Date currdate = new Date();
-	public static String xdig = "X";
-	public static String edig = "E";
+	public static String xdig = "*";
+	public static String edig = "#";
 	public static Double startjdn = Julian.to_julian(currdate);
 	public static Double endjdn = Julian.to_julian(currdate);
 	public static int first_dow = 0;
@@ -265,7 +265,7 @@ public class MainActivity extends Activity {
 		contentblock.setText("");
 		for (index = 0; index < numentries; ++index) {
 			if ((alldates.get(index).jdn >= startjdn) && (alldates.get(index).jdn <= endjdn)) {
-				if (alldates.get(index-1).jdn.toString().equals(alldates.get(index).jdn.toString())) {
+				if ((index > 0) && alldates.get(index-1).jdn.equals(alldates.get(index).jdn)) {
 					contentblock.append(alldates.get(index).print(curr_display, 1));
 				} else {
 					contentblock.append(alldates.get(index).print(curr_display, 0));
