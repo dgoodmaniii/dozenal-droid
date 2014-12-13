@@ -33,6 +33,13 @@ public class AddnewActivity extends Activity {
 		final EditText except_text = (EditText) findViewById(R.id.except_text);
 		final EditText except_endrange = (EditText) findViewById(R.id.except_text_end);
 		final EditText event_type = (EditText) findViewById(R.id.event_type);
+		event_name.requestFocus();
+		event_name.setNextFocusDownId(R.id.date_text);
+		date_text.setNextFocusDownId(R.id.date_range_end);
+		date_endrange.setNextFocusDownId(R.id.time_text);
+		time_text.setNextFocusDownId(R.id.except_text);
+		except_text.setNextFocusDownId(R.id.except_text_end);
+		except_endrange.setNextFocusDownId(R.id.event_type);
 		final RadioGroup intermitt = (RadioGroup) findViewById(R.id.intermitt);
 		final CheckBox sun = (CheckBox) findViewById(R.id.checkbox_sun);
 		final CheckBox mon = (CheckBox) findViewById(R.id.checkbox_mon);

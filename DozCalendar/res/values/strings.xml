@@ -60,6 +60,8 @@
     <string name="end_range_hint">End Range</string>
     <string name="start_range_hint">Start Range</string>
     <string name="event_name_hint">Event Name</string>
+    <string name="time_hint">Time of Event</string>
+    <string name="event_type_hint">Type of Event</string>
     <string name="range_symbol">-</string>
     <string name="date_form_label">Date Format</string>
     <string name="date_form_hint">EEE, dd MMM yyyy</string>

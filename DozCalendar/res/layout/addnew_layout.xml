@@ -70,6 +70,7 @@
          android:textSize="8pt"
          android:layout_weight="0.475"
          android:hint="@string/start_range_hint"
+         android:textColorHint="#666666"
          android:gravity="center"
          android:textColor="#000000"
          android:textIsSelectable="true" />
@@ -92,6 +93,7 @@
          android:textSize="8pt"
          android:layout_weight="0.475"
          android:hint="@string/end_range_hint"
+         android:textColorHint="#666666"
          android:gravity="center"
          android:textColor="#000000"
          android:textIsSelectable="true" />
@@ -366,12 +368,16 @@
     <EditText 
          android:id="@+id/time_text"
          android:inputType="text"
+		 android:digits="0123456789*#;-"
+		 android:singleLine="true"
          android:layout_width="fill_parent"
          android:layout_height="wrap_content"
          android:layout_marginTop="3dp"
          android:textSize="8pt"
          android:gravity="center"
          android:textColor="#000000"
+         android:hint="@string/time_hint"
+         android:textColorHint="#666666"
          android:textIsSelectable="true" />
     <TextView 
          android:id="@+id/time_field_blank_label"
@@ -439,8 +445,8 @@
          android:layout_height="wrap_content"
          android:layout_marginTop="3dp"
          android:textSize="8pt"
-     	 android:layout_weight="0.475"
-     	 android:hint="@string/end_range_hint"
+	     	android:layout_weight="0.475"
+ 	    	android:hint="@string/end_range_hint"
          android:gravity="center"
          android:textColor="#000000"
          android:textIsSelectable="true" />
@@ -481,6 +487,9 @@
          android:textSize="8pt"
          android:gravity="center"
          android:textColor="#000000"
+         android:hint="@string/event_type_hint"
+         android:textColorHint="#666666"
+         android:imeOptions="actionDone"
          android:textIsSelectable="true" />
     <TextView 
          android:id="@+id/event_type_blank_label"
