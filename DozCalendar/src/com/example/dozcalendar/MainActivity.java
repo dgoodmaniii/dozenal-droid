@@ -11,9 +11,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -21,8 +25,11 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+@SuppressLint("HandlerLeak")
 public class MainActivity extends Activity {
 
 	public static Integer curr_display = 0;
@@ -35,6 +42,18 @@ public class MainActivity extends Activity {
 	public static Double endjdn = Julian.to_julian(currdate);
 	public static int first_dow = 0;
 	public static ArrayList<Datelib> alldates = new ArrayList<Datelib>();
+	ProgressBar bar;
+	@SuppressLint("HandlerLeak")
+	Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+				isRunning.set(false);
+				bar.setVisibility(View.GONE);			
+				Toast loading_done = Toast.makeText(getApplicationContext(),"Date loading complete",Toast.LENGTH_SHORT);
+				loading_done.show();
+		}
+	};
+	AtomicBoolean isRunning = new AtomicBoolean(false);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,9 +206,10 @@ public class MainActivity extends Activity {
 	}
 	
 	public void process_file(TextView content) {
+		bar = (ProgressBar) findViewById(R.id.progress);
 		String filename = "caldata";
 		alldates = new ArrayList<Datelib>();
-		File file = new File(Environment.getExternalStorageDirectory(),filename );
+		final File file = new File(Environment.getExternalStorageDirectory(),filename );
 		if (file.exists()) {
 			content.setText("Found file " + filename + "\n");
 		} else {
@@ -199,23 +219,41 @@ public class MainActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
-		BufferedReader br;
-		final TextView contentblock = (TextView) findViewById(R.id.dateunit_content);
+		final BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader(file));
-			String line;
-			while ((line = br.readLine()) != null) {
-				proc_date(line);
-			}
-			br.close();
+			final TextView contentblock = (TextView) findViewById(R.id.dateunit_content);
+			Thread background = new Thread(new Runnable() {
+				public void run() {
+					String line;
+					try {
+						while ((line = br.readLine()) != null) {
+							proc_date(line);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					try {
+						br.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					Collections.sort(alldates, new CompareEvents());
+					handler.sendMessage(handler.obtainMessage());
+				}
+			});
 			contentblock.setText("");
-			Collections.sort(alldates, new CompareEvents());
 			print_events(contentblock);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			isRunning.set(true);
+			background.start();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
 		}
+	}
+	public void onStop() {
+		super.onStop();
+		isRunning.set(false);
+		bar.setVisibility(View.GONE);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

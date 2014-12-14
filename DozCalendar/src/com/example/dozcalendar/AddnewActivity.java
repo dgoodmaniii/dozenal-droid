@@ -89,8 +89,8 @@ public class AddnewActivity extends Activity {
 				} else {
 					RadioButton checked_intermit = (RadioButton) intermitt.findViewById(intermitt.getCheckedRadioButtonId());
 					String checked_inter = checked_intermit.getText().toString();
-					Integer[] inter_days = new Integer[7];
-					Integer[] inter_mons = new Integer[12];
+					Integer[] inter_days = new Integer[8];
+					Integer[] inter_mons = new Integer[13];
 					int i = 0;
 					if (sun.isChecked())
 						inter_days[i++] = 1;
