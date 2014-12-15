@@ -122,8 +122,9 @@
         android:weightSum="1.0"
         android:orientation="vertical">
     <ProgressBar android:id="@+id/progress"
-        style="@android:style/Widget.ProgressBar.Horizontal"
+        style="@android:style/Widget.ProgressBar.Large"
         android:layout_width="fill_parent"
+        android:background="#FAFAFA"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/dateunit_content"

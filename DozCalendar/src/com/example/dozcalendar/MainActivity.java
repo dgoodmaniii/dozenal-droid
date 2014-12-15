@@ -47,10 +47,14 @@ public class MainActivity extends Activity {
 	Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
+			if (msg.what == 0) {
 				isRunning.set(false);
 				bar.setVisibility(View.GONE);			
 				Toast loading_done = Toast.makeText(getApplicationContext(),"Date loading complete",Toast.LENGTH_SHORT);
 				loading_done.show();
+			} else {
+				bar.incrementProgressBy(5);
+			}
 		}
 	};
 	AtomicBoolean isRunning = new AtomicBoolean(false);
@@ -81,6 +85,13 @@ public class MainActivity extends Activity {
 		String x = new StringBuilder().appendCodePoint(0x1F4C6).toString();
 		monthlybutton.setText(y);
 		dailybutton.setText(x);
+		settingsbutton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this,Settings.class);
+				MainActivity.this.startActivity(intent);
+			}
+		});
 		addnew.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -229,6 +240,7 @@ public class MainActivity extends Activity {
 					try {
 						while ((line = br.readLine()) != null) {
 							proc_date(line);
+							handler.sendMessage(handler.obtainMessage(1));
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -239,7 +251,7 @@ public class MainActivity extends Activity {
 						e.printStackTrace();
 					}
 					Collections.sort(alldates, new CompareEvents());
-					handler.sendMessage(handler.obtainMessage());
+					handler.sendMessage(handler.obtainMessage(0));
 				}
 			});
 			contentblock.setText("");
@@ -261,7 +273,18 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	public void proc_opt(String s) {
+		if (s.startsWith("%DATEFORM")) {
+			date_format = s.substring(s.indexOf(":"));
+			while (date_format.startsWith(" "))
+				date_format = date_format.substring(1);
+		}
+	}
 	public void proc_date(String s) {
+		if (s.startsWith("%")) {
+			proc_opt(s);
+			return;
+		}
 		s = s.replace("||","| |"); s = s.replace("||","| |");
 		String dateline[] = s.split("\\|");
 		for (int i = 2; i < 3; ++i)

@@ -1,8 +1,10 @@
 package com.example.dozcalendar;
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 
 public class Datelib {
+	SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.date_format);
 	public Double jdn;
 	public String eventname;
 	public Integer timestart;
@@ -49,7 +51,7 @@ public class Datelib {
 			return s;
 		} else {
 			if (firsttime == 0) {
-				s = s + Julian.julian_to_date(jdn).toString() + "\n";
+				s = s + Numconvert.dozdatestr(sdf.format(Julian.julian_to_date(jdn))) + "\n";
 			}
 			s = s + "\t";
 			if (timestart != 0)
