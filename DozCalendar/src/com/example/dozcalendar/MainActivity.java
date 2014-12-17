@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
 	public static Double startjdn = Julian.to_julian(currdate);
 	public static Double endjdn = Julian.to_julian(currdate);
 	public static int first_dow = 0;
+	public static int moonphases = 0; // 1 for true
 	public static ArrayList<Datelib> alldates = new ArrayList<Datelib>();
 	ProgressBar bar;
 	@SuppressLint("HandlerLeak")
@@ -153,8 +154,11 @@ public class MainActivity extends Activity {
 			return;
 		} else if (disp_mode == 1) {
 			Integer curr_dow = Julian.dow_num(date);
-			startjdn -= curr_dow;
-			endjdn = endjdn + (6 - curr_dow);			
+			if (first_dow > curr_dow)
+				startjdn = startjdn - (curr_dow + (7 - first_dow));
+			else if (first_dow <= curr_dow)
+				startjdn = startjdn - (curr_dow - first_dow);
+			endjdn = startjdn + 6;
 		} else if (disp_mode == 2) {
 			Integer day_month = Julian.day_of_month(date);
 			Integer len_month = Julian.len_of_month(date);
@@ -278,6 +282,18 @@ public class MainActivity extends Activity {
 			date_format = s.substring(s.indexOf(":"));
 			while (date_format.startsWith(" "))
 				date_format = date_format.substring(1);
+		} else if (s.startsWith("%FIRSTDOW")) {
+			s = s.substring(s.indexOf(":"));
+			while (s.startsWith(" "))
+				s = s.substring(1);
+			first_dow = Integer.parseInt(s);
+		} else if (s.startsWith("%ASTRONOMY")) {
+			s = s.substring(s.indexOf(":"));
+			while (s.startsWith(" "))
+				s = s.substring(1);
+			if (s.contains("moon") == true) {
+				moonphases = 1;
+			}
 		}
 	}
 	public void proc_date(String s) {

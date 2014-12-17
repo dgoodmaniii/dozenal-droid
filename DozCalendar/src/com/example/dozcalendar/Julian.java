@@ -169,4 +169,22 @@ public class Julian {
 		else
 			return 5;
 	}
+	public String downum_to_name(int dow) {
+		if (dow == 0)
+			return "Sunday";
+		else if (dow == 1)
+			return "Monday";
+		else if (dow == 2)
+			return "Tuesday";
+		else if (dow == 3)
+			return "Wednesday";
+		else if (dow == 4)
+			return "Thursday";
+		else if (dow == 5)
+			return "Friday";
+		else if (dow == 6)
+			return "Saturday";
+		else
+			return "Not a real weekday number";
+	}
 }
