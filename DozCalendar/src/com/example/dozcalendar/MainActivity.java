@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 	public static String edig = "#";
 	public static Double startjdn = Julian.to_julian(currdate);
 	public static Double endjdn = Julian.to_julian(currdate);
-	public static int first_dow = 0;
+	public static int first_dow = 6;
 	public static int moonphases = 0; // 1 for true
 	public static ArrayList<Datelib> alldates = new ArrayList<Datelib>();
 	ProgressBar bar;
@@ -53,8 +53,6 @@ public class MainActivity extends Activity {
 				bar.setVisibility(View.GONE);			
 				Toast loading_done = Toast.makeText(getApplicationContext(),"Date loading complete",Toast.LENGTH_SHORT);
 				loading_done.show();
-			} else {
-				bar.incrementProgressBy(5);
 			}
 		}
 	};
@@ -157,7 +155,7 @@ public class MainActivity extends Activity {
 			if (first_dow > curr_dow)
 				startjdn = startjdn - (curr_dow + (7 - first_dow));
 			else if (first_dow <= curr_dow)
-				startjdn = startjdn - (curr_dow - first_dow);
+				startjdn = startjdn - (curr_dow - first_dow) - 1;
 			endjdn = startjdn + 6;
 		} else if (disp_mode == 2) {
 			Integer day_month = Julian.day_of_month(date);
