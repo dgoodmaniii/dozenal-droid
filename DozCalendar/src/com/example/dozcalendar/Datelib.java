@@ -44,7 +44,12 @@ public class Datelib {
 	public String print(int currdisplay,int firsttime) {
 		String s = "";
 		if (currdisplay == 0) {
-			s += Integer.toString(Integer.parseInt(timestart.toString()),12);
+			if (firsttime == 0) {
+				if (MainActivity.moonphases == 1)
+					s += Lunar.lunar_phase_symb(jdn);
+			}
+			if (timestart != 0)
+				s += Integer.toString(Integer.parseInt(timestart.toString()),12);
 			if (timeend != 0)
 				s = s+"--"+Integer.toString(Integer.parseInt(timeend.toString()),12);
 			s = s + "\t" + eventname + "\n";
@@ -52,6 +57,8 @@ public class Datelib {
 		} else {
 			if (firsttime == 0) {
 				s = s + Numconvert.dozdatestr(sdf.format(Julian.julian_to_date(jdn))) + "\n";
+				if (MainActivity.moonphases == 1)
+					s += "\t"+Lunar.lunar_phase_symb(jdn);
 			}
 			s = s + "\t";
 			if (timestart != 0)

@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 	public static String edig = "#";
 	public static Double startjdn = Julian.to_julian(currdate);
 	public static Double endjdn = Julian.to_julian(currdate);
-	public static int first_dow = 6;
+	public static int first_dow = 0;
 	public static int moonphases = 0; // 1 for true
 	public static ArrayList<Datelib> alldates = new ArrayList<Datelib>();
 	ProgressBar bar;
@@ -152,10 +152,7 @@ public class MainActivity extends Activity {
 			return;
 		} else if (disp_mode == 1) {
 			Integer curr_dow = Julian.dow_num(date);
-			if (first_dow > curr_dow)
-				startjdn = startjdn - (curr_dow + (7 - first_dow));
-			else if (first_dow <= curr_dow)
-				startjdn = startjdn - (curr_dow - first_dow) - 1;
+			startjdn = startjdn - Math.abs(curr_dow - first_dow);
 			endjdn = startjdn + 6;
 		} else if (disp_mode == 2) {
 			Integer day_month = Julian.day_of_month(date);
@@ -232,15 +229,21 @@ public class MainActivity extends Activity {
 				e.printStackTrace();
 			}
 		}
-		final BufferedReader br;
+		final BufferedReader bropts;
+		final BufferedReader brdata;
 		try {
-			br = new BufferedReader(new FileReader(file));
+			bropts = new BufferedReader(new FileReader(file));
+			brdata = new BufferedReader(new FileReader(file));
 			final TextView contentblock = (TextView) findViewById(R.id.dateunit_content);
 			Thread background = new Thread(new Runnable() {
 				public void run() {
 					String line;
 					try {
-						while ((line = br.readLine()) != null) {
+						while ((line = bropts.readLine()) != null) {
+							if (line.startsWith("%"))
+								proc_opt(line);
+						}
+						while ((line = brdata.readLine()) != null) {							
 							proc_date(line);
 							handler.sendMessage(handler.obtainMessage(1));
 						}
@@ -248,7 +251,8 @@ public class MainActivity extends Activity {
 						e.printStackTrace();
 					}
 					try {
-						br.close();
+						bropts.close();
+						brdata.close();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -278,15 +282,18 @@ public class MainActivity extends Activity {
 	public void proc_opt(String s) {
 		if (s.startsWith("%DATEFORM")) {
 			date_format = s.substring(s.indexOf(":"));
+			date_format = date_format.substring(1);
 			while (date_format.startsWith(" "))
 				date_format = date_format.substring(1);
 		} else if (s.startsWith("%FIRSTDOW")) {
 			s = s.substring(s.indexOf(":"));
+			s = s.substring(1);
 			while (s.startsWith(" "))
 				s = s.substring(1);
 			first_dow = Integer.parseInt(s);
 		} else if (s.startsWith("%ASTRONOMY")) {
 			s = s.substring(s.indexOf(":"));
+			s = s.substring(1);
 			while (s.startsWith(" "))
 				s = s.substring(1);
 			if (s.contains("moon") == true) {
@@ -296,7 +303,6 @@ public class MainActivity extends Activity {
 	}
 	public void proc_date(String s) {
 		if (s.startsWith("%")) {
-			proc_opt(s);
 			return;
 		}
 		s = s.replace("||","| |"); s = s.replace("||","| |");

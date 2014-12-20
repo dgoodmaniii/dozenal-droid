@@ -169,7 +169,25 @@ public class Julian {
 		else
 			return 5;
 	}
-	public String downum_to_name(int dow) {
+	static public Integer downame_to_downum(String name) {
+		if (name.equals("Sunday"))
+			return 0;
+		else if (name.equals("Monday"))
+			return 1;
+		else if (name.equals("Tuesday"))
+			return 2;
+		else if (name.equals("Wednesday"))
+			return 3;
+		else if (name.equals("Thursday"))
+			return 4;
+		else if (name.equals("Friday"))
+			return 5;
+		else if (name.equals("Saturday"))
+			return 6;
+		else
+			return -1;
+	}
+	static public String downum_to_name(int dow) {
 		if (dow == 0)
 			return "Sunday";
 		else if (dow == 1)

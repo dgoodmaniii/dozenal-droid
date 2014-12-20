@@ -77,6 +77,6 @@
         <item>Saturday</item>
     </string-array>
     <string name="first_dow_title">First Day of Week</string>
-    <string name="first_dow_exp">The weekday which starts the week; default is the ISO Monday.</string>
+    <string name="first_dow_exp">The weekday which starts the week; default is Sunday.</string>
 
 </resources>
