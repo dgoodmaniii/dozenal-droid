@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
   		android:layout_width="fill_parent"
   		android:layout_height="fill_parent">
   	<LinearLayout
   	    android:layout_width="match_parent"
     	android:layout_height="wrap_content"
     	android:orientation="vertical" >
+    <LinearLayout 
+        android:orientation="vertical"
+        android:background="#FF800000"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
      <TextView 
          android:id="@+id/date_form_label"
          android:layout_width="fill_parent"
@@ -19,7 +19,8 @@
          android:layout_marginTop="3dp"
          android:textSize="12pt"
          android:gravity="left"
-         android:textColor="#000000"
+         android:background="#FF800000"
+         android:textColor="#FFFFFF"
          android:text="@string/date_form_label"
          android:textIsSelectable="true" />
     <EditText 
@@ -31,29 +32,39 @@
          android:textSize="8pt"
          android:hint="@string/date_form_hint"
          android:gravity="center"
-         android:textColor="#000000"
+         android:background="#FF800000"
+         android:textColor="#FFFFFF"
          android:textIsSelectable="true" />
     <TextView 
          android:id="@+id/date_form_exp"
          android:layout_width="fill_parent"
          android:layout_height="0dp"
          android:layout_marginTop="3dp"
-         android:textColor="#000000"
+		 android:background="#FF800000"
+         android:textColor="#FFFFFF"
          android:gravity="left"
          android:layout_weight="0.05"
          android:textSize="4pt"
          android:text="@string/date_form_exp"
          android:textIsSelectable="true" />
-    
+    </LinearLayout>
+    <LinearLayout 
+        android:orientation="vertical"
+        android:background="#FF737CA1"
+        android:textColor="#FFFFFF"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
     <TextView 
         android:id="@+id/first_dow_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="12pt"
+        android:textColor="#FFFFFF"
         android:text="@string/first_dow_title"/>
     <Spinner
         android:id="@+id/first_dow"
         android:layout_width="match_parent"
+        android:textColor="#FFFFFF"
         android:layout_height="wrap_content"
         android:entries="@array/dow_names"
     />
@@ -62,18 +73,24 @@
          android:layout_width="fill_parent"
          android:layout_height="0dp"
          android:layout_marginTop="3dp"
-         android:textColor="#000000"
          android:gravity="left"
          android:layout_weight="0.05"
+         android:textColor="#FFFFFF"
          android:textSize="4pt"
          android:text="@string/first_dow_exp"
          android:textIsSelectable="true" />
-    
+    </LinearLayout>
+    <LinearLayout 
+        android:orientation="vertical"
+        android:background="#FF800000"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
     <TextView 
         android:id="@+id/astron_opts_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="12pt"
+        android:textColor="#FFFFFF"
         android:text="@string/astron_opts_title"/>
     <LinearLayout
   	    android:layout_width="match_parent"
@@ -82,10 +99,12 @@
 		<CheckBox android:id="@+id/moonphase_opt"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
+        	android:textColor="#FFFFFF"
         	android:text="@string/moonphase_text" />
 		<CheckBox android:id="@+id/nomoonphase_opt"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
+        	android:textColor="#FFFFFF"
         	android:text="@string/nomoonphase_text" />
 	</LinearLayout>
 	 <!-- <LinearLayout
@@ -107,8 +126,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="4pt"
+        android:textColor="#FFFFFF"
         android:text="@string/astron_opts_exp"/>
-
+	</LinearLayout>
+    <LinearLayout 
+        android:orientation="vertical"
+        android:background="#FF737CA1"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent">
 	<Button
         android:id="@+id/save_settings_button"
         android:layout_width="wrap_content"
@@ -123,5 +148,5 @@
         android:text="@string/save_settings_button"
         android:textColor="#FF000000" />
 	</LinearLayout>
+	</LinearLayout>
     </ScrollView>
-</LinearLayout>

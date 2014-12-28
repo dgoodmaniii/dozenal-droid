@@ -302,9 +302,8 @@ public class MainActivity extends Activity {
 		}
 	}
 	public void proc_date(String s) {
-		if (s.startsWith("%")) {
+		if (s.startsWith("%"))
 			return;
-		}
 		s = s.replace("||","| |"); s = s.replace("||","| |");
 		String dateline[] = s.split("\\|");
 		for (int i = 2; i < 3; ++i)
