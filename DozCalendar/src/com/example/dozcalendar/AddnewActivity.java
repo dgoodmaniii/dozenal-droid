@@ -76,7 +76,7 @@ public class AddnewActivity extends Activity {
 				String eventtype = event_type.getText().toString();
 				if (datetext.trim().length() != 0) {
 					if (validate_date(datetext) == 0) {
-						showAlert(getWindow().getDecorView().findViewById(android.R.id.content));
+						showAlert(getWindow().getDecorView().findViewById(android.R.id.content),getString(R.string.error_title),getString(R.string.date_error));
 						error = 1;
 					} else {
 						error = 0;
@@ -84,7 +84,23 @@ public class AddnewActivity extends Activity {
 				}
 				if (dateendtext.trim().length() != 0) {
 					if (validate_date(dateendtext) == 0) {
-						showAlert(getWindow().getDecorView().findViewById(android.R.id.content));
+						showAlert(getWindow().getDecorView().findViewById(android.R.id.content),getString(R.string.error_title),getString(R.string.date_end_error));
+						error = 1;
+					} else {
+						error = 0;
+					}
+				}
+				if (excepttext.trim().length() != 0) {
+					if (validate_date(dateendtext) == 0) {
+						showAlert(getWindow().getDecorView().findViewById(android.R.id.content),getString(R.string.error_title),getString(R.string.date_excp_error));
+						error = 1;
+					} else {
+						error = 0;
+					}
+				}
+				if (exceptendtext.trim().length() != 0) {
+					if (validate_date(dateendtext) == 0) {
+						showAlert(getWindow().getDecorView().findViewById(android.R.id.content),getString(R.string.error_title),getString(R.string.date_end_excp_error));
 						error = 1;
 					} else {
 						error = 0;
@@ -181,10 +197,10 @@ public class AddnewActivity extends Activity {
 			return 1;
 		}
 	}
-	public void showAlert(View view) {
+	public void showAlert(View view,String title,String message) {
 		new AlertDialog.Builder(this)
-			.setTitle("MessageDemo")
-			.setMessage("Message Here")
+			.setTitle(title)
+			.setMessage(message)
 			.setNeutralButton("Okay",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dlg, int sumthin) {
 				}

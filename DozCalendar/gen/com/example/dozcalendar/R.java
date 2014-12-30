@@ -116,6 +116,10 @@ public final class R {
         public static final int astron_opts_exp=0x7f05000f;
         public static final int astron_opts_title=0x7f05000e;
         public static final int aug=0x7f050032;
+        public static final int date_end_error=0x7f050045;
+        public static final int date_end_excp_error=0x7f050047;
+        public static final int date_error=0x7f050044;
+        public static final int date_excp_error=0x7f050046;
         public static final int date_field_blank_label=0x7f05001d;
         public static final int date_field_label=0x7f050014;
         public static final int date_form_exp=0x7f050040;
@@ -123,6 +127,7 @@ public final class R {
         public static final int date_form_label=0x7f05003e;
         public static final int dec=0x7f050036;
         public static final int end_range_hint=0x7f050038;
+        public static final int error_title=0x7f050043;
         public static final int event_name_hint=0x7f05003a;
         public static final int event_name_label=0x7f050013;
         public static final int event_type_blank_label=0x7f050026;

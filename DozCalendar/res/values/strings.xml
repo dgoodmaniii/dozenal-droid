@@ -78,5 +78,10 @@
     </string-array>
     <string name="first_dow_title">First Day of Week</string>
     <string name="first_dow_exp">The weekday which starts the week; default is Sunday.</string>
+    <string name="error_title">Error</string>
+    <string name="date_error">The date field is formatted incorrectly; please enter the date in one of the following formats:\n\t yyyy-MM-dd\n\t yyyy-MMM-dd\n\t yyyy/MM/dd\n\t yyyy/MMM/dd\n\t dd MMM yyyy\n\t dd MMMM yyyy\n\t MMM dd, yyyy\n\t MMMM dd, yyyy</string>
+    <string name="date_end_error">The end of your date range is formatted incorrectly; please enter the date in one of the following formats:\n\t yyyy-MM-dd\n\t yyyy-MMM-dd\n\t yyyy/MM/dd\n\t yyyy/MMM/dd\n\t dd MMM yyyy\n\t dd MMMM yyyy\n\t MMM dd, yyyy\n\t MMMM dd, yyyy</string>
+    <string name="date_excp_error">The first date exception field is formatted incorrectly; please enter the date in one of the following formats:\n\t yyyy-MM-dd\n\t yyyy-MMM-dd\n\t yyyy/MM/dd\n\t yyyy/MMM/dd\n\t dd MMM yyyy\n\t dd MMMM yyyy\n\t MMM dd, yyyy\n\t MMMM dd, yyyy</string>
+    <string name="date_end_excp_error">The end of your exception date range is formatted incorrectly; please enter the date in one of the following formats:\n\t yyyy-MM-dd\n\t yyyy-MMM-dd\n\t yyyy/MM/dd\n\t yyyy/MMM/dd\n\t dd MMM yyyy\n\t dd MMMM yyyy\n\t MMM dd, yyyy\n\t MMMM dd, yyyy</string>
 
 </resources>
