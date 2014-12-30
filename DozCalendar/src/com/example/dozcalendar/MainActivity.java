@@ -354,10 +354,12 @@ public class MainActivity extends Activity {
 		}
 	}
 	protected void onResume(Bundle savedInstanceState) {
-/*		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Typeface symbola = Typeface.createFromAsset(getAssets(),"Symbola.ttf");
+	//	Typeface symbola = Typeface.createFromAsset(getAssets(),"Symbola.ttf");
 		final TextView contentblock = (TextView) findViewById(R.id.dateunit_content);
-		process_file(contentblock);*/
+		process_file(contentblock);
+		print_events(contentblock);
+		System.out.println("RESUME");
 	}
 }

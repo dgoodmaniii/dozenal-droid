@@ -91,6 +91,7 @@ public class Numconvert {
 	}
 	public static Integer[] parse_timestring(String s) {
 		Integer time[] = {0, 0};
+		s = s.replace('*','a'); s = s.replace('#','b');
 		s = s.replace(";","");s = s.replace(";","");
 		String timeparts[] = {"",""};
 		if (s.contains("--")) {

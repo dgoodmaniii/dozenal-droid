@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.RadioGroup;
 public class AddnewActivity extends Activity {
 	
 	public static Activity activity = null;
+	int error = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,20 +74,39 @@ public class AddnewActivity extends Activity {
 				String excepttext = except_text.getText().toString();
 				String exceptendtext = except_endrange.getText().toString();
 				String eventtype = event_type.getText().toString();
+				if (datetext.trim().length() != 0) {
+					if (validate_date(datetext) == 0) {
+						showAlert(getWindow().getDecorView().findViewById(android.R.id.content));
+						error = 1;
+					} else {
+						error = 0;
+					}
+				}
+				if (dateendtext.trim().length() != 0) {
+					if (validate_date(dateendtext) == 0) {
+						showAlert(getWindow().getDecorView().findViewById(android.R.id.content));
+						error = 1;
+					} else {
+						error = 0;
+					}
+				}
 				if (dateendtext.trim().length() != 0)
 					datetext = datetext+"--"+dateendtext;
 				if (exceptendtext.trim().length() != 0)
 					excepttext = excepttext+"--"+exceptendtext;
 				if (datetext.trim().length() != 0) {
-					String fileline = eventname+"|"+datetext+"|"+timetext+"|"+excepttext+"|"+eventtype+"|\n";
-					try {
-						FileOutputStream fos = new FileOutputStream(file, true);
-						fos.write(fileline.getBytes());
-						fos.close();
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
+					if (error == 0) {
+						String fileline = eventname+"|"+datetext+"|"+timetext+"|"+excepttext+"|"+eventtype+"|\n";
+						try {
+							FileOutputStream fos = new FileOutputStream(file, true);
+							fos.write(fileline.getBytes());
+							fos.close();
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						AddnewActivity.activity.finish();
 					}
 				} else {
 					RadioButton checked_intermit = (RadioButton) intermitt.findViewById(intermitt.getCheckedRadioButtonId());
@@ -132,22 +154,41 @@ public class AddnewActivity extends Activity {
 					if (dec.isChecked())
 						inter_mons[i++] = 11;
 					String datestrings[] = Julian.parse_intermitt(checked_inter, inter_days, inter_mons);
-					FileOutputStream fos;
-					try {
-						fos = new FileOutputStream(file, true);
-						for (i = 0; datestrings[i] != null; ++i) {
-							String fileline = eventname+"|"+Numconvert.dozdatestr(datestrings[i])+"|"+timetext+"|"+excepttext+"|"+eventtype+"|\n";
-							fos.write(fileline.getBytes());
+					if (error == 0) {
+						FileOutputStream fos;
+						try {
+							fos = new FileOutputStream(file, true);
+							for (i = 0; datestrings[i] != null; ++i) {
+								String fileline = eventname+"|"+Numconvert.dozdatestr(datestrings[i])+"|"+timetext+"|"+excepttext+"|"+eventtype+"|\n";
+								fos.write(fileline.getBytes());
+							}
+							fos.close();
+						} catch (FileNotFoundException e1) {
+							e1.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
 						}
-						fos.close();
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
+						AddnewActivity.activity.finish();
 					}
 				}
-				AddnewActivity.activity.finish();	
 			}
 		});
+	}
+	public int validate_date(String s) {
+		if (Julian.parse_datestring(Numconvert.decdatestr(s)) == 0.0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	public void showAlert(View view) {
+		new AlertDialog.Builder(this)
+			.setTitle("MessageDemo")
+			.setMessage("Message Here")
+			.setNeutralButton("Okay",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dlg, int sumthin) {
+				}
+			})
+			.show();
 	}
 }

@@ -45,27 +45,27 @@ public class Datelib {
 		String s = "";
 		if (currdisplay == 0) {
 			if (firsttime == 0) {
-				if (MainActivity.moonphases == 1)
-					s += Lunar.lunar_phase_symb(jdn);
+				if ((MainActivity.moonphases == 1) && (Lunar.lunar_phase_symb(jdn) != ""))
+					s = s+Lunar.lunar_phase_symb(jdn);
 			}
 			if (timestart != 0)
-				s += Integer.toString(Integer.parseInt(timestart.toString()),12);
+				s += String.format("%4s",Numconvert.doz_prettify(Integer.toString(Integer.parseInt(timestart.toString()),12))).replace(' ','0');
 			if (timeend != 0)
-				s = s+"--"+Integer.toString(Integer.parseInt(timeend.toString()),12);
-			s = s + "\t" + eventname + "\n";
+				s = s+"--"+String.format("%4s",Numconvert.doz_prettify(Integer.toString(Integer.parseInt(timeend.toString()),12))).replace(' ','0');
+			s = s + "\t\t" + eventname + "\n";
 			return s;
 		} else {
 			if (firsttime == 0) {
 				s = s + Numconvert.dozdatestr(sdf.format(Julian.julian_to_date(jdn))) + "\n";
-				if (MainActivity.moonphases == 1)
-					s += "\t"+Lunar.lunar_phase_symb(jdn);
+				if ((MainActivity.moonphases == 1) && (Lunar.lunar_phase_symb(jdn) != ""))
+					s += "\t\t"+Lunar.lunar_phase_symb(jdn);
 			}
-			s = s + "\t";
+			s = s + "\t\t";
 			if (timestart != 0)
-				s += Integer.toString(Integer.parseInt(timestart.toString()),12);
+				s += String.format("%4s",Numconvert.doz_prettify(Integer.toString(Integer.parseInt(timestart.toString()),12))).replace(' ','0');
 			if (timeend != 0)
-				s = s+"--"+Integer.toString(Integer.parseInt(timeend.toString()),12);
-			s = s + "\t" + eventname + "\n";
+				s = s+"--"+String.format("%4s",Numconvert.doz_prettify(Integer.toString(Integer.parseInt(timeend.toString()),12))).replace(' ','0');
+			s = s + "\t\t" + eventname + "\n";
 			return s;
 		}
 	}
