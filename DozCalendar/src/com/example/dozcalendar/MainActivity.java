@@ -260,10 +260,10 @@ public class MainActivity extends Activity {
 					handler.sendMessage(handler.obtainMessage(0));
 				}
 			});
-			contentblock.setText("");
-			print_events(contentblock);
 			isRunning.set(true);
 			background.start();
+			contentblock.setText("");
+			print_events(contentblock);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
@@ -355,11 +355,11 @@ public class MainActivity extends Activity {
 	}
 	protected void onResume(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-	//	Typeface symbola = Typeface.createFromAsset(getAssets(),"Symbola.ttf");
+/*		setContentView(R.layout.activity_main);
+		Typeface symbola = Typeface.createFromAsset(getAssets(),"Symbola.ttf");
 		final TextView contentblock = (TextView) findViewById(R.id.dateunit_content);
 		process_file(contentblock);
-		print_events(contentblock);
+		print_events(contentblock);*/
 		System.out.println("RESUME");
 	}
 }

@@ -197,6 +197,9 @@ public class AddnewActivity extends Activity {
 			return 1;
 		}
 	}
+	public int validate_time(String s) {
+		return 1;
+	}
 	public void showAlert(View view,String title,String message) {
 		new AlertDialog.Builder(this)
 			.setTitle(title)
