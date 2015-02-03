@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dozclockwidget"
+    package="com.dsadozenal.dozclockwidget"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.dozclockwidget.MainActivity"
+            android:name="com.dsadozenal.dozclockwidget.MainActivity"
 		 	android:theme="@style/Theme.NoTitleDim"
             android:label="@string/app_name" >
             <intent-filter>

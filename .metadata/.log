@@ -4867,3 +4867,23 @@ Caused by: java.io.FileNotFoundException: /home/dpg/androidapps/dozbc/bin/resour
 	at com.android.sdklib.build.ApkBuilder.checkInputFile(ApkBuilder.java:934)
 	at com.android.sdklib.build.ApkBuilder.init(ApkBuilder.java:438)
 	... 21 more
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2015-01-31 22:08:07.501
+!MESSAGE Export Wizard Error
+!STACK 0
+java.lang.NullPointerException
+	at com.android.sdklib.internal.build.KeystoreHelper.createNewStore(KeystoreHelper.java:141)
+	at com.android.ide.eclipse.adt.internal.wizards.export.ExportWizard.doExport(ExportWizard.java:238)
+	at com.android.ide.eclipse.adt.internal.wizards.export.ExportWizard.access$0(ExportWizard.java:233)
+	at com.android.ide.eclipse.adt.internal.wizards.export.ExportWizard$1.run(ExportWizard.java:218)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2015-01-31 22:08:13.565
+!MESSAGE Export Wizard Error
+!STACK 0
+java.lang.NullPointerException
+	at com.android.sdklib.internal.build.KeystoreHelper.createNewStore(KeystoreHelper.java:141)
+	at com.android.ide.eclipse.adt.internal.wizards.export.ExportWizard.doExport(ExportWizard.java:238)
+	at com.android.ide.eclipse.adt.internal.wizards.export.ExportWizard.access$0(ExportWizard.java:233)
+	at com.android.ide.eclipse.adt.internal.wizards.export.ExportWizard$1.run(ExportWizard.java:218)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
