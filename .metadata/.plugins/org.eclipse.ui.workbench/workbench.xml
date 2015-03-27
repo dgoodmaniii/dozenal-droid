@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="18" version="2.0">
+<workbench progressCount="21" version="2.0">
 <workbenchAdvisor/>
 <window height="568" width="1022" x="0" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -22,6 +22,7 @@
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.PropertiesFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -34,28 +35,18 @@
 </coolbarLayout>
 <page aggregateWorkingSetId="Aggregate for window 1366827817485" focus="true" label="Workspace - Java">
 <editors>
-<editorArea activeWorkbook="org.eclipse.ui.internal.EditorStack@1c15952">
-<info part="org.eclipse.ui.internal.EditorStack@1c15952">
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
-<part id="2"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" partName="MainActivity.java" path="/home/dpg/androidapps/DozCalendar/src/com/example/dozcalendar/MainActivity.java" title="MainActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/MainActivity.java" workbook="org.eclipse.ui.internal.EditorStack@1c15952">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozCalendar/src/com/example/dozcalendar/MainActivity.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="9028" selectionTopPixel="3915"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddnewActivity.java" partName="AddnewActivity.java" path="/home/dpg/androidapps/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java" title="AddnewActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/AddnewActivity.java" workbook="org.eclipse.ui.internal.EditorStack@1c15952">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
-<editorState selectionHorizontalPixel="170" selectionLength="0" selectionOffset="5480" selectionTopPixel="1870"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Datelib.java" partName="Datelib.java" path="/home/dpg/androidapps/DozCalendar/src/com/example/dozcalendar/Datelib.java" title="Datelib.java" tooltip="DozCalendar/src/com/example/dozcalendar/Datelib.java" workbook="org.eclipse.ui.internal.EditorStack@1c15952">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="463" selectionTopPixel="100"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" partName="MainActivity.java" path="/home/dpg/androidapps/TGMDroid/src/com/dsadozenal/tgmdroid/MainActivity.java" title="MainActivity.java" tooltip="TGMDroid/src/com/dsadozenal/tgmdroid/MainActivity.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/TGMDroid/src/com/dsadozenal/tgmdroid/MainActivity.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -140,7 +131,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="0" fixed="0" version="0.016">
 <descriptor class="com.android.ide.eclipse.ddms.Perspective" id="com.android.ide.eclipse.ddms.Perspective" label="DDMS"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -462,161 +453,145 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Julian.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Numconvert.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/MainActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozCalendar/src/com/example/dozcalendar/Settings.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/dozbc/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/DozclockWidget/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/TGMDroid/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozclockWidget/src/com/example/dozclockwidget/DozClockWidget.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozclockWidget/src/com/example/dozclockwidget/MainActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.PropertiesFileEditor" path="/DozclockWidget/project.properties"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozclockWidget/src/com/dsadozenal/dozclockwidget/MainActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/DozclockWidget/src/com/dsadozenal/dozclockwidget/DozClockWidget.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/dozbc/src/com/example/dozbc/MainActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/dozbc/src/com/dsadozenal/dozbc/MainActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/TGMDroid/src/com/dsadozenal/tgmdroid/MainActivity.java"/>
 </editors>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4790" y="0"/>
+<item historyLabel="AddnewActivity.java" index="1">
+<position info="not_deleted" x="4091" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4833" y="0"/>
+<item historyLabel="AddnewActivity.java" index="1">
+<position info="not_deleted" x="7724" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4834" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4835" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3706" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
+<item historyLabel="MainActivity.java" index="0">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4020" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
+<item historyLabel="MainActivity.java" index="0">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
+<item historyLabel="MainActivity.java" index="0">
+<position info="not_deleted" x="8622" y="0"/>
+</item>
+<item historyLabel="Datelib.java" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="0">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3330" y="0"/>
+<item historyLabel="Datelib.java" index="2">
+<position info="not_deleted" x="2586" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3331" y="0"/>
+<item historyLabel="MainActivity.java" index="0">
+<position info="not_deleted" x="8737" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
+<item historyLabel="Datelib.java" index="2">
+<position info="not_deleted" x="2531" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="0">
+<position info="not_deleted" x="8808" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="0">
+<position info="not_deleted" x="11854" y="35"/>
+</item>
+<item historyLabel="MainActivity.java" index="0">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3755" y="0"/>
+<item historyLabel="MainActivity.java" index="0">
+<position info="not_deleted" x="3254" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3768" y="0"/>
+<item historyLabel="MainActivity.java" index="0">
+<position info="not_deleted" x="3444" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3769" y="0"/>
+<item historyLabel="Settings.java" index="3">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3867" y="0"/>
+<item historyLabel="Settings.java" index="3">
+<position info="not_deleted" x="2634" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4374" y="0"/>
+<item historyLabel="Settings.java" index="3">
+<position info="not_deleted" x="176" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4527" y="0"/>
+<item historyLabel="MainActivity.java" index="0">
+<position info="not_deleted" x="3444" y="0"/>
 </item>
-<item historyLabel="Julian.java" index="1">
+<item historyLabel="AddnewActivity.java" index="1">
+<position info="not_deleted" x="7667" y="0"/>
+</item>
+<item historyLabel="dozbc Manifest" index="4"/>
+<item historyLabel="DozclockWidget Manifest" index="5"/>
+<item historyLabel="dozbc Manifest" index="4"/>
+<item historyLabel="TGMDroid Manifest" index="6"/>
+<item historyLabel="DozclockWidget Manifest" index="5"/>
+<item historyLabel="DozClockWidget.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="DozClockWidget.java" index="7">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
+<item historyLabel="DozClockWidget.java" index="7">
+<position info="not_deleted" x="3463" y="0"/>
+</item>
+<item historyLabel="DozclockWidget Manifest" index="5"/>
+<item historyLabel="MainActivity.java" index="8">
+<position info="not_deleted" x="281" y="0"/>
+</item>
+<item historyLabel="DozClockWidget.java" index="7">
+<position info="not_deleted" x="22" y="0"/>
+</item>
+<item historyLabel="project.properties" index="9">
+<position info="not_deleted" x="563" y="0"/>
+</item>
+<item historyLabel="DozClockWidget.java" index="7">
+<position info="not_deleted" x="22" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="10">
+<position info="not_deleted" x="281" y="0"/>
+</item>
+<item historyLabel="DozClockWidget.java" index="11">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
+<item historyLabel="MainActivity.java" index="10">
+<position info="not_deleted" x="281" y="0"/>
+</item>
+<item historyLabel="DozclockWidget Manifest" index="5"/>
+<item historyLabel="DozclockWidget Manifest" index="5"/>
+<item historyLabel="DozClockWidget.java" index="11">
+<position info="not_deleted" x="426" y="0"/>
+</item>
+<item historyLabel="DozclockWidget Manifest" index="5"/>
+<item historyLabel="dozbc Manifest" index="4"/>
+<item historyLabel="MainActivity.java" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MainActivity.java" index="13">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4554" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
+<item historyLabel="MainActivity.java" index="13">
 <position/>
 </item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3160" y="62"/>
+<item historyLabel="dozbc Manifest" index="4"/>
+<item historyLabel="TGMDroid Manifest" index="6"/>
+<item historyLabel="MainActivity.java" index="14">
+<position info="not_deleted" x="514" y="0"/>
 </item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position/>
+<item historyLabel="dozbc Manifest" index="4"/>
+<item historyLabel="MainActivity.java" index="13">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5238" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5247" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3907" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5201" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="3907" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4554" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5224" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5548" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5517" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5620" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5537" y="30"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5395" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="2481" y="0"/>
-</item>
-<item historyLabel="Numconvert.java" index="2">
-<position/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4526" y="0"/>
-</item>
-<item historyLabel="Numconvert.java" index="2">
-<position info="not_deleted" x="845" y="0"/>
-</item>
-<item historyLabel="MainActivity.java" index="3">
-<position/>
-</item>
-<item historyLabel="Numconvert.java" index="2">
-<position info="not_deleted" x="179" y="0"/>
-</item>
-<item historyLabel="Julian.java" index="1">
-<position info="not_deleted" x="4526" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5395" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5465" y="0"/>
-</item>
-<item historyLabel="AddnewActivity.java" index="0">
-<position info="not_deleted" x="5480" y="0"/>
-</item>
-<item historyLabel="Datelib.java" index="4">
-<position info="not_deleted" x="463" y="0"/>
-</item>
-<item active="true" historyLabel="MainActivity.java" index="3">
-<position info="not_deleted" x="943" y="0"/>
+<item active="true" historyLabel="MainActivity.java" index="14">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -624,9 +599,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -635,55 +607,51 @@
 <trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.HeapStatus"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
-<trimItem IMemento.internal.id="bottom"/>
 </trimArea>
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Datelib.java" tooltip="DozCalendar/src/com/example/dozcalendar/Datelib.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="TGMDroid/src/com/dsadozenal/tgmdroid/MainActivity.java">
+<persistable path="/TGMDroid/src/com/dsadozenal/tgmdroid/MainActivity.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Numconvert.java" tooltip="DozCalendar/src/com/example/dozcalendar/Numconvert.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/Numconvert.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="dozbc/src/com/dsadozenal/dozbc/MainActivity.java">
+<persistable path="/dozbc/src/com/dsadozenal/dozbc/MainActivity.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Julian.java" tooltip="DozCalendar/src/com/example/dozcalendar/Julian.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/Julian.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="DozCalendar/AndroidManifest.xml">
-<persistable path="/DozCalendar/AndroidManifest.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="addnew_layout.xml" tooltip="DozCalendar/res/layout/addnew_layout.xml">
-<persistable path="/DozCalendar/res/layout/addnew_layout.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddnewActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/AddnewActivity.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DateCompare.java" tooltip="DozCalendar/src/com/example/dozcalendar/DateCompare.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/DateCompare.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="activity_main.xml" tooltip="DozCalendar/res/layout/activity_main.xml">
-<persistable path="/DozCalendar/res/layout/activity_main.xml"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="R.java" tooltip="DozCalendar/gen/com/example/dozcalendar/R.java">
-<persistable path="/DozCalendar/gen/com/example/dozcalendar/R.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/MainActivity.java">
-<persistable path="/DozCalendar/src/com/example/dozcalendar/MainActivity.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="DozcalDroid/AndroidManifest.xml">
-<persistable path="/DozcalDroid/AndroidManifest.xml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="dozbc/AndroidManifest.xml">
+<persistable path="/dozbc/AndroidManifest.xml"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="TGMDroid/AndroidManifest.xml">
 <persistable path="/TGMDroid/AndroidManifest.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainActivity.java" tooltip="TGMDroid/src/com/example/tgmdroid/MainActivity.java">
-<persistable path="/TGMDroid/src/com/example/tgmdroid/MainActivity.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DozClockWidget.java" tooltip="DozclockWidget/src/com/dsadozenal/dozclockwidget/DozClockWidget.java">
+<persistable path="/DozclockWidget/src/com/dsadozenal/dozclockwidget/DozClockWidget.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.browser.editorSupport" name="dozbc_javascript.html" tooltip="dozbc/assets/dozbc_javascript.html">
-<persistable path="/dozbc/assets/dozbc_javascript.html"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="DozclockWidget/AndroidManifest.xml">
+<persistable path="/DozclockWidget/AndroidManifest.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="dozbc/AndroidManifest.xml">
-<persistable path="/dozbc/AndroidManifest.xml"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.PropertiesFileEditor" name="project.properties" tooltip="DozclockWidget/project.properties">
+<persistable path="/DozclockWidget/project.properties"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Settings.java" tooltip="DozCalendar/src/com/example/dozcalendar/Settings.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/Settings.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Datelib.java" tooltip="DozCalendar/src/com/example/dozcalendar/Datelib.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/Datelib.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Julian.java" tooltip="DozCalendar/src/com/example/dozcalendar/Julian.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/Julian.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.CommonXmlEditor" name="strings.xml" tooltip="DozCalendar/res/values/strings.xml">
+<persistable path="/DozCalendar/res/values/strings.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Numconvert.java" tooltip="DozCalendar/src/com/example/dozcalendar/Numconvert.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/Numconvert.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Lunar.java" tooltip="DozCalendar/src/com/example/dozcalendar/Lunar.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/Lunar.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AddnewActivity.java" tooltip="DozCalendar/src/com/example/dozcalendar/AddnewActivity.java">
+<persistable path="/DozCalendar/src/com/example/dozcalendar/AddnewActivity.java"/>
 </file>
 </mruList>
 </workbench>
