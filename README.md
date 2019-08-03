@@ -1,3 +1,5 @@
+PLEASE NOTE:  This project has been migrated to Gitlab:  https://gitlab.com/dgoodmaniii/dozenal-droid/
+
 dozenal-droid
 =============
 
